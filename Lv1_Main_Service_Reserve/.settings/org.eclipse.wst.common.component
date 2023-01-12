@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Lv1_Main_Service">
+    <wb-module deploy-name="Lv1_Main_Service_Reserve">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="Lv1_Main_Service"/>
-        <property name="java-output-path" value="/Lv1_Main_Service/build/classes"/>
+        <property name="context-root" value="Lv1_Main_Service_Reserve"/>
+        <property name="java-output-path" value="/Lv1_Main_Service_Reserve/build/classes"/>
     </wb-module>
 </project-modules>

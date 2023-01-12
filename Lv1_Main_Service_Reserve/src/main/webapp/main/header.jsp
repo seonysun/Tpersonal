@@ -13,13 +13,17 @@
         </div>
     </div>
     
+    <!-- 네비게이션바 -->
 	<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <!-- 로고 -->
         <a href="main.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">Go Out Display</h2>
         </a>
+        <!-- 메뉴 토글러 -->
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- 메뉴 -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="main.jsp" class="nav-item nav-link active">홈</a>
@@ -34,7 +38,10 @@
                     </div>
                 </div>
                 <a href="contact.jsp" class="nav-item nav-link">고객센터</a>
+              <!-- 검색창 > 클릭 시 검색 화면으로 이동 > 전체검색 -->
+              <img src="">
             </div>
+            <!-- '로그인' > 클릭 > 로그인 페이지로 이동 > 로그인 완료 시 > '마이페이지' > 마이페이지로 이동 > 로그아웃 -->
             <a href="login.jsp" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
