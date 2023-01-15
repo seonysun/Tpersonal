@@ -1,4 +1,4 @@
-package com.sist.dao;
+package com.sist.vo;
 
 public class ExhibitionVO {
 	private String poster,title,title2,kind,period,loc,loc2,area,area2,item,host,url,price,time,hashtag,content;
