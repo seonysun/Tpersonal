@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -36,13 +37,17 @@
 </head>
 
 <body>
+   
+
 
     <!-- Header Start -->
     <jsp:include page="header.jsp"></jsp:include>
     <!-- section Start -->
-    <jsp:include page="content.jsp"></jsp:include>
+    <jsp:include page="${main_jsp }"></jsp:include>
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
+
+
 
 
     <!-- JavaScript Libraries -->
