@@ -2,7 +2,8 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
-/* ask
+/* 
+<ask>
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
 TYPE       NOT NULL VARCHAR2(20)   
@@ -17,13 +18,13 @@ GROUP_TAB           NUMBER
 MSG        NOT NULL CLOB           
 ID                  VARCHAR2(20)  
 
-faq
+<faq>
 GFNO    NOT NULL NUMBER         
 TYPE    NOT NULL VARCHAR2(20)   
 SUBJECT NOT NULL VARCHAR2(1000) 
 CONTENT NOT NULL CLOB           
 HIT              NUMBER    
- * */
+*/
 public class ServiceDAO {
 	private Connection conn;
 	private PreparedStatement ps;
@@ -157,7 +158,36 @@ public class ServiceDAO {
 	  		rvo.setGroup_tab(rs.getInt(3));
 	  		rs.close();
 	  		
-	  		
+	  		sql="UPDATE god_ask_3 "
+	     		   + "SET group_step=group_step+1 "
+	     		   + "WHERE group_id=? "
+	     		   + "AND group_step>?";
+	     	ps=conn.prepareStatement(sql);
+	     	ps.setInt(1, rvo.getGroup_id());
+	     	ps.setInt(2, rvo.getGroup_step());
+	     	ps.executeUpdate();
+			
+	     	sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
+	     		   + "group_id,group_step,group_tab,root,depth) "
+	     		   + "VALUES(ga_gano_seq.nextval,?,?,?,?,?,SYSDATE,0,?,?,?,?,0)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getPwd());
+			ps.setString(3, vo.getSubject());
+			ps.setString(4, vo.getType());
+			ps.setString(5, vo.getContent());
+			ps.setInt(6, rvo.getGroup_id());
+			ps.setInt(7, rvo.getGroup_step()+1);
+			ps.setInt(8, rvo.getGroup_tab()+1);
+			ps.setInt(9, no);
+			ps.executeUpdate();
+			
+			sql="UPDATE god_ask_3 "
+					+ "SET depth=depth+1 "
+					+ "WHERE gano=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
