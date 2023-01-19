@@ -61,6 +61,7 @@ CREATE TABLE god_review_3 (
     CONSTRAINT gr_geno_fk_3 FOREIGN KEY(geno)
     REFERENCES god_exhibition_3(geno)  
 );
+
 -- 좋아요
 CREATE TABLE god_like_3 (
     glno NUMBER,
@@ -113,6 +114,7 @@ CREATE TABLE god_picture_3 (
     content CLOB,
     CONSTRAINT gp_gpno_pk_3 PRIMARY KEY(gpno)
 );
+
 -- 그림 시퀀스
 CREATE SEQUENCE gp_gpno_seq_3
     START WITH 1
@@ -200,12 +202,21 @@ CREATE TABLE god_ask_3(
     group_step NUMBER DEFAULT 0,
     group_tab NUMBER DEFAULT 0,
     msg CLOB CONSTRAINT ga_msg_nn_3 NOT NULL,
+    root NUMBER DEFAULT 0,
+    depth NUMBER DEFAULT 0,
     id VARCHAR2(20),
     CONSTRAINT ga_gano_pk_3 PRIMARY KEY(gano),
     CONSTRAINT ga_id_fk_3 FOREIGN KEY(id)
     REFERENCES god_member_3(id),
     CONSTRAINT ga_astate_ch_3 CHECK(ans_state IN('미답변','답변완료'))
 );
+
+-- 문의 시퀀스
+CREATE SEQUENCE ga_gano_seq_3
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- FAQ
 CREATE TABLE god_faq_3(
