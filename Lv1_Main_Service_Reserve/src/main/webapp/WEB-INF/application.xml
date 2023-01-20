@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<beans>
-  <bean class="com.sist.model.MainModel"/>
-</beans>
+	<beans>
+	  <bean class="com.sist.model.MainModel"/>
+	  <bean class="com.sist.model.ServiceModel"/>
+	  <bean class="com.sist.model.UserModel"/>
+	  <bean class="com.sist.model.ReviewBoardModel"/>
+	  <bean class="com.sist.model.PictureModel"/>
+	</beans>
