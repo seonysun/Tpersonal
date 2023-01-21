@@ -18,7 +18,6 @@ CREATE TABLE god_ask_3(
     group_id NUMBER CONSTRAINT ga_gid_nn_3 NOT NULL,
     group_step NUMBER DEFAULT 0,
     group_tab NUMBER DEFAULT 0,
-    msg CLOB CONSTRAINT ga_msg_nn_3 NOT NULL,
     root NUMBER DEFAULT 0,
     depth NUMBER DEFAULT 0,
     id VARCHAR2(20),

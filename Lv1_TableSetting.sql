@@ -188,7 +188,7 @@ CREATE TABLE god_board_reply_3(
     REFERENCES god_member_3(id)
 );
 
--- 1:1문의답변
+-- 1:1문의
 CREATE TABLE god_ask_3(
     gano NUMBER,
     subject VARCHAR2(1000) CONSTRAINT ga_sub_nn_3 NOT NULL,
@@ -201,7 +201,6 @@ CREATE TABLE god_ask_3(
     group_id NUMBER CONSTRAINT ga_gid_nn_3 NOT NULL,
     group_step NUMBER DEFAULT 0,
     group_tab NUMBER DEFAULT 0,
-    msg CLOB CONSTRAINT ga_msg_nn_3 NOT NULL,
     root NUMBER DEFAULT 0,
     depth NUMBER DEFAULT 0,
     id VARCHAR2(20),
@@ -228,3 +227,9 @@ CREATE TABLE god_faq_3(
     CONSTRAINT gf_gfno_pk_3 PRIMARY KEY(gfno)
 );
 
+-- FAQ 시퀀스
+CREATE SEQUENCE gf_gfno_seq_3
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;

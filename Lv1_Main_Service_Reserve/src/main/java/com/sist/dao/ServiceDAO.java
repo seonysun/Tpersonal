@@ -15,7 +15,6 @@ HIT                 NUMBER
 GROUP_ID   NOT NULL NUMBER         
 GROUP_STEP          NUMBER         
 GROUP_TAB           NUMBER         
-MSG        NOT NULL CLOB           
 ID                  VARCHAR2(20)***** ID fk 수정!!
 
 group_id : 댓글 그룹 번호
@@ -41,7 +40,7 @@ HIT              NUMBER
 public class ServiceDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	/* **** 참조키 id 해결하기 **** */
+	/* **** 참조키 id 해결하기 insert가 안됨 **** */
 	//QNA 목록 출력
 	public List<AskVO> qnaListData(int page){
 		List<AskVO> list=new ArrayList<AskVO>();

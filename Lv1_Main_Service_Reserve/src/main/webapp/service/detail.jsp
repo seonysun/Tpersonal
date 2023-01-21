@@ -33,10 +33,28 @@
 	  <div style="height: 5px"></div>
 	  	<table class="table">
 	  	  <tr>
-	  	  	<th width=20% class="text-center">번호</th>
-	  	  	<td width=30% class="text-center">${vo.no }</td>
-	  	  	<th width=20% class="text-center">작성일</th>
-	  	  	<td width=30% class="text-center">${vo.dbday }</td>
+	  	  	<th width=10% class="text-center">번호</th>
+	  	  	<td width=5% class="text-center">${vo.gano }</td>
+	  	  	<th width=15% class="text-center">문의유형</th>
+	  	  	<td width=10% class="text-center">${vo.type }</td>
+	  	  	<th width=13% class="text-center">작성일</th>
+	  	  	<td width=17% class="text-center">${vo.dbday }</td>
+	  	  	<th width=15% class="text-center">조회수</th>
+	  	  	<td width=5% class="text-center">${vo.hit }</td>
+	  	  </tr>
+	  	  <tr>
+	  	  	<th colspan=3 class="text-center">제목</th>
+	  	  	<td colspan=5>${vo.subject }</td>
+	  	  </tr>
+	  	  <tr>
+	  	  	<td class="text-left" valign=top colspan=8 height=200>${vo.content }</td>
+	  	  </tr>
+	  	  <tr>
+	  	  	<td class="text-center" colspan=8 style="border-color: white">
+	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
+	  	  		<a href="../service/delete.do?no=${vo.gano }" class="btn btn-sm btn-danger">삭제</a>
+	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary">목록</a>
+	  	  	</td>
 	  	  </tr>
 	  	</table>
 	</div>
