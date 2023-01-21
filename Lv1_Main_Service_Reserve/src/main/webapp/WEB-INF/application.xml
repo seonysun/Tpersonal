@@ -2,6 +2,7 @@
 	<beans>
 	  <bean class="com.sist.model.MainModel"/>
 	  <bean class="com.sist.model.ServiceModel"/>
+	  <bean class="com.sist.model.FaqModel"/>
 	  <bean class="com.sist.model.UserModel"/>
 	  <bean class="com.sist.model.ReviewBoardModel"/>
 	  <bean class="com.sist.model.PictureModel"/>

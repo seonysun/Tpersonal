@@ -3,7 +3,6 @@ import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
 /* 
-<ask>
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
 TYPE       NOT NULL VARCHAR2(20)   
@@ -29,13 +28,6 @@ depth : 포함 대댓글 갯수
          => 4DDDDDDDD   1           4             2          3       0
     EEEEEE              2           1             0
       =>KKKKKK          2           2             1
-      
-<faq>
-GFNO    NOT NULL NUMBER         
-TYPE    NOT NULL VARCHAR2(20)   
-SUBJECT NOT NULL VARCHAR2(1000) 
-CONTENT NOT NULL CLOB           
-HIT              NUMBER    
 */
 public class ServiceDAO {
 	private Connection conn;
