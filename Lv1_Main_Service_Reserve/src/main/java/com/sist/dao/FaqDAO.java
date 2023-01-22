@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.*;
 import com.sist.vo.*;
 /*
- <faq>
 GFNO    NOT NULL NUMBER         
 TYPE    NOT NULL VARCHAR2(20)   
 SUBJECT NOT NULL VARCHAR2(1000) 
@@ -121,4 +120,29 @@ public class FaqDAO {
 		}
 		return vo;
 	}
+	//FAQ 수정
+	public boolean faqUpdate(FaqVO vo, String id) {
+		boolean bCheck=false;
+		try {
+			conn=CreateConnection.getConnection();
+			if(id.equals("master")) {
+				bCheck=true;
+				String sql="UPDATE god_faq_3 "
+						+ "SET subject=?, content=?, type=? "
+						+ "WHERE gfno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getSubject());
+				ps.setString(2, vo.getContent());
+				ps.setString(3, vo.getType());
+				ps.setInt(4, vo.getGfno());
+				ps.executeUpdate();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
+	//FAQ 검색
 }

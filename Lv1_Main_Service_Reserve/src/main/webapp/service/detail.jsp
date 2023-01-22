@@ -29,7 +29,7 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:600px">
+	<div class="container" style="width:700px">
 	  <div style="height: 5px"></div>
 	  	<table class="table">
 	  	  <tr>
@@ -54,6 +54,9 @@
 	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
 	  	  		<a href="../service/delete.do?no=${vo.gano }" class="btn btn-sm btn-danger">삭제</a>
 	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary">목록</a>
+	  	  		<c:if test="${vo.id=='master' }">
+	  	  			<a href="../service/reply.do?no=${vo.gano }" class="btn btn-sm btn-danger">답변</a>
+	  	  		</c:if>
 	  	  	</td>
 	  	  </tr>
 	  	</table>

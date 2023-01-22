@@ -34,10 +34,32 @@
 	
 	<!-- faq list 추가(카드 형식) 분야별 faq 빠른 찾기를 이용해보세요 -->
 	
-	<!-- ///고민///faq top10 -->
+	<!-- ///고민///faq top10 색 변하는 목록-->
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+    </tbody>
+  </table>
 	
 	<!-- qna list include ///고민///이 페이지를 메인으로 넣고 list는 간략하게 출력, 현재 게시판형 list는 마이페이지로? -->
-	
+	<!-- 사이드에 배지 출력 depth 수 나타내기 -->
+	<ul class="list-group">
+	    <li class="list-group-item">New <span class="badge">12</span></li>
+	    <li class="list-group-item">Deleted <span class="badge">5</span></li>
+	    <li class="list-group-item">Warnings <span class="badge">3</span></li>
+  	</ul>
+  
 	<!-- ///고민///공지사항 list 일부 추가, 더보기 누르면 공지사항 페이지 연결 -->
 	
 </body>

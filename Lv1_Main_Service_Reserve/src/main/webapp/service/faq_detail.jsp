@@ -28,7 +28,7 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:600px">
+	<div class="container" style="width:700px">
 	  <div style="height: 5px"></div>
 	  	<table class="table">
 	  	  <tr>

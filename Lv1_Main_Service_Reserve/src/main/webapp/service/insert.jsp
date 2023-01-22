@@ -29,7 +29,7 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:600px">
+	<div class="container" style="width:700px">
 	<div style="height: 5px"></div>
 	<div class="row">
 	  <form method=post action="../service/insert_ok.do">

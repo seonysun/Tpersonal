@@ -144,10 +144,10 @@ public class ServiceDAO {
 		}
 	}
 	//QNA 답변
-	public void qnaReplyInsert(int no, AskVO vo) {
+	public void qnaReplyInsert(int no, String id, AskVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT group_id,group_step,group_tab "
+			String sql="SELECT group_id,group_step,group_tab,type "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
@@ -158,6 +158,7 @@ public class ServiceDAO {
 	  		rvo.setGroup_id(rs.getInt(1));
 	  		rvo.setGroup_step(rs.getInt(2));
 	  		rvo.setGroup_tab(rs.getInt(3));
+	  		rvo.setType(rs.getString(4));
 	  		rs.close();
 	  		
 	  		sql="UPDATE god_ask_3 "
@@ -169,20 +170,21 @@ public class ServiceDAO {
 	     	ps.setInt(2, rvo.getGroup_step());
 	     	ps.executeUpdate();
 			
-	     	sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
-	     		   + "group_id,group_step,group_tab,root,depth) "
-	     		   + "VALUES(ga_gano_seq_3.nextval,'master',?,?,?,?,SYSDATE,0,?,?,?,?,0)";
-			ps=conn.prepareStatement(sql);
-//			ps.setString(1, vo.getId());
-			ps.setString(1, vo.getPwd());
-			ps.setString(2, vo.getSubject());
-			ps.setString(3, vo.getType());
-			ps.setString(4, vo.getContent());
-			ps.setInt(5, rvo.getGroup_id());
-			ps.setInt(7, rvo.getGroup_step()+1);
-			ps.setInt(8, rvo.getGroup_tab()+1);
-			ps.setInt(9, no);
-			ps.executeUpdate();
+	     	if(id.equals("master")) {
+	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
+	     				+ "group_id,group_step,group_tab,root,depth) "
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다.',?,?,SYSDATE,0,?,?,?,?,0)";
+	     		ps=conn.prepareStatement(sql);
+	     		ps.setString(1, id);
+	     		ps.setString(2, vo.getPwd());
+	     		ps.setString(3, rvo.getType());
+	     		ps.setString(4, vo.getContent());
+	     		ps.setInt(5, rvo.getGroup_id());
+	     		ps.setInt(7, rvo.getGroup_step()+1);
+	     		ps.setInt(8, rvo.getGroup_tab()+1);
+	     		ps.setInt(9, no);
+	     		ps.executeUpdate();
+	     	}
 			
 			sql="UPDATE god_ask_3 "
 					+ "SET depth=depth+1 "

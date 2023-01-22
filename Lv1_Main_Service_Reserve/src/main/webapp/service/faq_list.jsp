@@ -31,14 +31,15 @@
     
 	<div class="container" style="width:800px">
 	  <div style="height: 5px"></div>
-	  	<table class="table">
+	  	<table class="table text-center">
 	  	  <tr>
 	  	  	<td>
-	  	  		<a href="../service/faq_list?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
-	  	  		<a href="../service/faq_list?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
-	  	  		<a href="../service/faq_list?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
-	  	  		<a href="../service/faq_list?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
-	  	  		<a href="../service/faq_list?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
+	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
+	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
+	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
+	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
+	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
+	  	  		<!-- 선택 후 나머지 비활성화 어케 하는거쥐 -->
 	  	  	</td>
 	  	  </tr>
 	  	</table>
@@ -48,6 +49,7 @@
 	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<th width=55% class="text-center">제목</th>
 	  	  	<th width=15% class="text-center">조회수</th>
+	  	  	<!-- 조회수 없애까 -->
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>

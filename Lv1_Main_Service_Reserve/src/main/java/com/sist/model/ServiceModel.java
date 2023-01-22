@@ -11,6 +11,13 @@ import com.sist.controller.RequestMapping;
 
 @Controller
 public class ServiceModel {
+//	@RequestMapping("service/main.do")
+//	public String service_main(HttpServletRequest request, HttpServletResponse response) {
+//		request.setAttribute("main_jsp", "../service/service.jsp");
+//		return "../main/main.jsp";
+//	}
+	//이중으로 include? (main_jsp, service_jsp 2개 제시) -> ajax로 헤더 문구만 바뀌게 하면 굳이 복잡하게 화면 전환 필요 없을 듯
+	
 	@RequestMapping("service/list.do")
 	public String qna_list(HttpServletRequest request, HttpServletResponse response) {
 		String page=request.getParameter("page");
@@ -66,22 +73,33 @@ public class ServiceModel {
 	
 	@RequestMapping("service/reply.do")
 	public String qna_reply(HttpServletRequest request, HttpServletResponse response) {
-		
+		String no=request.getParameter("no");
 		request.setAttribute("main_jsp", "../service/reply.jsp");
 		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("service/reply_ok.do")
 	public String qna_reply_ok(HttpServletRequest request, HttpServletResponse response) {
-		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		ServiceDAO dao=new ServiceDAO();
+		AskVO vo=new AskVO();
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		dao.qnaReplyInsert(Integer.parseInt(no), id, vo);
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/update.do")
 	public String qna_update(HttpServletRequest request, HttpServletResponse response) {
-		try { //여긴 한글변환 없어도 되나??
-			request.setCharacterEncoding("UTF-8");
-		} catch(Exception ex) {}
 		String no=request.getParameter("no");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=dao.qnaDetailData(Integer.parseInt(no), 2);
