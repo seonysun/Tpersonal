@@ -21,7 +21,8 @@ public class FaqDAO {
 			String sql="";
 			if(type==0) {
 				sql="SELECT gfno,type,subject,hit "
-						+ "FROM god_faq_3";
+						+ "FROM god_faq_3 "
+						+ "ORDER BY hit DESC";
 				ps=conn.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
@@ -36,7 +37,8 @@ public class FaqDAO {
 			} else {
 				sql="SELECT gfno,type,subject,hit "
 						+ "FROM god_faq_3 "
-						+ "WHERE type=?";
+						+ "WHERE type=? "
+						+ "ORDER BY hit DESC";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, ftype[type]);
 				ResultSet rs=ps.executeQuery();
@@ -149,11 +151,22 @@ public class FaqDAO {
 		List<FaqVO> list=new ArrayList<FaqVO>();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT gfno,type,subject,content,hit "
-					+ "FROM (SELECT gfno,type,subject,content,hit "
+			String sql="SELECT gfno,type,subject,hit "
+					+ "FROM (SELECT gfno,type,subject,hit "
 					+ "FROM god_faq_3 "
 					+ "ORDER BY hit DESC) "
 					+ "WHERE rownum BETWEEN 1 AND 10";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				FaqVO vo=new FaqVO();
+				vo.setGfno(rs.getInt(1));
+				vo.setType(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setHit(rs.getInt(4));
+				list.add(vo);
+			}
+			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {

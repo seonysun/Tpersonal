@@ -18,8 +18,8 @@
                     <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/list.do">고객센터</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/faq_list.do">고객센터</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">자주 묻는 질문</li>
                         </ol>
                     </nav>
@@ -34,11 +34,11 @@
 	  	<table class="table text-center">
 	  	  <tr>
 	  	  	<td>
-	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
-	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
-	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
-	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
-	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
+	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 slideInLeft">회원</a>
+	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-primary py-md-3 px-md-5 slideInRight">예매</a>
+	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 slideInLeft">결제</a>
+	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-primary py-md-3 px-md-5 slideInRight">티켓</a>
+	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</a>
 	  	  		<!-- 선택 후 나머지 비활성화 어케 하는거쥐 -->
 	  	  	</td>
 	  	  </tr>

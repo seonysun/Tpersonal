@@ -18,8 +18,8 @@
                     <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/list.do">고객센터</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/faq_list.do">고객센터</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">자주 묻는 질문</li>
                         </ol>
                     </nav>

@@ -16,30 +16,14 @@ public class ServiceModel {
 		//qna
 		String page=request.getParameter("page");
 		if(page==null) page="1";
-		int curpage=Integer.parseInt(page);
 		ServiceDAO sdao=new ServiceDAO();
-		List<AskVO> slist=sdao.qnaListData(curpage);
-		int scount=sdao.qnaRowCount();
-		int totalpage=(int)(Math.ceil(scount/10.0));
+		List<AskVO> slist=sdao.qnaListData(Integer.parseInt(page));
 		request.setAttribute("slist", slist);
-		request.setAttribute("count", scount);
-		request.setAttribute("curpage", curpage);
-		request.setAttribute("totalpage", totalpage);
 		
 		//faq
-		String type=request.getParameter("type");
-		if(type==null) type="0";
 		FaqDAO fdao=new FaqDAO();
-		List<FaqVO> flist=fdao.faqListData(Integer.parseInt(type));
-		int fcount=fdao.faqRowCount(Integer.parseInt(type));
-		request.setAttribute("type", type);
+		List<FaqVO> flist=fdao.faq_top10();
 		request.setAttribute("list", flist);
-		request.setAttribute("count", fcount);
-		
-		//faq10
-		List<FaqVO> flist10=fdao.faq_top10();
-		request.setAttribute("flist10", flist10);
-		
 		request.setAttribute("main_jsp", "../service/service.jsp");
 		return "../main/main.jsp";
 	}

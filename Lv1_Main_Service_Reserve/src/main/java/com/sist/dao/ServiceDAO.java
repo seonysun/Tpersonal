@@ -14,7 +14,7 @@ HIT                 NUMBER
 GROUP_ID   NOT NULL NUMBER         
 GROUP_STEP          NUMBER         
 GROUP_TAB           NUMBER         
-ID                  VARCHAR2(20)***** ID fk 수정!!
+ID                  VARCHAR2(20)
 
 group_id : 댓글 그룹 번호
 group_step : 그룹 내 출력 순서

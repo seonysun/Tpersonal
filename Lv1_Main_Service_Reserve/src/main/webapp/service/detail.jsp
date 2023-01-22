@@ -19,7 +19,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/list.do">고객센터</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">나의 문의 보기</li>
                         </ol>
                     </nav>
@@ -43,8 +43,8 @@
 	  	  	<td width=10% class="text-center">${vo.hit }</td>
 	  	  </tr>
 	  	  <tr>
-	  	  	<th colspan=3 class="text-center">제목</th>
-	  	  	<td colspan=5>${vo.subject }</td>
+	  	  	<th colspan=2 class="text-center">제목</th>
+	  	  	<td colspan=6>${vo.subject }</td>
 	  	  </tr>
 	  	  <tr>
 	  	  	<td class="text-left" valign=top colspan=8 height=200>${vo.content }</td>
