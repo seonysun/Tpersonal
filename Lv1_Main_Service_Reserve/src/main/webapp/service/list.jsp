@@ -57,8 +57,8 @@
 		  	  	  <c:if test="${vo.group_tab>0 }">
 		  	  	  	<c:forEach var="i" begin="0" end="${vo.group_tab }">&nbsp;&nbsp;</c:forEach>
 		  	  	  </c:if>
-		  	  	<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
-		  	 <!-- ### 링크 주니까 글자색 자동으로 하늘색으로 바뀜.. 구려.. ### -->
+		  	  	  <img src="">
+		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
 		  	  	</td>
 		  	  	<td width=10% class="text-center">${vo.id }</td>
 		  	  	<td width=15% class="text-center">${vo.dbday }</td>
@@ -80,7 +80,6 @@
 	  	  	<td class="text-center">
 	  	  		<a href="../service/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
 	  	  		${curpage } page / ${totalpage } pages
-	  	  		<!-- ### curpage 디폴트 적용 왜 안돼.. 그냥 1로 줄까? ### -->
 	  	  		<a href="../service/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
 	  	  	</td>
 	  	  </tr>

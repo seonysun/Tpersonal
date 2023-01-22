@@ -38,9 +38,9 @@ public class ServiceDAO {
 		List<AskVO> list=new ArrayList<AskVO>();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,rownum as num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate "
+			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),depth,num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth,rownum as num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth "
 					+ "FROM god_ask_3 ORDER BY group_id DESC, group_step ASC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
@@ -60,6 +60,7 @@ public class ServiceDAO {
 				vo.setGroup_tab(rs.getInt(6));
 				vo.setHit(rs.getInt(7));
 				vo.setDbday(rs.getString(8));
+				vo.setDepth(rs.getInt(9));
 				list.add(vo);
 			}
 			rs.close();
@@ -102,6 +103,7 @@ public class ServiceDAO {
 				ps.setInt(1, no);
 				ps.executeUpdate();
 			}
+			
 			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
@@ -125,17 +127,17 @@ public class ServiceDAO {
 		return vo;
 	}
 	//QNA 작성
-	public void qnaInsert(AskVO vo) {
+	public void qnaInsert(AskVO vo, String id) {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id) "
-					+ "VALUES(ga_gano_seq_3.nextval,'choe',?,?,?,?,(SELECT NVL(MAX(group_id)+1,1))";
+					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1))";
 			ps=conn.prepareStatement(sql);
-//			ps.setString(1, vo.getId());
-			ps.setString(1, vo.getPwd());
-			ps.setString(2, vo.getSubject());
-			ps.setString(3, vo.getType());
-			ps.setString(4, vo.getContent());
+			ps.setString(1, id);
+			ps.setString(2, vo.getPwd());
+			ps.setString(3, vo.getSubject());
+			ps.setString(4, vo.getType());
+			ps.setString(5, vo.getContent());
 			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();

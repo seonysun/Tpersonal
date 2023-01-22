@@ -45,21 +45,20 @@
 	  	</table>
 	  	<table class="table">
 	  	  <tr>
-	  	  	<th width=15% class="text-center">번호</th>
+	  	  	<th width=10% class="text-center">번호</th>
 	  	  	<th width=15% class="text-center">문의유형</th>
-	  	  	<th width=55% class="text-center">제목</th>
-	  	  	<th width=15% class="text-center">조회수</th>
+	  	  	<th width=65% class="text-center">제목</th>
+	  	  	<th width=10% class="text-center">조회수</th>
 	  	  	<!-- 조회수 없애까 -->
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=15% class="text-center">${count-s.index }</td>
+		  	  	<td width=10% class="text-center">${count-s.index }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
-		  	  	<td width=55%>
-		  	  	<a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
-		  	 <!-- ### 링크 주니까 글자색 자동으로 하늘색으로 바뀜.. 구려.. ### -->
+		  	  	<td width=65%>
+		  	  		<a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
 		  	  	</td>
-		  	  	<td width=15% class="text-center">${vo.hit }</td>
+		  	  	<td width=10% class="text-center">${vo.hit }</td>
 		  	  </tr>
 	  	  </c:forEach>
 	  	</table>

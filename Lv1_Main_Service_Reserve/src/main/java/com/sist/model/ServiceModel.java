@@ -11,12 +11,38 @@ import com.sist.controller.RequestMapping;
 
 @Controller
 public class ServiceModel {
-//	@RequestMapping("service/main.do")
-//	public String service_main(HttpServletRequest request, HttpServletResponse response) {
-//		request.setAttribute("main_jsp", "../service/service.jsp");
-//		return "../main/main.jsp";
-//	}
-	//이중으로 include? (main_jsp, service_jsp 2개 제시) -> ajax로 헤더 문구만 바뀌게 하면 굳이 복잡하게 화면 전환 필요 없을 듯
+	@RequestMapping("service/main.do")
+	public String service_main(HttpServletRequest request, HttpServletResponse response) {
+		//qna
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
+		ServiceDAO sdao=new ServiceDAO();
+		List<AskVO> slist=sdao.qnaListData(curpage);
+		int scount=sdao.qnaRowCount();
+		int totalpage=(int)(Math.ceil(scount/10.0));
+		request.setAttribute("slist", slist);
+		request.setAttribute("count", scount);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		
+		//faq
+		String type=request.getParameter("type");
+		if(type==null) type="0";
+		FaqDAO fdao=new FaqDAO();
+		List<FaqVO> flist=fdao.faqListData(Integer.parseInt(type));
+		int fcount=fdao.faqRowCount(Integer.parseInt(type));
+		request.setAttribute("type", type);
+		request.setAttribute("list", flist);
+		request.setAttribute("count", fcount);
+		
+		//faq10
+		List<FaqVO> flist10=fdao.faq_top10();
+		request.setAttribute("flist10", flist10);
+		
+		request.setAttribute("main_jsp", "../service/service.jsp");
+		return "../main/main.jsp";
+	}
 	
 	@RequestMapping("service/list.do")
 	public String qna_list(HttpServletRequest request, HttpServletResponse response) {
@@ -25,13 +51,12 @@ public class ServiceModel {
 		int curpage=Integer.parseInt(page);
 		ServiceDAO dao=new ServiceDAO();
 		List<AskVO> list=dao.qnaListData(curpage);
-		request.setAttribute("list", list);
-		
 		int count=dao.qnaRowCount();
 		int totalpage=(int)(Math.ceil(count/10.0));
+		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
-		
 		request.setAttribute("main_jsp", "../service/list.jsp");
 		return "../main/main.jsp";
 	}
@@ -57,6 +82,7 @@ public class ServiceModel {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
+		String id="choe";
 		String subject=request.getParameter("subject");
 		String type=request.getParameter("type");
 		String content=request.getParameter("content");
@@ -67,7 +93,7 @@ public class ServiceModel {
 		vo.setType(type);
 		vo.setContent(content);
 		vo.setPwd(pwd);
-		dao.qnaInsert(vo);
+		dao.qnaInsert(vo, id);
 		return "redirect:list.do";
 	}
 	
@@ -84,15 +110,13 @@ public class ServiceModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id=request.getParameter("id");
+		String id="master";
 		String pwd=request.getParameter("pwd");
-		String subject=request.getParameter("subject");
 		String content=request.getParameter("content");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
-		vo.setSubject(subject);
 		vo.setContent(content);
 		dao.qnaReplyInsert(Integer.parseInt(no), id, vo);
 		return "redirect:list.do";
@@ -114,7 +138,6 @@ public class ServiceModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 		String subject=request.getParameter("subject");
@@ -122,7 +145,6 @@ public class ServiceModel {
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setGano(Integer.parseInt(no));
-		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setType(type);
 		vo.setSubject(subject);

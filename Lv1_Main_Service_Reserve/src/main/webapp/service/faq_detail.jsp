@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,12 @@
 		<!-- 관련 faq list 추가 -->
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
-	  	  		<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+	  	  		<c:if test="${id=='master' }">
+	  	  			<a href="../service/faq_update.do" class="btn btn-sm btn-warning">수정</a>
+	  	  		</c:if>
+	  	  		<c:if test="${id!='master' }">
+	  	  			<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+	  	  		</c:if>
 	  	  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">목록</a>
 	  	  	</td>
 	  	  </tr>

@@ -29,6 +29,32 @@
     </div>
     <!-- ### -->
     
-	
+	<div class="container" style="width:700px">
+	<div style="height: 5px"></div>
+	<div class="row">
+	  <form method=post action="../service/reply_ok.do">
+		<table class="table">
+		  <tr>
+		  	<th width=15% class="text-right">내용</th>
+		  	<td width=85%>
+		  		<textarea rows=10 cols=50 name=content required></textarea>
+		  	</td>
+		  </tr>
+		  <tr>
+		  	<th width=15% class="text-right">비밀번호</th>
+		  	<td width=85%>
+		  		<input type=password name=pwd size=10 class="input-sm" required>
+		  	</td>
+		  </tr>
+		  <tr>
+		  	<td colspan=2 class="text-center" style="border-color: white">
+		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary">
+		  		<input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
+		  	</td>
+		  </tr>
+		</table>
+	  </form>
+	</div>
+	</div>
 </body>
 </html>

@@ -144,5 +144,21 @@ public class FaqDAO {
 		}
 		return bCheck;
 	}
-	//FAQ 검색
+	//FAQ top10
+	public List<FaqVO> faq_top10(){
+		List<FaqVO> list=new ArrayList<FaqVO>();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT gfno,type,subject,content,hit "
+					+ "FROM (SELECT gfno,type,subject,content,hit "
+					+ "FROM god_faq_3 "
+					+ "ORDER BY hit DESC) "
+					+ "WHERE rownum BETWEEN 1 AND 10";
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
 }

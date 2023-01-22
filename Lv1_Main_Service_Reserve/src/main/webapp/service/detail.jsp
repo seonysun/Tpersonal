@@ -34,13 +34,13 @@
 	  	<table class="table">
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
-	  	  	<td width=5% class="text-center">${vo.gano }</td>
+	  	  	<td width=10% class="text-center">${vo.gano }</td>
 	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<td width=10% class="text-center">${vo.type }</td>
-	  	  	<th width=13% class="text-center">작성일</th>
-	  	  	<td width=17% class="text-center">${vo.dbday }</td>
-	  	  	<th width=15% class="text-center">조회수</th>
-	  	  	<td width=5% class="text-center">${vo.hit }</td>
+	  	  	<th width=15% class="text-center">작성일</th>
+	  	  	<td width=20% class="text-center">${vo.dbday }</td>
+	  	  	<th width=10% class="text-center">조회수</th>
+	  	  	<td width=10% class="text-center">${vo.hit }</td>
 	  	  </tr>
 	  	  <tr>
 	  	  	<th colspan=3 class="text-center">제목</th>

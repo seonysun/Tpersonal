@@ -28,6 +28,7 @@ public class FaqModel {
 	@RequestMapping("service/faq_detail.do")
 	public String faq_detail(HttpServletRequest request, HttpServletResponse response) {
 		String no=request.getParameter("no");
+		String id="master";
 		FaqDAO dao=new FaqDAO();
 		FaqVO vo=dao.faqDetailData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
@@ -51,7 +52,7 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id=request.getParameter("id");
+		String id="master";
 		String type=request.getParameter("type");
 		String subject=request.getParameter("subject");
 		String content=request.getParameter("content");
