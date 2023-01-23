@@ -20,6 +20,8 @@ CREATE TABLE god_ask_3(
     group_tab NUMBER DEFAULT 0,
     root NUMBER DEFAULT 0,
     depth NUMBER DEFAULT 0,
+    filename VARCHAR2(260),
+    filesize NUMBER,
     id VARCHAR2(20),
     CONSTRAINT ga_gano_pk_3 PRIMARY KEY(gano),
     CONSTRAINT ga_id_fk_3 FOREIGN KEY(id)

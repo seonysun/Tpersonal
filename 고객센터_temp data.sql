@@ -15,6 +15,8 @@ insert into god_ask_3
 values(3,'이벤트 당첨 안내좀요','기타','이벤트 당첨자 발표일이 언제인가요?','1234',sysdate,'미답변',0,3,0,0,0,0,'choe');
 insert into god_ask_3
 values(5,'re: 재질문입니다.','예매','감사합니다.','1234',sysdate,'미답변',0,1,3,2,1,0,'choe');
+alter table god_ask_3 add filename VARCHAR2(260);
+alter table god_ask_3 add filesize NUMBER;
 
 desc god_faq_3;
 insert into god_faq_3 values(1,'회원','아이디, 비밀번호를 잊어버렸어요.','아이디 찾기 
@@ -166,5 +168,5 @@ insert into god_faq_3 values(16,'결제','결제 시 사용할 수 있는 결제 수단은 무엇�
 
 상품마다 사용 가능한 결제 수단이 다를 수 있으니, 상품 상세 정보를 확인해주시기 바랍니다.
 이용에 참고 바랍니다.',0);
-insert into god_faq_3 values(17,'','?','','');
+insert into god_faq_3 values(17,'회원','?','?',0);
 commit;

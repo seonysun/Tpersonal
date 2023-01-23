@@ -66,9 +66,9 @@
 	  		<a href="../service/faq_list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
 	  	</th>
  	  </tr>
- 	  <c:forEach var="vo" items="${flist }">
+ 	  <c:forEach var="vo" items="${flist }" varStatus="s">
 		  <tr>
-		   	<td width=10% class="text-center">1</td>
+		   	<td width=10% class="text-center">${s.index+1 }</td>
 		  	<td width=10% class="text-center">${vo.type }</td>
 		  	<td width=70%>
 		  	  <a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
@@ -109,9 +109,7 @@
 		  	  	<span style="color: gray">${vo.ans_state }</span>
 		  	  </c:if>
 		  	</td>
-		   	<td width=10% class="text-center">
-		   		<input type=button class="btn btn-xs btn-primary">답변<span class="badge">${vo.depth }</span>
-		   	</td>
+		   	<td width=10% class="text-center">${vo.depth }</td>
 		  </tr>
 		</c:if>
 	  </c:forEach>
