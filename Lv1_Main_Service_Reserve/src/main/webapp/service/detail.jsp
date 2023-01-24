@@ -46,7 +46,7 @@
 	  	  	<th colspan=2 class="text-center">제목</th>
 	  	  	<td colspan=6>${vo.subject }</td>
 	  	  </tr>
-	  	  <c:if test="">
+	  	  <c:if test="${vo.filesize>0 }">
 	  	    <tr>
 	  	    	<th colspan=2 class="text-center">첨부파일</th>
 	  	    	<td colspan=6>

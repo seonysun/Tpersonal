@@ -32,7 +32,6 @@ depth : 포함 대댓글 갯수
 public class ServiceDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	/* **** 참조키 id 해결하기 insert가 안됨 **** */
 	//QNA 목록 출력
 	public List<AskVO> qnaListData(int page){
 		List<AskVO> list=new ArrayList<AskVO>();
@@ -135,8 +134,8 @@ public class ServiceDAO {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id,filename,filesize) "
-					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1) "
-					+ "FROM god_ask_3),?,?)";
+					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,"
+					+ "(SELECT NVL(MAX(group_id)+1,1) FROM god_ask_3),?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, vo.getPwd());
