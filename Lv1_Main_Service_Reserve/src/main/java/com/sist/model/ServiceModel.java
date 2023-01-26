@@ -1,8 +1,10 @@
 package com.sist.model;
 import java.util.*;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-
+import com.oreilly.servlet.*;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -65,41 +67,55 @@ public class ServiceModel {
 	}
 	
 	@RequestMapping("service/insert_ok.do")
-	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) {
+	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
-		
-//		String path="c:\\download";
-//		int size=1024*1024*100;
-//		String enctype="UTF-8";
-//		MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
-//		String name=mr.getParameter("name");
-//		String subject=mr.getParameter("subject");
-//		String content=mr.getParameter("content");
-//		String pwd=mr.getParameter("pwd");
-//		String filename=mr.getFilesystemName("upload");
-//		if(filename==null){ //첨부파일이 없는 경우
-//			vo.setFilename("");
-//			vo.setFilesize(0);
-//		} else { //첨부파일이 있는 경우
-//			File file=new File(path+"\\"+filename);
-//			vo.setFilename(filename);
-//			vo.setFilesize((int)file.length());
-//		}
-		
+		String path="c:\\download";
+		int size=1024*1024*100;
+		String enctype="UTF-8";
+		MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
 		String id="choe";
-		String subject=request.getParameter("subject");
-		String type=request.getParameter("type");
-		String content=request.getParameter("content");
-		String pwd=request.getParameter("pwd");
+		String subject=mr.getParameter("subject");
+		String type=mr.getParameter("type");
+		String content=mr.getParameter("content");
+		String pwd=mr.getParameter("pwd");
+		String filename=mr.getFilesystemName("upload");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setSubject(subject);
 		vo.setType(type);
 		vo.setContent(content);
 		vo.setPwd(pwd);
+		if(filename==null) {
+			vo.setFilename("");
+			vo.setFilesize(0);
+		} else {
+			File file=new File(path+"\\"+filename);
+			vo.setFilename(filename);
+			vo.setFilesize((int)file.length());
+		}
 		dao.qnaInsert(vo, id);
+		return "redirect:list.do";
+	}
+	
+	@RequestMapping("service/download.do")
+	public String qna_download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String fn=request.getParameter("fn");
+		String path="c:\\download";
+		File file=new File(path+"\\"+fn);
+		response.setContentLengthLong(file.length());
+		response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(fn,"UTF-8"));
+		BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+		BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+		int i=0;
+		byte[] buffer=new byte[1024];
+		while((i=bis.read(buffer,0,1024))!=-1) {
+			bos.write(buffer,0,i);
+		}
+		//out 객체?
+		bis.close();
+		bos.close();
 		return "redirect:list.do";
 	}
 	
@@ -173,36 +189,6 @@ public class ServiceModel {
 		String pwd=request.getParameter("pwd");
 		ServiceDAO dao=new ServiceDAO();
 		dao.qnaDelete(Integer.parseInt(no), pwd);
-		return "redirect:list.do";
-	}
-	
-	@RequestMapping("service/download.do")
-	public String qna_download(HttpServletRequest request, HttpServletResponse response) {
-		String fn=request.getParameter("fn");
-		String path="c:\\download";
-//		//다운로드는 라이브러리가 없으므로 직접 제작해야 함(업로드는 라이브러리 존재)
-//		try{
-//			//파일 정보 설정
-//			File file=new File(path+"\\"+fn);
-//			response.setContentLengthLong(file.length());
-//			response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(fn,"UTF-8"));
-//			//서버에서 파일 읽기
-//			BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
-//			//파일 출력 위치 설정, 클라이언트 쪽에 파일 복사
-//			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
-//			int i=0;
-//			byte[] buffer=new byte[1024];
-//						//한번에 1024byte씩 전송
-//			while((i=bis.read(buffer, 0, 1024))!=-1){
-//					//읽은 바이트 수
-//											//파일 끝(EOF)까지 읽기
-//				bos.write(buffer, 0, i);
-//			}
-//			out.clear(); //사용한 out 객체 지우기
-//			out=pageContext.pushBody();	//새로운 객체 생성
-//			bis.close();
-//			bos.close();
-//		}catch(Exception ex){}
 		return "redirect:list.do";
 	}
 }
