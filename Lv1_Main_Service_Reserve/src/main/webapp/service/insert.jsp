@@ -56,6 +56,7 @@
 		  	<th width=15% class="text-right">첨부파일</th>
 		  	<td width=85%>
 		  		<input type=file name=upload size=20 class="input-sm">
+		  		<!-- jquery add/del 버튼 추가 -->
 		  	</td>
 		  </tr>
 		  <tr>

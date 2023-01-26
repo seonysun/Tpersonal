@@ -40,6 +40,7 @@
 	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-primary py-md-3 px-md-5 slideInRight">티켓</a>
 	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</a>
 	  	  		<!-- 선택 후 나머지 비활성화 어케 하는거쥐 -->
+	  	  		<!-- 링크 말고 jquery로 바뀌도록 수정 -->
 	  	  	</td>
 	  	  </tr>
 	  	</table>

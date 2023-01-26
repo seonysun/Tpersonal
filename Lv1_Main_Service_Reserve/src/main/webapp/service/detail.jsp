@@ -32,6 +32,7 @@
 	<div class="container" style="width:700px">
 	  <div style="height: 5px"></div>
 	  	<table class="table">
+	  	<!-- 연결된 qna 모두 나타내도록 구성 수정 -->
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
 	  	  	<td width=10% class="text-center">${vo.gano }</td>
@@ -53,6 +54,7 @@
 	  	    	  <img src="../service/image/folder.png" style="width: 20px;height: 20px">
 	  	    	  <a href="../service/download.do?fn=${vo.filename }">${vo.filename }</a>(${vo.filesize }Bytes)
 	  	    	</td>
+	  	    	<!-- 첨부파일 여러개인 경우 고려 -->
 	  	    </tr>
 	  	  </c:if>
 	  	  <tr>
@@ -66,6 +68,7 @@
 	  	  		<c:if test="${vo.id=='master' }">
 	  	  			<a href="../service/reply.do?no=${vo.gano }" class="btn btn-sm btn-danger">답변</a>
 	  	  		</c:if>
+	  	  		<!-- update, delete, reply ajax로 연결 -->
 	  	  	</td>
 	  	  </tr>
 	  	</table>

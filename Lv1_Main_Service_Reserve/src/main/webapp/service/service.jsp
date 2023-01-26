@@ -148,7 +148,7 @@
 			  	<td width=10% class="text-center">${vo.type }</td>
 			  	<td width=70%>
 			  	  <a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
-			  	  <!-- detail로 링크 연결하지 말고 화면에서 바로 아래에 출력되도록 하기 -->
+			  	  <!-- jquery hide/show로 보여주기 -->
 			  	</td>
 			  	<td width=10% class="text-center"></td>
 			  </tr>
@@ -189,6 +189,7 @@
 			  	  </c:if>
 			  	</td>
 			   	<td width=10% class="text-center">${vo.depth }</td>
+			   	<!-- 누르면 연결 답변 jquery hide/show로 보여주기 -->
 			  </tr>
 			</c:if>
 		  </c:forEach>

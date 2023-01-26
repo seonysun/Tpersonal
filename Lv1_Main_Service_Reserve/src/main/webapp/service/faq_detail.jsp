@@ -48,6 +48,7 @@
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
 	  	  		<c:if test="${id=='master' }">
 	  	  			<a href="../service/faq_update.do" class="btn btn-sm btn-warning">수정</a>
+	  	  			<!-- update ajax로 수정 -->
 	  	  		</c:if>
 	  	  		<c:if test="${id!='master' }">
 	  	  			<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>

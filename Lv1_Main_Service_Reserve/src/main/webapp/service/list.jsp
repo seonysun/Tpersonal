@@ -83,6 +83,7 @@
 		  	  	  	<img src="../service/image/folder.png" style="width: 20px;height: 20px">
 		  	  	   </a>
 		  	  	  </c:if>
+		  	  	  <!-- hover 첨부 파일 정보 창 띄우기 -->
 		  	  	</td>
 		  	  </tr>
 	  	  </c:forEach>
