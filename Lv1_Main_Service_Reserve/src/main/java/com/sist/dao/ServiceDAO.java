@@ -306,27 +306,5 @@ public class ServiceDAO {
 		}
 		return bCheck;
 	}
-	//QNA 파일
-	public AskVO qnaFileData(int no) {
-		AskVO vo=new AskVO();
-		try {
-			conn=CreateConnection.getConnection();
-			String sql="SELECT filename,filesize "
-					+ "FROM god_ask_3 "
-					+ "WHERE gano=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			vo.setFilename(rs.getString(1));
-			vo.setFilesize(rs.getInt(2));
-			rs.close();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			CreateConnection.disConnection(conn, ps);
-		}
-		return vo;
-	}
 	//QNA 검색
 }
