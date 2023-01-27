@@ -8,6 +8,13 @@
 <title>Insert title here</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#l-file img').hover(function(){
+		//첨부파일 정보 뜨도록
+	})
+})
+</script>
 </head>
 <body>
 	<!-- ### -->
@@ -77,13 +84,12 @@
 		  	  	  </c:if>
 		  	  <!-- ### id=master의 글은 답변 상태 나타내지 말까? 이중 for문으로? ### -->
 		  	  	</td>
-		  	  	<td width=10% class="text-center">
+		  	  	<td width=10% class="text-center" id=l-file>
 		  	  	  <c:if test="${vo.filesize>0 }">
 		  	  	   <a href="../service/download.do?fn=${vo.filename }">
 		  	  	  	<img src="../service/image/folder.png" style="width: 20px;height: 20px">
 		  	  	   </a>
 		  	  	  </c:if>
-		  	  	  <!-- hover 첨부 파일 정보 창 띄우기 -->
 		  	  	</td>
 		  	  </tr>
 	  	  </c:forEach>

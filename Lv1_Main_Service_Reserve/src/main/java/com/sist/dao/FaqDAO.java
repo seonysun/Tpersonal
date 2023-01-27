@@ -20,9 +20,9 @@ public class FaqDAO {
 			conn=CreateConnection.getConnection();
 			String sql="";
 			if(type==0) {
-				sql="SELECT gfno,type,subject,hit,num "
-						+ "FROM (SELECT gfno,type,subject,hit,rownum as num "
-						+ "FROM (SELECT gfno,type,subject,hit "
+				sql="SELECT gfno,type,subject,hit,content,num "
+						+ "FROM (SELECT gfno,type,subject,hit,content,rownum as num "
+						+ "FROM (SELECT gfno,type,subject,hit,content "
 						+ "FROM god_faq_3 "
 						+ "ORDER BY hit DESC)) "
 						+ "WHERE num BETWEEN ? AND ?";
@@ -39,11 +39,12 @@ public class FaqDAO {
 					vo.setType(rs.getString(2));
 					vo.setSubject(rs.getString(3));
 					vo.setHit(rs.getInt(4));
+					vo.setContent(rs.getString(5));
 					list.add(vo);
 				}
 				rs.close();
 			} else {
-				sql="SELECT gfno,type,subject,hit "
+				sql="SELECT gfno,type,subject,hit, "
 						+ "FROM god_faq_3 "
 						+ "WHERE type=? "
 						+ "ORDER BY hit DESC";

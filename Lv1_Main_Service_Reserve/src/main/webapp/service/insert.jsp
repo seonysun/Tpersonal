@@ -8,6 +8,26 @@
 <title>Insert title here</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+let fileIndex=0
+$(function(){
+	$('#addBtn').click(function(){
+		$('#fplus').append(
+			'<tr id="fp'+fileIndex+'">'
+			+'<th width=15%></th>'
+			+'<td><input type=file name=upload size=20 class="input-sm"></td>'
+			+'</tr>'
+		)
+		fileIndex++
+	})
+	$('#delBtn').click(function(){
+		if(fileIndex>0){
+			$('#m'+(fileIndex-1)).remove()
+			fileIndex--
+		}
+	})
+})
+</script>
 </head>
 <body>
 	<!-- ### -->
@@ -35,32 +55,36 @@
 	  <form method=post action="../service/insert_ok.do" enctype="multipart/form-data">
 		<table class="table">
 		  <tr>
-		  	<th width=15% class="text-right">문의유형</th>
+		  	<th width=15%>문의유형</th>
 		  	<td width=85%>
 		  		<input type=text name=type size=20 class="input-sm" required placeholder="회원/예매/결제/티켓/기타">
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right">제목</th>
+		  	<th width=15%>제목</th>
 		  	<td width=85%>
 		  		<input type=text name=subject size=45 class="input-sm" required>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right">내용</th>
+		  	<th width=15%>내용</th>
 		  	<td width=85%>
 		  		<textarea rows=10 cols=50 name=content required></textarea>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right">첨부파일</th>
+		  	<th width=15%>첨부파일</th>
 		  	<td width=85%>
 		  		<input type=file name=upload size=20 class="input-sm">
-		  		<!-- jquery add/del 버튼 추가 -->
+		  		<input type=button class="btn btn-sm btn-success" id=addBtn value="추가">
+		  		<input type=button class="btn btn-sm btn-success" id=delBtn value="삭제">
 		  	</td>
 		  </tr>
+		  <tbody id=fplus>
+		  
+		  </tbody>
 		  <tr>
-		  	<th width=15% class="text-right">비밀번호</th>
+		  	<th width=15%>비밀번호</th>
 		  	<td width=85%>
 		  		<input type=password name=pwd size=10 class="input-sm" required>
 		  	</td>
