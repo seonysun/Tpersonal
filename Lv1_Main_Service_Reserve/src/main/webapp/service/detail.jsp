@@ -48,13 +48,13 @@
 	  	  	<td colspan=6>${vo.subject }</td>
 	  	  </tr>
 	  	  <c:if test="${vo.filesize>0 }">
+	  	  <!-- 첨부파일 여러개인 경우 고려 filecount 컬럼도 있어야하나? -->
 	  	    <tr>
 	  	    	<th colspan=2 class="text-center">첨부파일</th>
 	  	    	<td colspan=6>
 	  	    	  <img src="../service/image/folder.png" style="width: 20px;height: 20px">
 	  	    	  <a href="../service/download.do?fn=${vo.filename }">${vo.filename }</a>(${vo.filesize }Bytes)
 	  	    	</td>
-	  	    	<!-- 첨부파일 여러개인 경우 고려 -->
 	  	    </tr>
 	  	  </c:if>
 	  	  <tr>

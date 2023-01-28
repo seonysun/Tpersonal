@@ -74,7 +74,7 @@ $(function(){
 	})
 	$('.fdetail').hide()
 	$('#fsub').click(function(){
-		$('.fdetail').show()
+		$('.fdetail').show() //개별 제어 안되고용
 	})
 	
 	//qna 연결 질문 새창
@@ -82,7 +82,7 @@ $(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('#qsub').click(function(){
-		window.open('one_list.jsp','','width:600px,height:400px')
+		window.open('one_list.jsp','one_list','width:600px,height:400px')
 	})
 })
 </script>
@@ -189,6 +189,7 @@ $(function(){
 	 	  </thead>
 	 	  <tbody>
 	 	    <c:forEach var="vo" items="${flist }" varStatus="s">
+	 	    <!-- 전체를 forEach문이 아닌 html 추가로 넣어야 하는 듯? 개별 제어가 안됨 -->
 			  <tr>
 			   	<td width=10% class="text-center">${s.index+1 }</td>
 			  	<td width=10% class="text-center">${vo.type }</td>
@@ -217,6 +218,7 @@ $(function(){
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
+		  <!-- 전체를 forEach문이 아닌 html 추가로 넣어야 하는 듯? 개별 제어가 안됨 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
