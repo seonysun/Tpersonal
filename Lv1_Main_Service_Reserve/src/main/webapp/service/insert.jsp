@@ -22,7 +22,7 @@ $(function(){
 	})
 	$('#delBtn').click(function(){
 		if(fileIndex>0){
-			$('#m'+(fileIndex-1)).remove()
+			$('#fp'+(fileIndex-1)).remove()
 			fileIndex--
 		}
 	})
@@ -54,6 +54,7 @@ $(function(){
 	<div class="row">
 	  <form method=post action="../service/insert_ok.do" enctype="multipart/form-data">
 		<table class="table">
+<!-- 문의 전 f10 확인 추가? -->
 		  <tr>
 		  	<th width=15%>문의유형</th>
 		  	<td width=85%>
@@ -64,6 +65,7 @@ $(function(){
 		  	<th width=15%>제목</th>
 		  	<td width=85%>
 		  		<input type=text name=subject size=45 class="input-sm" required>
+		  		<input type=hidden name=id size=45 value="${sessionScope.id }" required>
 		  	</td>
 		  </tr>
 		  <tr>
@@ -89,6 +91,14 @@ $(function(){
 		  		<input type=password name=pwd size=10 class="input-sm" required>
 		  	</td>
 		  </tr>
+		  <tr>
+		  	<th width=15%>답변알림</th>
+		  	<td width=85%>
+		  		<input type=checkbox>이메일로 답변 받기&nbsp;&nbsp;
+		  		<input type=checkbox>답변 시 SMS로 알림 받기
+		  	</td>
+		  </tr>
+<!-- 추가하려면 컬럼도 추가해야 할 듯?.. 그건좀.. -->
 		  <tr>
 		  	<td colspan=2 class="text-center" style="border-color: white">
 		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary">

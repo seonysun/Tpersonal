@@ -2,6 +2,8 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
+
+import oracle.net.nt.ConnectDescription;
 /* 
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
@@ -130,14 +132,14 @@ public class ServiceDAO {
 		return vo;
 	}
 	//QNA 작성
-	public void qnaInsert(AskVO vo, String id) {
+	public void qnaInsert(AskVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id,filename,filesize) "
 					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,"
 					+ "(SELECT NVL(MAX(group_id)+1,1) FROM god_ask_3),?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setString(1, vo.getId());
 			ps.setString(2, vo.getPwd());
 			ps.setString(3, vo.getSubject());
 			ps.setString(4, vo.getType());
@@ -151,10 +153,11 @@ public class ServiceDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 	}
-	//QNA 답변
+	//QNA 답변 작성
 	public void qnaReplyInsert(int no, String admin, AskVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
+			conn.setAutoCommit(false);
 			String sql="SELECT group_id,group_step,group_tab,type "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
@@ -183,7 +186,7 @@ public class ServiceDAO {
 	     				+ "group_id,group_step,group_tab,root,depth) "
 	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다',?,?,SYSDATE,0,?,?,?,?,0)";
 	     		ps=conn.prepareStatement(sql);
-	     		ps.setString(1, "master");
+	     		ps.setString(1, vo.getId());
 	     		ps.setString(2, vo.getPwd());
 	     		ps.setString(3, rvo.getType());
 	     		ps.setString(4, vo.getContent());
@@ -214,9 +217,17 @@ public class ServiceDAO {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.executeUpdate();
+			
+			conn.commit();
 		} catch(Exception ex) {
 			ex.printStackTrace();
+			try {
+				conn.rollback();
+			} catch(Exception e) {}
 		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch(Exception ex) {}
 			CreateConnection.disConnection(conn, ps);
 		}
 	}
@@ -258,6 +269,7 @@ public class ServiceDAO {
 		boolean bCheck=false;
 		try {
 			conn=CreateConnection.getConnection();
+			conn.setAutoCommit(false);
 			String sql="SELECT pwd,root,depth "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
@@ -299,9 +311,17 @@ public class ServiceDAO {
 				ps.setInt(1, root);
 				ps.executeUpdate();
 			}
+			
+			conn.commit();
 		} catch(Exception ex) {
 			ex.printStackTrace();
+			try {
+				conn.rollback();
+			} catch(Exception e) {}
 		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch(Exception ex) {}
 			CreateConnection.disConnection(conn, ps);
 		}
 		return bCheck;

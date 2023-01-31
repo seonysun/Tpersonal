@@ -36,7 +36,9 @@
 	clear: both;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+let f=0
 $(function(){
 	//검색 결과
 	$('#sBtn').click(function(){
@@ -45,19 +47,18 @@ $(function(){
 			$('#search').focus()
 			return
 		}
-		$.ajax({
-			
-		})	
+		location.href="../service/search.do"
+//음......서치...어케하지..
 	})
 	
 	//인기검색어 클릭 이벤트
 	$('#s-pop span:nth-child(n+2)').hover(function(){
 		$(this).css("cursor","pointer")
 	})
+	let key=$('#s-pop span').text()
+//고장고장 고쳐야대
 	$('#s-pop span:nth-child(n+2)').click(function(){
-		$.ajax({
-			
-		})
+		location.href="../service/faq_list.do?key="+key
 	})
 	
 	//빠른찾기 클릭 이벤트
@@ -69,19 +70,25 @@ $(function(){
 	})
 	
 	//f10 본문 보여주기
-	$('#fsub').hover(function(){
+	$('.fsub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
-	$('.fdetail').hide()
-	$('#fsub').click(function(){
-		$('.fdetail').show() //개별 제어 안되고용
+	$('.fsub').click(function(){
+		let no=$(this).attr("data-no")
+		if(f===0){
+			$('#f'+no).show()
+			f=1
+		}else{
+			$('#f'+no).hide()
+			f=0
+		}
 	})
 	
 	//qna 연결 질문 새창
-	$('#qsub').hover(function(){
+	$('.qsub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
-	$('#qsub').click(function(){
+	$('.qsub').click(function(){
 		window.open('one_list.jsp','one_list','width:600px,height:400px')
 	})
 })
@@ -105,9 +112,9 @@ $(function(){
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
 		<span>결제방법</span>&nbsp;|&nbsp;
-		<span>회원정보 확인/변경</span>&nbsp;|&nbsp;
-		<span>2D 전시회</span>&nbsp;|&nbsp;
-		<span>티켓예매 수수료</span>
+		<span>회원정보변경</span>&nbsp;|&nbsp;
+		<span>2D전시회</span>&nbsp;|&nbsp;
+		<span>예매수수료</span>
 	</div>
                 </div>
             </div>
@@ -173,7 +180,7 @@ $(function(){
 	</div>
 	
 <!-- faq top10 -->
-	<div class="f-10" >
+	<div class=f-10 >
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">자주 묻는 질문 TOP10</h4>
 		<table class="table table-hover">
@@ -189,13 +196,12 @@ $(function(){
 	 	  </thead>
 	 	  <tbody>
 	 	    <c:forEach var="vo" items="${flist }" varStatus="s">
-	 	    <!-- 전체를 forEach문이 아닌 html 추가로 넣어야 하는 듯? 개별 제어가 안됨 -->
 			  <tr>
 			   	<td width=10% class="text-center">${s.index+1 }</td>
 			  	<td width=10% class="text-center">${vo.type }</td>
-			  	<td colspan=2 id=fsub>${vo.subject }</td>
+			  	<td colspan=2 class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 			  </tr>
-			  <tr class="fdetail">
+			  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>
 				<td colspan=2>${vo.content }</td>
 			  </tr>
@@ -218,11 +224,10 @@ $(function(){
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
-		  <!-- 전체를 forEach문이 아닌 html 추가로 넣어야 하는 듯? 개별 제어가 안됨 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
-			  	<td width=35% id=qsub>${vo.subject }</td>
+			  	<td width=35% class=qsub>${vo.subject }</td>
 			  	<td width=10% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
 			  	  	<span style="color: blue">${vo.ans_state }</span>
