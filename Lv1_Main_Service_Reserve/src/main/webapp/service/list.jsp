@@ -57,6 +57,7 @@ $(function(){
 	  	  	<th width=10% class="text-center">첨부파일</th>
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
+	  	    <c:if test="${vo.id==sessionScope.id || vo.id=='admin' }">
 		  	  <tr>
 		  	  	<td width=5% class="text-center">${count-s.index-((curpage-1)*10) }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
@@ -93,6 +94,7 @@ $(function(){
 		  	  	  </c:if>
 		  	  	</td>
 		  	  </tr>
+	  	    </c:if>
 	  	  </c:forEach>
 	  	</table>
 	  	<table class="table" style="border-color: white">

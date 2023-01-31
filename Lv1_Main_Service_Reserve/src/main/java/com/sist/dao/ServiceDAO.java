@@ -3,7 +3,6 @@ import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
 
-import oracle.net.nt.ConnectDescription;
 /* 
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
@@ -107,7 +106,7 @@ public class ServiceDAO {
 				ps.executeUpdate();
 			}
 			
-			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize "
+			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
@@ -123,6 +122,7 @@ public class ServiceDAO {
 			vo.setHit(rs.getInt(7));
 			vo.setFilename(rs.getString(8));
 			vo.setFilesize(rs.getInt(9));
+			vo.setId(rs.getString(10));
 			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -212,7 +212,7 @@ public class ServiceDAO {
 	     	}
 			
 			sql="UPDATE god_ask_3 "
-					+ "SET depth=depth+1 "
+					+ "SET depth=depth+1, ans_state='답변완료' "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, no);

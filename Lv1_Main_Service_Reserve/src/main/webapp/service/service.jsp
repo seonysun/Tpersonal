@@ -224,6 +224,7 @@ $(function(){
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
+		   <c:if test="${vo.id==sessionScope.id }">
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
@@ -239,6 +240,7 @@ $(function(){
 			   	<td width=10% class="text-center">${vo.depth }</td>
 			  </tr>
 			</c:if>
+		   </c:if>
 		  </c:forEach>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
