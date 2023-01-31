@@ -68,7 +68,7 @@ $(function(){
 		  	  	  </c:if>
 		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
 		  	  	  <c:if test="${vo.dbday==today }">
-		          	<img src="../service/image/new_red.png" style="width: 20px">
+		          	<img src="../service/image/new.gif" style="width: 20px">
 		          </c:if>
 		  	  	</td>
 		  	  	<td width=10% class="text-center">

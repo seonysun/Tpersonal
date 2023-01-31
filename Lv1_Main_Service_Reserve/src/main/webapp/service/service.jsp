@@ -214,6 +214,10 @@ $(function(){
 	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">나의 문의 내역</h4>
+	  <c:if test="${sessionScope.id==null }">
+	   	<p>로그인 후 이용 가능합니다</p>
+	  </c:if>
+	  <c:if test="${sessionScope.id!=null }">
 		<table class="table">
 		  <tr>
 		  	<th width=15% class="text-center">문의유형</th>
@@ -223,6 +227,12 @@ $(function(){
 		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
 		   	</th>
 		  </tr>
+		 <c:if test="${vo }">
+		 	<tr>
+		 	  <td colspan=4>작성된 문의가 없습니다</td>
+		 	</tr>
+		 </c:if>
+		 <c:if test="${vo }">
 		  <c:forEach var="vo" items="${slist }">
 		   <c:if test="${vo.id==sessionScope.id }">
 			<c:if test="${vo.group_tab==0 }">
@@ -242,12 +252,14 @@ $(function(){
 			</c:if>
 		   </c:if>
 		  </c:forEach>
+		 </c:if>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
 	  			<a href="../service/insert.do"><input type=button class="btn btn-sm btn-danger" value="문의 작성"></a>
 			</td>
 		  </tr>
 		</table>
+	  </c:if>
 	</div>
   
 <!-- 공지사항 list 일부 추가? 더보기 누르면 공지사항 페이지 연결 -->
