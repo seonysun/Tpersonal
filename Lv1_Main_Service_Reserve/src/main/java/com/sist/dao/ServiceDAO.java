@@ -152,7 +152,7 @@ public class ServiceDAO {
 		}
 	}
 	//QNA 답변
-	public void qnaReplyInsert(int no, String id, AskVO vo) {
+	public void qnaReplyInsert(int no, String admin, AskVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT group_id,group_step,group_tab,type "
@@ -178,12 +178,12 @@ public class ServiceDAO {
 	     	ps.setInt(2, rvo.getGroup_step());
 	     	ps.executeUpdate();
 			
-	     	if(id.equals("master")) {
+	     	if(admin.equals("y")) {
 	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
 	     				+ "group_id,group_step,group_tab,root,depth) "
 	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다',?,?,SYSDATE,0,?,?,?,?,0)";
 	     		ps=conn.prepareStatement(sql);
-	     		ps.setString(1, id);
+	     		ps.setString(1, "master");
 	     		ps.setString(2, vo.getPwd());
 	     		ps.setString(3, rvo.getType());
 	     		ps.setString(4, vo.getContent());
@@ -197,7 +197,7 @@ public class ServiceDAO {
 	     				+ "group_id,group_step,group_tab,root,depth) "
 	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'재질문입니다',?,?,SYSDATE,0,?,?,?,?,0)";
 	     		ps=conn.prepareStatement(sql);
-	     		ps.setString(1, id);
+	     		ps.setString(1, vo.getId());
 	     		ps.setString(2, vo.getPwd());
 	     		ps.setString(3, rvo.getType());
 	     		ps.setString(4, vo.getContent());
@@ -306,5 +306,4 @@ public class ServiceDAO {
 		}
 		return bCheck;
 	}
-	//QNA 검색
 }

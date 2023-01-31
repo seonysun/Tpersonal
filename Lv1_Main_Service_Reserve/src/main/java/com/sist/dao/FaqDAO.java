@@ -44,7 +44,7 @@ public class FaqDAO {
 				}
 				rs.close();
 			} else {
-				sql="SELECT gfno,type,subject,hit, "
+				sql="SELECT gfno,type,subject,hit "
 						+ "FROM god_faq_3 "
 						+ "WHERE type=? "
 						+ "ORDER BY hit DESC";
@@ -132,11 +132,11 @@ public class FaqDAO {
 		return vo;
 	}
 	//FAQ 수정
-	public boolean faqUpdate(FaqVO vo, String id) {
+	public boolean faqUpdate(FaqVO vo, String admin) {
 		boolean bCheck=false;
 		try {
 			conn=CreateConnection.getConnection();
-			if(id.equals("master")) {
+			if(admin.equals("y")) {
 				bCheck=true;
 				String sql="UPDATE god_faq_3 "
 						+ "SET subject=?, content=?, type=? "
