@@ -9,32 +9,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#l-file img').hover(function(){
-//첨부파일 정보 임시창 추가할지말지 고민..
-	})
-})
+
 </script>
 </head>
 <body>
-	<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">문의 내역</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
+	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:960px">
 	  <div style="height: 5px"></div>
@@ -68,7 +47,7 @@ $(function(){
 		  	  	  </c:if>
 		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
 		  	  	  <c:if test="${vo.dbday==today }">
-		          	<img src="../service/image/new.gif" style="width: 20px">
+		          	<img src="../service/image/new_red.png" style="width: 20px">
 		          </c:if>
 		  	  	</td>
 		  	  	<td width=10% class="text-center">
