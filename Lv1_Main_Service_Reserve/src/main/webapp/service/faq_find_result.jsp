@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+		  <c:if test="${count==0 }">
+	  	   	  <tr>
+	  	   		<td colspan=4>검색 결과가 없습니다</td>
+	  	   	  </tr>
+	  	  </c:if>
 		  <c:forEach var="vo" items="${flist }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index }</td>

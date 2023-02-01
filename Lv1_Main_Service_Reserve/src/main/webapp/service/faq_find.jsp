@@ -86,15 +86,17 @@ $(function(){
     <!-- ### -->
     
 	<div class="container" style="width:800px">
-	  <div style="height: 5px"></div>
-	    <table class="table">
-	  	  <tr>
-	  	  	<td>
-	  	  		<a href="../service/insert.do" class="btn btn-primary py-md-3 px-md-5 slideInLeft">문의 작성</a>
-	  	  		<a href="../service/faq_list.do" class="btn btn-light py-md-3 px-md-5 slideInRight">FAQ 목록</a>
-	  	  	</td>
-	  	  </tr>
-	  	</table>
+	    <table>
+		  <tr>
+		  	<td style="border-color: white">
+	  		  <c:if test="${sessionScope.admin=='n' }">
+		  		<a href="../service/insert.do" class="btn btn-sm btn-danger">문의 작성</a>
+	  		  </c:if>
+		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		  	</td>
+		  </tr>
+		</table>
+	  <div style="height: 20px"></div>
 	  	<table class="table f-find">
 	  	 <thead>
 	  	  <tr>
@@ -105,6 +107,11 @@ $(function(){
 	  	  </tr>
 	  	 </thead>
 	  	 <tbody>
+	  	   <c:if test="${count==0 }">
+	  	   	  <tr>
+	  	   		<td colspan=4>검색 결과가 없습니다</td>
+	  	   	  </tr>
+	  	   </c:if>
 			<c:forEach var="vo" items="${flist }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index }</td>
@@ -121,15 +128,6 @@ $(function(){
 	  	  	</c:forEach>
 	  	 </tbody>
 	  	</table>
-	  	<c:if test="${sessionScope.admin=='n' }">
-		  	<table>
-		  	  <tr>
-		  	  	<td class="text-right" colspan=8 style="border-color: white">
-		  	  			<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
-		  	  	</td>
-		  	  </tr>
-		  	</table>
-	  	</c:if>
 	  	<c:if test="${type==0 }">
 		  	<table class="table" style="border-color: white">
 		  	  <tr>
