@@ -99,7 +99,7 @@ public class FaqDAO {
 		}
 		return count;
 	}
-	//FAQ 상세 출력 - 안써도 없애면 안돼 수정에서 써야대
+	//FAQ 상세 출력
 	public FaqVO faqDetailData(int no) {
 		FaqVO vo=new FaqVO();
 		try {
@@ -150,4 +150,53 @@ public class FaqDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 	}
+	//FAQ 검색
+	public List<FaqVO> faqFindData(String ss) {
+        List<FaqVO> list=new ArrayList<FaqVO>();
+        try {
+        	conn=CreateConnection.getConnection();
+            String sql="SELECT gfno,type,subject,content,hit "
+                    + "FROM god_faq_3 "
+                    + "WHERE content LIKE '%'||?||'%'";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1, ss);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()) {
+                FaqVO vo = new FaqVO();
+                vo.setGfno(rs.getInt(1));
+                vo.setType(rs.getString(2));
+                vo.setSubject(rs.getString(3));
+                vo.setContent(rs.getString(4));
+                vo.setHit(rs.getInt(5));
+                list.add(vo);
+            }
+            rs.close();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return list;
+    }
+	//FAQ 검색 목록 번호
+    public int faqFindRowCount(String ss) {
+        int count=0;
+        try {
+            conn=CreateConnection.getConnection();
+            String sql="SELECT COUNT(*) "
+            		+ "FROM god_faq_3 "
+                    + "WHERE content LIKE '%'||?||'%'";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1, ss);
+            ResultSet rs=ps.executeQuery();
+            rs.next();
+            count=rs.getInt(1);
+            rs.close();
+        } catch(Exception ex) {
+        	ex.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return count;
+    }
 }

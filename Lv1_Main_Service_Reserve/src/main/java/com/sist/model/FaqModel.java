@@ -59,4 +59,34 @@ public class FaqModel {
 		dao.faqUpdate(vo);
 		return "redirect:faq_list.do";
 	}
+	
+	@RequestMapping("service/faq_find.do")
+	public String faq_find(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+	    } catch (Exception e) {}
+	    String ss=request.getParameter("ss");
+        FaqDAO dao=new FaqDAO();
+	    List<FaqVO> flist=dao.faqFindData(ss);
+	    int count=dao.faqFindRowCount(ss);
+	    request.setAttribute("ss", ss);
+	    request.setAttribute("flist", flist);
+	    request.setAttribute("count", count);
+	    request.setAttribute("main_jsp", "../service/faq_find.jsp");
+	    return "../main/main.jsp";
+	}
+	
+	@RequestMapping("service/faq_find_result.do")
+	public String faq_find_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {}
+		String ss=request.getParameter("ss");
+		FaqDAO dao=new FaqDAO();
+		List<FaqVO> flist=dao.faqFindData(ss);
+		int count=dao.faqFindRowCount(ss);
+		request.setAttribute("flist", flist);
+		request.setAttribute("count", count);
+		return "../service/faq_find_result.jsp";
+	}
 }

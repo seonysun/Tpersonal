@@ -40,25 +40,23 @@
 <script type="text/javascript">
 let f=0
 $(function(){
-	//검색 결과
+	//검색바
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
 			$('#search').focus()
 			return
 		}
-		location.href="../service/search.do"
-//음......서치...어케하지..
 	})
 	
 	//인기검색어 클릭 이벤트
 	$('#s-pop span:nth-child(n+2)').hover(function(){
 		$(this).css("cursor","pointer")
 	})
-	let key=$('#s-pop span').text()
-//고장고장 고쳐야대
 	$('#s-pop span:nth-child(n+2)').click(function(){
-		location.href="../service/faq_list.do?key="+key
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
 	})
 	
 	//빠른찾기 클릭 이벤트
@@ -66,7 +64,9 @@ $(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('.f-card li').click(function(){
-		
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
 	})
 	
 	//f10 본문 보여주기
@@ -84,12 +84,9 @@ $(function(){
 		}
 	})
 	
-	//qna 연결 질문 새창
+	//qna 호버
 	$('.qsub').hover(function(){
 		$(this).css("cursor","pointer")
-	})
-	$('.qsub').click(function(){
-		window.open('one_list.jsp','one_list','width:600px,height:400px')
 	})
 })
 </script>
@@ -105,14 +102,16 @@ $(function(){
     <div style="height: 20px"></div>
 	<div>
 		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
-			<input type=text id=search size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+		  <form method=post action="../service/faq_find.do" id=ss_frm>
+			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
 			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
     </div>
     <div style="height: 10px"></div>
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
 		<span>결제방법</span>&nbsp;|&nbsp;
-		<span>회원정보변경</span>&nbsp;|&nbsp;
+		<span>회원정보</span>&nbsp;|&nbsp;
 		<span>2D전시회</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
@@ -123,7 +122,6 @@ $(function(){
     <!-- ### -->
 
 	<div class="container" style="width: 100%">
-	
 <!-- faq 빠른 찾기  -->
 	<div>
 		<h4 class="text-primary px-3">FAQ 찾기</h4>
@@ -133,9 +131,9 @@ $(function(){
 		  	<dt>예매</dt>
 		  	<dd>
 		  	  <ul>
-				<li>예매/예매확인</li>
-				<li>예매변경</li>
-				<li>예매취소</li>
+				<li>예매방법</li>
+				<li>예매확인</li>
+				<li>예매변경 / 예매취소</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -147,7 +145,8 @@ $(function(){
 		  	  <ul>
 				<li>결제정보</li>
 				<li>결제수단</li>
-				<li>영수증/세금계산서</li>
+				<li>현금영수증</li>
+				<li>세금계산서</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -157,9 +156,9 @@ $(function(){
 		  	<dt>회원관리</dt>
 		  	<dd>
 		  	  <ul>
-				<li>회원가입/탈퇴</li>
-				<li>회원정보 확인/변경</li>
-				<li>인증문의(성인/본인)</li>
+				<li>회원가입 / 탈퇴</li>
+				<li>회원정보 / 변경</li>
+				<li>본인인증 / 성인인증</li>
 				<li>휴면회원</li>
 		  	  </ul>
 		  	</dd>
@@ -170,8 +169,8 @@ $(function(){
 		  	<dt>기타</dt>
 		  	<dd>
 		  	  <ul>
-				<li>리뷰/한줄평</li>
-				<li>홈페이지/시스템장애</li>
+				<li>리뷰 / 한줄평</li>
+				<li>홈페이지 / 시스템장애</li>
 				<li>기타</li>
 		  	  </ul>
 		  	</dd>
@@ -183,7 +182,7 @@ $(function(){
 	<div class=f-10 >
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">자주 묻는 질문 TOP10</h4>
-		<table class="table table-hover">
+		<table class="table">
 		  <thead>
 			  <tr>
 			 	<th width=10% class="text-center">순위</th>
@@ -203,7 +202,9 @@ $(function(){
 			  </tr>
 			  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>
-				<td colspan=2>${vo.content }</td>
+				<td colspan=2>
+					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
+				</td>
 			  </tr>
 		    </c:forEach>
 	 	  </tbody>
@@ -215,7 +216,7 @@ $(function(){
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">나의 문의 내역</h4>
 	  <c:if test="${sessionScope.id==null }">
-	   	<p>로그인 후 이용 가능합니다</p>
+	  	<p>로그인 후 이용 가능합니다</p>
 	  </c:if>
 	  <c:if test="${sessionScope.id!=null }">
 		<table class="table">
@@ -227,18 +228,14 @@ $(function(){
 		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
 		   	</th>
 		  </tr>
-		 <c:if test="${vo }">
-		 	<tr>
-		 	  <td colspan=4>작성된 문의가 없습니다</td>
-		 	</tr>
-		 </c:if>
-		 <c:if test="${vo }">
 		  <c:forEach var="vo" items="${slist }">
-		   <c:if test="${vo.id==sessionScope.id }">
+		   <c:if test="${vo.id==sessionScope.id}"> <!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
-			  	<td width=35% class=qsub>${vo.subject }</td>
+			  	<td width=35% class=qsub>
+			  		<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
+			  	</td>
 			  	<td width=10% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
 			  	  	<span style="color: blue">${vo.ans_state }</span>
@@ -252,7 +249,6 @@ $(function(){
 			</c:if>
 		   </c:if>
 		  </c:forEach>
-		 </c:if>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
 	  			<a href="../service/insert.do"><input type=button class="btn btn-sm btn-danger" value="문의 작성"></a>
@@ -262,8 +258,6 @@ $(function(){
 	  </c:if>
 	</div>
   
-<!-- 공지사항 list 일부 추가? 더보기 누르면 공지사항 페이지 연결 -->
-	
 	</div>
 </body>
 </html>
