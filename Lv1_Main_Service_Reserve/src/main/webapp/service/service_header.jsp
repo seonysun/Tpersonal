@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@ $(function(){
 			$('#search').focus()
 			return
 		}
+		$('#ss_frm').submit()
 	})
 	
 	//인기검색어 클릭 이벤트
@@ -35,14 +37,15 @@ $(function(){
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
+                    <h1 class="display-3 text-white">고객센터</h1>
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
-		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
-		  <form method=post action="../service/faq_find.do" id=ss_frm>
-			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
+    	<div style="height: 10px"></div>
+		  <form method=post action="../service/faq_list.do" id=ss_frm>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>

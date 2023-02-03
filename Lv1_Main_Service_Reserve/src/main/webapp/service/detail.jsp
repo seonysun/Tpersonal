@@ -6,14 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let u=0
 let d=0
 let r=0
 $(function(){
+	//답변 내용 보기
 	$('.usub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
@@ -28,6 +27,7 @@ $(function(){
 		}
 	})
 	
+	//삭제
 	$('#delete').click(function(){
 		if(d===0){
 			$('#dpwd').show()
@@ -62,6 +62,8 @@ $(function(){
 			}
 		})
 	})
+	
+	//답변 등록
 	$('#reply').click(function(){
 		if(r===0){
 			$('#reinsert').show()
@@ -118,7 +120,19 @@ $(function(){
 	  	  </tr>
 	  	  <c:forEach var="uvo" items="${list }">
 		  	  <tr>
-		  	  	<td style="color: orange">답변</td>
+		  	  	<td style="color: orange">
+		  	  	  <c:if test="${uvo.id=='admin' }">
+		  	  		답변
+		  	  	  </c:if>
+		  	  	  <c:if test="${uvo.id!='admin' }">
+			  	  	  <c:if test="${uvo.group_tab>vo.group_tab }">
+			  	  		재질문
+			  	  	  </c:if>
+			  	  	  <c:if test="${uvo.group_tab<vo.group_tab }">
+			  	  		질문
+			  	  	  </c:if>
+		  	  	  </c:if>
+		  	  	</td>
 		  	  	<td colspan=5 class=usub data-no="${uvo.gano }">${uvo.subject }</td>
 		  	  	<td colspan=2>${uvo.dbday }</td>
 		  	  </tr>

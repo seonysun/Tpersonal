@@ -6,26 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:960px">
-	 	<table>
-		  <tr>
-		  	<td style="border-color: white">
-	  		  <c:if test="${sessionScope.admin=='n' }">
-		  		<a href="../service/insert.do" class="btn btn-sm btn-danger">문의 작성</a>
-	  		  </c:if>
-		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
-		  	</td>
-		  </tr>
-		</table>
+		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+	  	<c:if test="${sessionScope.admin=='n' }">
+	  		<span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
+				<a href="../service/insert.do" class="btn btn-sm writerbtn">
+				  <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+			    </a>
+			</span>
+	  	</c:if>
 	  <div style="height: 20px"></div>
 	  	<table class="table">
 	  	  <tr>
