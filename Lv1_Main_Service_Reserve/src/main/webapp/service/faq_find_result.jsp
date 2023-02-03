@@ -27,6 +27,19 @@ $(function(){
 			f=0
 		}
 	})
+	
+	//페이지 이동
+	$('.pBtn').click(function(){
+		let page=$(this).val()
+		$.ajax({
+			type:'post',
+			url:'../service/faq_find.do',
+			data:{"page":page},
+			success:function(response){
+				$('#f-find').html(response)
+			}
+		})
+	})
 })
 </script>
 </head>
@@ -60,9 +73,14 @@ $(function(){
 	<table class="table" style="border-color: white">
 	  <tr>
 	  	<td class="text-center">
-	  		<span value="${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</span>
+		  	<%--
+	  		<a href="../service/faq_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+		  	${curpage } page / ${totalpage } pages
+		  	<a href="../service/faq_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+		  	 --%>  		
+	  		<span value="${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary pBtn">이전</span>
 	  		${curpage } page / ${totalpage } pages
-	  		<a href="../service/faq_find.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+	  		<span value="${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary pBtn">다음</span>
 	  	</td>
 	  </tr>
 	</table>

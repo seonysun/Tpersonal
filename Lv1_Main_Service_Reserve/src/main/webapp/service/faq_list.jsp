@@ -11,6 +11,8 @@
 let f=0
 $(function(){
 	//첫화면
+		/* 다른 페이지에서 form 등으로 데이터 넘어왔을 때 ajax 자동으로 실행되어서 무용지물 되는 듯?
+		   그래서 자동 실행되는 전송값에 ss 주면 아예 싹 다 먹통 됨ㅗㅗ */
 	$.ajax({
 		type:'post',
 		url:'../service/faq_find.do',
@@ -54,14 +56,13 @@ $(function(){
 	})
 	
 	//FAQ 타입 선택 이벤트
-	$('ftype').change(function(){
+	$('#ftype').change(function(){
 		let type=$(this).val()
 		$.ajax({
 			type:'post',
 			url:'../service/faq_type.do',
 			data:{"type":type},
 			success:function(response){
-				alert("type")
 				$('#f-find').html(response)
 			}
 		})
@@ -83,15 +84,15 @@ $(function(){
     	<div style="height: 10px"></div>
 		  <form id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+			<button type="button" id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
-		<span>결제방법</span>&nbsp;|&nbsp;
+		<span>결제수단</span>&nbsp;|&nbsp;
 		<span>회원정보</span>&nbsp;|&nbsp;
-		<span>2D전시회</span>&nbsp;|&nbsp;
+		<span>리뷰</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
                 </div>
@@ -118,10 +119,11 @@ $(function(){
 	  	  </c:if>
 	  	</c:if>
 		<select id=ftype>
+			<option value="0">문의유형선택</option>
 			<option value="1">회원</option>
 			<option value="2">예매</option>
-			<option value="3">티켓</option>
-			<option value="4">결제</option>
+			<option value="3">결제</option>
+			<option value="4">티켓</option>
 			<option value="5">기타</option>
 		</select>
 	  <div style="height: 5px"></div>

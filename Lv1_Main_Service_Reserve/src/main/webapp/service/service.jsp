@@ -109,15 +109,15 @@ $(function(){
     	<div style="height: 10px"></div>
 		  <form method=post action="../service/faq_list.do" id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+			<button type=button id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
-		<span>결제방법</span>&nbsp;|&nbsp;
+		<span>결제수단</span>&nbsp;|&nbsp;
 		<span>회원정보</span>&nbsp;|&nbsp;
-		<span>2D전시회</span>&nbsp;|&nbsp;
+		<span>리뷰</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
                 </div>

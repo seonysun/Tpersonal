@@ -1,6 +1,8 @@
 package com.sist.model;
 import com.sist.vo.*;
 import com.sist.dao.*;
+
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,23 +15,26 @@ import com.sist.controller.RequestMapping;
 public class FaqModel {
 	@RequestMapping("service/faq_list.do")
 	public String faq_list(HttpServletRequest request, HttpServletResponse response) {
-		String type=request.getParameter("type");
-		if(type==null) type="0";
-		String page=request.getParameter("page");
-		if(page==null) page="1";
-		int curpage=Integer.parseInt(page);
-		FaqDAO dao=new FaqDAO();
-		List<FaqVO> list=dao.faqListData(Integer.parseInt(type), curpage);
-		int count=dao.faqRowCount(Integer.parseInt(type));
-		int totalpage=(int)(Math.ceil(count/10.0));
-		request.setAttribute("type", type);
-		request.setAttribute("curpage", curpage);
-		request.setAttribute("list", list);
-		request.setAttribute("count", count);
-		request.setAttribute("totalpage", totalpage);
+		try {
+			request.setCharacterEncoding("UTF-8");
+	    } catch (Exception e) {}
+	    String ss=request.getParameter("ss");
+	    request.setAttribute("ss", ss);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
 		return "../main/main.jsp";
 	}
+	
+	/*
+	@RequestMapping("service/faq_flist.do")
+	public String faq_find_list(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+	    } catch (Exception e) {}
+	    String ss=request.getParameter("ss");
+	    request.setAttribute("ss", ss);
+		return "redirect:../service/faq_list.do";
+	}
+	 */
 
 	@RequestMapping("service/faq_update.do")
 	public String faq_update(HttpServletRequest request, HttpServletResponse response) {
@@ -66,27 +71,37 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
 	    String ss=request.getParameter("ss");
-        FaqDAO dao=new FaqDAO();
-	    List<FaqVO> flist=dao.faqFindData(ss);
+	    if(ss==null) ss=" ";
+	    String page=request.getParameter("page");
+	    if(page==null) page="1";	
+	    int curpage=Integer.parseInt(page);
+	    FaqDAO dao=new FaqDAO();
+	    List<FaqVO> list=dao.faqFindData(ss, curpage);
 	    int count=dao.faqFindRowCount(ss);
-	    request.setAttribute("ss", ss);
-	    request.setAttribute("flist", flist);
+	    int totalpage=(int)(Math.ceil(count/10.0));
+	    request.setAttribute("list", list);
 	    request.setAttribute("count", count);
-	    request.setAttribute("main_jsp", "../service/faq_find.jsp");
-	    return "../main/main.jsp";
+	    request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
+	    return "../service/faq_find_result.jsp";
 	}
 	
-	@RequestMapping("service/faq_find_result.do")
-	public String faq_find_ok(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (Exception e) {}
-		String ss=request.getParameter("ss");
+	@RequestMapping("service/faq_type.do")
+	public String faq_type(HttpServletRequest request, HttpServletResponse response) {
+		String type=request.getParameter("type");
+		if(type==null) type="0";
+		String page=request.getParameter("page");
+	    if(page==null) page="1";	
+	    int curpage=Integer.parseInt(page);
 		FaqDAO dao=new FaqDAO();
-		List<FaqVO> flist=dao.faqFindData(ss);
-		int count=dao.faqFindRowCount(ss);
-		request.setAttribute("flist", flist);
+		List<FaqVO> list=dao.faqListData(Integer.parseInt(type), curpage);
+		int count=dao.faqRowCount(Integer.parseInt(type));
+		int totalpage=(int)(Math.ceil(count/10.0));
+		request.setAttribute("type", type);
+		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
 		return "../service/faq_find_result.jsp";
 	}
 }

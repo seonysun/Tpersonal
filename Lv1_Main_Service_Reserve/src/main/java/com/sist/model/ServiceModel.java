@@ -55,7 +55,9 @@ public class ServiceModel {
 		String no=request.getParameter("no");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=dao.qnaDetailData(Integer.parseInt(no), 1);
+		List<AskVO> list=dao.qnaGroupData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
+		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../service/detail.jsp");
 		return "../main/main.jsp";
 	}
@@ -129,11 +131,13 @@ public class ServiceModel {
 		String id=request.getParameter("id");
 		String admin=request.getParameter("admin");
 		String pwd=request.getParameter("pwd");
+		String subject=request.getParameter("subject");
 		String content=request.getParameter("content");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
+		vo.setSubject(subject);
 		vo.setContent(content);
 		dao.qnaReplyInsert(Integer.parseInt(no), admin, vo);
 		return "redirect:list.do";
