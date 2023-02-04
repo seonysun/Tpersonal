@@ -35,6 +35,21 @@ public class FaqModel {
 		return "redirect:../service/faq_list.do";
 	}
 	 */
+	
+	@RequestMapping("service/faq_card.do")
+	public String faq_card(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+	    } catch (Exception e) {}
+	    String ss=request.getParameter("ss");
+	    FaqDAO dao=new FaqDAO();
+	    List<FaqVO> list=dao.faqFindData(ss, 1);
+	    int count=dao.faqFindRowCount(ss);
+	    request.setAttribute("ss", ss);
+	    request.setAttribute("list", list);
+	    request.setAttribute("count", count);
+	    return "../service/faq_card_result.jsp";
+	}
 
 	@RequestMapping("service/faq_update.do")
 	public String faq_update(HttpServletRequest request, HttpServletResponse response) {

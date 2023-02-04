@@ -33,6 +33,7 @@
 	padding: 10px 0;
 	font-size: 0.9rem;
 	text-align: left;
+	margin-bottom: -1rem;
 }
 .f-10{
 	clear: both;
@@ -43,6 +44,9 @@
 let f=0
 $(function(){
 	//검색바
+	$('#search').click(function(){
+		$(this).val("")
+	})
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
@@ -68,8 +72,14 @@ $(function(){
 	})
 	$('.f-card li').click(function(){
 		let ss=$(this).text()
-		$('#search').val(ss)
-		$('#ss_frm').submit()
+		$.ajax({
+			type:'post',
+			url:'../service/faq_card.do',
+			data:{"ss":ss},
+			success:function(response){
+				$('#findcard').html(response)
+			}
+		})
 	})
 	
 	//f10 본문 보여주기
@@ -185,6 +195,9 @@ $(function(){
 		  </dl>
 		</div>
 	</div>
+	<div id="findcard">
+	
+	</div>
 	
 <!-- faq top10 -->
 	<div class=f-10 >
@@ -259,7 +272,7 @@ $(function(){
 		  </c:forEach>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
-	  			<span style="float: center;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
+	  			<span style="float: center;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
 				  <a href="../service/insert.do" class="btn btn-sm writerbtn">
 				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
 				  </a>

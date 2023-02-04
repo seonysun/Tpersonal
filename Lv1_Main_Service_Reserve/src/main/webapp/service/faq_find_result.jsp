@@ -78,9 +78,9 @@ $(function(){
 		  	${curpage } page / ${totalpage } pages
 		  	<a href="../service/faq_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
 		  	 --%>  		
-	  		<span value="${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary pBtn">이전</span>
+	  		<span value="${curpage>1?'curpage-1':'curpage' }" class="btn btn-sm btn-primary pBtn">이전</span>
 	  		${curpage } page / ${totalpage } pages
-	  		<span value="${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary pBtn">다음</span>
+	  		<span value="${curpage<totalpage?'curpage+1':'curpage' }" class="btn btn-sm btn-primary pBtn">다음</span>
 	  	</td>
 	  </tr>
 	</table>

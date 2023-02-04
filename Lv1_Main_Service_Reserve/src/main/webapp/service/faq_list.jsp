@@ -11,8 +11,6 @@
 let f=0
 $(function(){
 	//첫화면
-		/* 다른 페이지에서 form 등으로 데이터 넘어왔을 때 ajax 자동으로 실행되어서 무용지물 되는 듯?
-		   그래서 자동 실행되는 전송값에 ss 주면 아예 싹 다 먹통 됨ㅗㅗ */
 	$.ajax({
 		type:'post',
 		url:'../service/faq_find.do',
@@ -22,6 +20,9 @@ $(function(){
 	})
 	
 	//검색 ajax
+	$('#search').click(function(){
+		$(this).val("")
+	})
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
@@ -104,14 +105,14 @@ $(function(){
 	<div class="container" style="width:960px">
 	  	<c:if test="${sessionScope.admin!='y' }">
 	  	  <c:if test="${sessionScope.id==null }">
-		      <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
+		      <span style="float: right;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
 				  <a href="../member/login.do" class="btn btn-sm writerbtn">
 				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
 				  </a>
 			  </span>
 	  	  </c:if>
 	  	  <c:if test="${sessionScope.id!=null }">
-		      <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
+		      <span style="float: right;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
 				  <a href="../service/insert.do" class="btn btn-sm writerbtn">
 				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
 				  </a>

@@ -10,6 +10,9 @@
 <script type="text/javascript">
 $(function(){
 	//검색바
+	$('#search').click(function(){
+		$(this).val("")
+	})
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
