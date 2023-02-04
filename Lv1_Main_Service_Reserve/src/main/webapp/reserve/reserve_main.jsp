@@ -15,14 +15,12 @@ $(function(){
 			$('#select_date').html(response)
 		}
 	})
-	$('.days').hover(function(){
-		$(this).css("cursor","pointer")
-	})
-	$('.days').click(function(){
-		let year=$(this).attr("data-year")
-		let month=$(this).attr("data-month")
-		let day=$(this).text()
-		$('#r_day').text(year+"년 "+month+"월 "+day+"일")
+	$.ajax({
+		type:'post',
+		url:'../reserve/reserve_list.do',
+		success:function(response){
+			$('#select_list').html(response)
+		}
 	})
 })
 </script>
@@ -39,7 +37,9 @@ $(function(){
     	  		<caption align="top"><h5>날짜 선택</h5></caption>
     	  		<tr>
     	  		  <td>
-    	  		    <div id="select_date"></div>
+    	  		    <div id="select_date">
+    	  		    
+    	  		    </div>
     	  		  </td>
     	  		</tr>
     	  	</table>
@@ -49,7 +49,9 @@ $(function(){
     	  		<caption align="top"><h5>회차 선택</h5></caption>
     	  		<tr>
     	  		  <td>
-    	  		  	<div id="select_time"></div>
+    	  		  	<div id="select_time">
+    	  		  	
+    	  		  	</div>
     	  		  </td>
     	  		</tr>
     	  	</table>
@@ -58,16 +60,11 @@ $(function(){
     	  	<table class=table>
     	  		<caption align="top"><h5>예약 정보</h5></caption>
     	  		<tr>
-    	  		  <td class=text-center colspan=2>
-    	  		  	<img style="width: 100px;height: 150px" id="r_img">
+    	  		  <td>
+    	  		  	<div id="select_list">
+    	  		  	
+    	  		  	</div>
     	  		  </td>
-    	  		</tr>
-    	  		<tr>
-    	  		  <td class="text-left" colspan=2><span id="r_title" style="color: black"></span></td>
-    	  		</tr>
-    	  		<tr>
-    	  		  <th width=30%>예약일</th>
-    	  		  <td width=70%><span id="r_day"></span></td>
     	  		</tr>
     	  	</table>
     	  </td>
@@ -76,11 +73,25 @@ $(function(){
     	  <td width="35%" height=200>
     	  	<table class=table>
     	  		<caption align="top"><h5>인원 선택</h5></caption>
+    	  		<tr>
+    	  		  <td>
+    	  		  	<div id="select_pers">
+    	  		  	
+    	  		  	</div>
+    	  		  </td>
+    	  		</tr>
     	  	</table>
     	  </td>
     	  <td width="35%" height=200>
     	  	<table class=table>
-    	  		<caption align="top"><h5>선택</h5></caption>
+    	  		<caption align="top"><h5>잔여석</h5></caption>
+    	  		<tr>
+    	  		  <td>
+    	  		  	<div id="select_seat">
+    	  		  	
+    	  		  	</div>
+    	  		  </td>
+    	  		</tr>
     	  	</table>
     	  </td>
     	</tr>

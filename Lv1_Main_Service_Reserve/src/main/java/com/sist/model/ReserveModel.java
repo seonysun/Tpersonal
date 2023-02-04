@@ -18,6 +18,15 @@ public class ReserveModel {
 		request.setAttribute("main_jsp", "../reserve/reserve_main.jsp");
 		return "../main/main.jsp";
 	}
+
+	@RequestMapping("reserve/reserve_list.do")
+	public String reserve_list(HttpServletRequest request, HttpServletResponse response) {
+		String geno=request.getParameter("geno");
+		ExhibitionDAO dao=new ExhibitionDAO();
+		ExhibitionVO vo=dao.ExhibitionDetailData(Integer.parseInt(geno));
+		request.setAttribute("vo", vo);
+		return "../reserve/reserve_list.jsp";
+	}
 	
 	@RequestMapping("reserve/reserve_date.do")
 	public String reserve_date(HttpServletRequest request, HttpServletResponse response) {
@@ -61,15 +70,15 @@ public class ReserveModel {
 		return "../reserve/reserve_time.jsp";
 	}
 	
-	@RequestMapping("reserve/exhib_list.do")
-	public String reserve_list(HttpServletRequest request, HttpServletResponse response) {
-		
-		return "../reserve/reserve_exhib.jsp";
-	}
-	
 	@RequestMapping("reserve/reserve_pers.do")
 	public String reserve_pers(HttpServletRequest request, HttpServletResponse response) {
 		
 		return "../reserve/reserve_pers.jsp";
+	}
+	
+	@RequestMapping("reserve/reserve_seat.do")
+	public String reserve_seat(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "../reserve/reserve_seat.jsp";
 	}
 }
