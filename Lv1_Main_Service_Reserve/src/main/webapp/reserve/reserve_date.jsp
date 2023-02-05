@@ -9,30 +9,41 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	//날짜 선택 효과
 	$('.days').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","background-color":"powderblue","border-radius":"25px"})
+	},function(){
+		$(this).css({"cursor":"none","background-color":"white"})
 	})
 	$('.days').click(function(){
+		$(this).css({"background-color":"powderblue","border-radius":"25px"})
+		
+		//선택된 데이터 입력
 		let year=$(this).attr("data-year")
 		let month=$(this).attr("data-month")
 		let day=$(this).text()
 		$('#r_day').text(year+"년 "+month+"월 "+day+"일")
+		
+		//시간 선택 옵션 출력
+		$.ajax({
+			type:'post',
+			url:'../reserve/reserve_time.do',
+			success:function(response){
+				$('#select_time').html(response)
+			}
+		})
 	})
 })
 </script>
 </head>
 <body>
-	<table class="table" style="border-color: white">
-	  <tr>
-		<td class=text-center><h5>${year }년 ${month }월</h5></td>
-	  </tr>
-	</table>
+	<h5>${year }년 ${month }월</h5>
 	
 	<c:set var="week" value="${week }"/>
-	<table class=table>
+	<table class="table text-center">
 	  <tr>
   		<c:forEach var="w" items="${strWeek }">
-	  		<th class=text-center height=35>${w }</th>
+	  		<th height=35>${w }</th>
 	  	</c:forEach>
 	  </tr>
 	  <tr>
@@ -42,7 +53,7 @@ $(function(){
 		  	  	<td height=30></td>
 	  	  	</c:forEach>
 	  	  </c:if>
-	  	  <td class="days text-center" height=30 data-year="${year }" data-month="${month }"><b>${i }</b></td>
+	  	  <td class="days" height=30 data-year="${year }" data-month="${month }"><b>${i }</b></td>
 	  	  <c:set var="week" value="${week+1 }"/>
 	  	  <c:if test="${week>6 }">
 		  	  <c:set var="week" value="0"/>

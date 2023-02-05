@@ -15,6 +15,9 @@ import com.sist.controller.RequestMapping;
 public class ReserveModel {
 	@RequestMapping("reserve/reserve_main.do")
 	public String reserve_main(HttpServletRequest request, HttpServletResponse response) {
+		String geno=request.getParameter("geno");
+		if(geno==null) geno="1";
+		request.setAttribute("geno", geno);
 		request.setAttribute("main_jsp", "../reserve/reserve_main.jsp");
 		return "../main/main.jsp";
 	}
