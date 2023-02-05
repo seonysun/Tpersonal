@@ -17,6 +17,7 @@
 	text-align: center;
 	width: 20%;
 	float: left;
+	border-radius: 10px;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.4);
 }
 .f-card dl{
@@ -28,15 +29,19 @@
 	padding: 10px 0;
 	font-size: 1em;
 	text-align: center;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 .f-card dd{
 	padding: 10px 0;
 	font-size: 0.9rem;
 	text-align: left;
 	margin-bottom: -1rem;
+	height: 145px
 }
-.f-10{
+#findcard{
 	clear: both;
+	padding-top: 15px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -201,7 +206,7 @@ $(function(){
 	</div>
 	
 <!-- faq top10 -->
-	<div class=f-10 >
+	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">자주 묻는 질문 TOP10</h4>
 		<table class="table">

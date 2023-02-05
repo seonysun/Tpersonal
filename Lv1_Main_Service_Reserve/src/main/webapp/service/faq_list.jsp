@@ -136,7 +136,7 @@ $(function(){
 	  	  </c:if>
 	  	</c:if>
 	  <div style="height: 20px"></div>
-	  	<table class="table">
+	  	<table class="table" style="margin-bottom: 0rem">
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
 	  	  	<th width=15% class="text-center">
