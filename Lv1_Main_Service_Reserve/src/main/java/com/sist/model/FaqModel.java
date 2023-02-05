@@ -18,10 +18,7 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
 	    String ss=request.getParameter("ss");
-	    String page=request.getParameter("page");
-	    if(page==null) page="1";
 	    request.setAttribute("ss", ss);
-	    request.setAttribute("page", page);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
 		return "../main/main.jsp";
 	}

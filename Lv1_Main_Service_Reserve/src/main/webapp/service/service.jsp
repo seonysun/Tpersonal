@@ -68,7 +68,9 @@ $(function(){
 	
 	//빠른찾기 클릭 이벤트
 	$('.f-card li').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","Opacity":"0.7"})
+	},function(){
+		$(this).css("Opacity","1.0")
 	})
 	$('.f-card li').click(function(){
 		let ss=$(this).text()
@@ -188,7 +190,6 @@ $(function(){
 		  	  <ul>
 				<li>리뷰</li>
 				<li>한줄평</li>
-				<li>홈페이지</li>
 				<li>시스템장애</li>
 		  	  </ul>
 		  	</dd>

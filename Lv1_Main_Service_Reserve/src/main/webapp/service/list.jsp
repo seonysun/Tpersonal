@@ -21,6 +21,7 @@
 			</span>
 	  	</c:if>
 	  <div style="height: 20px"></div>
+	  <div style="height: 450px">
 	  	<table class="table">
 	  	  <tr>
 	  	  	<th width=5% class="text-center">번호</th>
@@ -72,6 +73,7 @@
 	  	    </c:if>
 	  	  </c:forEach>
 	  	</table>
+	  </div>
 	  	<table class="table" style="border-color: white">
 	  	  <tr>
 	  	  	<td class="text-center">

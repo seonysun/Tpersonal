@@ -32,7 +32,7 @@ $(function(){
 	<table class="table" style="width: 85%">
 	  <thead>
 		  <tr style="border-color: white">
-		  	<th colspan=2><h6 class="text-primary px-3 block">&gt;&nbsp;${ss } 관련 ${count }개의 FAQ가 검색되었습니다.</h6></th>
+		  	<th colspan=2><h6 class="text-primary px-3 block">&lt;&nbsp;${ss }&nbsp;&gt; 관련 ${count }개의 FAQ가 검색되었습니다.</h6></th>
 		  </tr>
 		  <tr>
 		 	<th width=10% class="text-center">문의유형</th>

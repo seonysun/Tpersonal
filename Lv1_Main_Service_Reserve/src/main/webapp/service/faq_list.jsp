@@ -12,16 +12,15 @@ let f=0
 $(function(){
 	//첫화면
 	let ss=$('#search').val()
-	let page=$('#fpage').val()
 	$.ajax({
 		type:'post',
 		url:'../service/faq_find.do',
-		data:{"ss":ss,"page":page},
+		data:{"ss":ss},
 		success:function(response){
 			$('#f-find').html(response)
 		}
 	})
-	
+
 	//검색 ajax
 	$('#search').click(function(){
 		$(this).val("")
@@ -72,6 +71,18 @@ $(function(){
 			}
 		})
 	})
+	
+	//전체보기
+	$('#falist').click(function(){
+		$('#search').val("")
+		$.ajax({
+			type:'post',
+			url:'../service/faq_find.do',
+			success:function(response){
+				$('#f-find').html(response)
+			}
+		})
+	})
 })
 </script>
 </head>
@@ -107,6 +118,7 @@ $(function(){
     <!-- ### -->
 	
 	<div class="container" style="width:960px">
+		<span id=falist class="btn btn-sm btn-primary">전체보기</span>
 	  	<c:if test="${sessionScope.admin!='y' }">
 	  	  <c:if test="${sessionScope.id==null }">
 		      <span style="float: right;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
@@ -123,21 +135,23 @@ $(function(){
 			  </span>
 	  	  </c:if>
 	  	</c:if>
-		<select id=ftype>
-			<option value="0">문의유형선택</option>
-			<option value="1">회원</option>
-			<option value="2">예매</option>
-			<option value="3">결제</option>
-			<option value="4">티켓</option>
-			<option value="5">기타</option>
-		</select>
-	  <div style="height: 5px"></div>
+	  <div style="height: 20px"></div>
 	  	<table class="table">
 	  	  <tr>
-	  	  	<th width=10% class="text-center">번호
-	  	  		<input type=hidden id=fpage value="${page }">
+	  	  	<th width=10% class="text-center">번호</th>
+	  	  	<th width=15% class="text-center">
+	  	  		<div>
+			  	  <label for=ftype>문의유형</label>
+					<select name=ftype id=ftype>
+						<option value="0">선택</option>
+						<option value="1">회원</option>
+						<option value="2">예매</option>
+						<option value="3">결제</option>
+						<option value="4">티켓</option>
+						<option value="5">기타</option>
+					</select>
+			  	</div>
 	  	  	</th>
-	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<th width=65% class="text-center">제목</th>
 	  	  	<th width=10% class="text-center">조회수</th>
 	  	  </tr>

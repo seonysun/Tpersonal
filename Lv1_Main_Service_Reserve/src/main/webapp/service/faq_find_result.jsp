@@ -30,13 +30,20 @@ $(function(){
 	
 	//페이지 이동
 	$('.pBtn').click(function(){
-		let page=$(this).val()
+		let page=$(this).attr("data-no")
+		let ss=$('#search').val()
 		$.ajax({
 			type:'post',
-			url:'../service/faq_find.do',
-			data:{"page":page},
-			success:function(response){
-				$('#f-find').html(response)
+			url:'../service/faq_list.do',
+			success:function(result){
+				$.ajax({
+					type:'post',
+					url:'../service/faq_find.do',
+					data:{"ss":ss,"page":page},
+					success:function(response){
+						$('#f-find').html(response)
+					}
+				})
 			}
 		})
 	})
@@ -44,15 +51,19 @@ $(function(){
 </script>
 </head>
 <body>
-	<table class=table>
-		  <c:if test="${count==0 }">
-	  	   	  <tr>
-	  	   		<td colspan=4>검색 결과가 없습니다</td>
-	  	   	  </tr>
-	  	  </c:if>
+	<c:if test="${count==0 }">
+	  <table class=table style="border-color: white">
+	   	  <tr>
+	   		<td colspan=4>검색 결과가 없습니다</td>
+	   	  </tr>
+	  </table>
+	</c:if>
+	<c:if test="${count>0 }">
+	 <div style="height: 420px">
+	  <table class=table>
 		  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=10% class="text-center">${count-s.index }</td>
+		  	  	<td width=10% class="text-center">${count-s.index-(curpage-1)*10 }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 		  	  	<td width=10% class="text-center">${vo.hit }</td>
@@ -69,20 +80,17 @@ $(function(){
 				</td>
 			  </tr>
 	  	  </c:forEach>
-	</table>
-	<table class="table" style="border-color: white">
-	  <tr>
-	  	<td class="text-center">
-		  	<%--
-	  		<a href="../service/faq_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-		  	${curpage } page / ${totalpage } pages
-		  	<a href="../service/faq_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
-		  	 --%>  		
-	  		<span value="${curpage>1?'curpage-1':'curpage' }" class="btn btn-sm btn-primary pBtn">이전</span>
+	  </table>
+	 </div>
+	  <table class="table" style="border-color: white">
+	    <tr>
+	  	  <td class="text-center">
+	  		<span data-no="${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary pBtn">이전</span>
 	  		${curpage } page / ${totalpage } pages
-	  		<span value="${curpage<totalpage?'curpage+1':'curpage' }" class="btn btn-sm btn-primary pBtn">다음</span>
-	  	</td>
-	  </tr>
-	</table>
+	  		<span data-no="${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary pBtn">다음</span>
+	  	  </td>
+	    </tr>
+	  </table>
+	</c:if>
 </body>
 </html>
