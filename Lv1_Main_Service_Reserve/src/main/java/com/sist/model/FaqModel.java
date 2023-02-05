@@ -2,7 +2,6 @@ package com.sist.model;
 import com.sist.vo.*;
 import com.sist.dao.*;
 
-import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,22 +18,13 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
 	    String ss=request.getParameter("ss");
+	    String page=request.getParameter("page");
+	    if(page==null) page="1";
 	    request.setAttribute("ss", ss);
+	    request.setAttribute("page", page);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
 		return "../main/main.jsp";
 	}
-	
-	/*
-	@RequestMapping("service/faq_flist.do")
-	public String faq_find_list(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-	    } catch (Exception e) {}
-	    String ss=request.getParameter("ss");
-	    request.setAttribute("ss", ss);
-		return "redirect:../service/faq_list.do";
-	}
-	 */
 	
 	@RequestMapping("service/faq_card.do")
 	public String faq_card(HttpServletRequest request, HttpServletResponse response) {

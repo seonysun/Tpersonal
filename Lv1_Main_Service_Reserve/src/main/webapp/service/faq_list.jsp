@@ -11,9 +11,12 @@
 let f=0
 $(function(){
 	//첫화면
+	let ss=$('#search').val()
+	let page=$('#fpage').val()
 	$.ajax({
 		type:'post',
 		url:'../service/faq_find.do',
+		data:{"ss":ss,"page":page},
 		success:function(response){
 			$('#f-find').html(response)
 		}
@@ -58,6 +61,7 @@ $(function(){
 	
 	//FAQ 타입 선택 이벤트
 	$('#ftype').change(function(){
+		$('#search').val("")
 		let type=$(this).val()
 		$.ajax({
 			type:'post',
@@ -130,7 +134,9 @@ $(function(){
 	  <div style="height: 5px"></div>
 	  	<table class="table">
 	  	  <tr>
-	  	  	<th width=10% class="text-center">번호</th>
+	  	  	<th width=10% class="text-center">번호
+	  	  		<input type=hidden id=fpage value="${page }">
+	  	  	</th>
 	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<th width=65% class="text-center">제목</th>
 	  	  	<th width=10% class="text-center">조회수</th>
