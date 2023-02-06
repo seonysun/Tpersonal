@@ -13,7 +13,10 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	//예매하기 클릭시 결제창으로 이동
+	$('.rBtn').click(function(){
+		
+	})
 })
 </script>
 </head>
@@ -43,7 +46,9 @@ $(function(){
     	<td width=70%><span id="r_price"></span></td>
       </tr>
       <tr>
-    	<td colspan=2 class=text-center><input type=button class="btn btn-sm btn-danger" id="rBtn" value="예매하기"></td>
+    	<td colspan=2 class="text-center rBtn" style="display: none">
+    		<input type=button class="btn btn-sm btn-danger" value="예매하기">
+    	</td>
       </tr>
 	</table>
 </body>

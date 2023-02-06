@@ -37,6 +37,29 @@ $(function(){
 			$('#select_list').html(response)
 		}
 	})
+	
+	/*
+	//전시 재선택
+	$.ajax({
+		type:'post',
+		url:'../reserve/reserve_exhib.do',
+		data:{"etype":etype},
+		success:function(response){
+			$('#select_exhib').html(response)
+		}
+	})
+	$('').click(function)(){
+		let etype=$(this).val()
+		$.ajax({
+			type:'post',
+			url:'../reserve/reserve_exhib.do',
+			data:{"etype":etype},
+			success:function(response){
+				$('#select_exhib').html(response)
+			}
+		})
+	}
+	*/
 })
 </script>
 </head>
@@ -46,7 +69,7 @@ $(function(){
 	<h3 class="text-primary px-3">GOD 전시 예매</h3>
     <table class=table style="width: 100%">
     	<tr>
-    	  <td width="30%">
+    	  <td width="30%" rowspan=2>
     	  	<table class="table re_section">
     	  		<caption align="top"><h5>날짜 선택</h5></caption>
     	  		<tr>
@@ -70,19 +93,19 @@ $(function(){
     	  		</tr>
     	  	</table>
     	  </td>
-    	  <td width="20%">
+    	  <td width="20%" rowspan=3>
     	  	<table class="table re_section">
-    	  		<caption align="top"><h5>인원 선택</h5></caption>
+    	  		<caption align="top"><h5>전시 선택</h5></caption>
     	  		<tr>
     	  		  <td>
-    	  		  	<div id="select_pers">
+    	  		  	<div id="select_exhib">
     	  		  	
     	  		  	</div>
     	  		  </td>
     	  		</tr>
     	  	</table>
     	  </td>
-    	  <td width="30%" rowspan=2>
+    	  <td width="25%" rowspan=3>
     	  	<table class="table re_section">
     	  		<caption align="top"><h5>예약 정보</h5></caption>
     	  		<tr>
@@ -97,7 +120,21 @@ $(function(){
     	  </td>
     	</tr>
     	<tr>
-    	  <td colspan=3>
+    	  <td width="20%">
+    	  	<table class="table re_section">
+    	  		<caption align="top"><h5>인원 선택</h5></caption>
+    	  		<tr>
+    	  		  <td>
+    	  		  	<div id="select_pers">
+    	  		  	
+    	  		  	</div>
+    	  		  </td>
+    	  		</tr>
+    	  	</table>
+    	  </td>
+    	</tr>
+    	<tr>
+    	  <td colspan=2>
     	  	<table class="table re_section">
     	  		<caption align="top"><h5>잔여석</h5></caption>
     	  		<tr>
