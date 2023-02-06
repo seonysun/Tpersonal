@@ -5,33 +5,34 @@ import com.sist.dao.*;
 
 public class DataInsert {
 	private Connection conn;
-	private PreparedStatement ps;
-    public void foodReserveDayInsert(int fno, String reserve_day) {
-    	try {
-    		conn=CreateConnection.getConnection();
-    		String sql="UPDATE food_location "
-    				+ "SET reserve_day=? "
-    				+ "WHERE fno=?";
-    		ps=conn.prepareStatement(sql);
-    		ps.setString(1, reserve_day);
-    		ps.setInt(2, fno);
-    		ps.executeUpdate();
-    	} catch(Exception ex) {
-    		ex.printStackTrace();
-    	} finally {
-    		CreateConnection.disConnection(conn, ps);
-    	}
+    private PreparedStatement ps;
+    private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+    public DataInsert() {
+	    try {
+		    Class.forName("oracle.jdbc.driver.OracleDriver");
+	    } catch(Exception ex) {}
+    }
+    public void getConnection() {
+	    try {
+		    conn=DriverManager.getConnection(URL,"hr","happy");
+	    }catch(Exception ex){}
+    }
+    public void disConnection() {
+	    try {
+		    if(ps!=null) ps.close();
+		    if(conn!=null) conn.close();
+	    } catch(Exception ex) {}
     }
     //예약가능시간 세팅
-    public String reserve_time() {
+    public String reserve_rtime() {
     	String s="";
-    	int[] com=new int[(int)(Math.random()*5)+5];
+    	int[] com=new int[(int)(Math.random()*3)+3];
     	int su=0;
     	boolean bCheck=false;
     	for(int i=0;i<com.length;i++) {
     		bCheck=true;
     		while(bCheck) {
-    			su=(int)(Math.random()*16)+1;
+    			su=(int)(Math.random()*5)+1;
     			bCheck=false;
     			for(int j=0;j<i;j++) {
     				if(com[j]==su) {
@@ -51,9 +52,9 @@ public class DataInsert {
     }
     public void foodReserveTimeInsert(int rdate, String rtime) {
     	try {
-    		conn=CreateConnection.getConnection();
-    		String sql="INSERT INTO project_reserve_date "
-    				+ "VALUES((SELECT NVL(MAX(dno)+1,1) FROM project_reserve_date),?,?)";
+    		getConnection();
+    		String sql="INSERT INTO god_reserve_date_3 "
+    				+ "VALUES((SELECT NVL(MAX(grdno)+1,1) FROM god_reserve_date_3),?,?)";
     		ps=conn.prepareStatement(sql);
     		ps.setInt(1, rdate);
     		ps.setString(2, rtime);
@@ -61,10 +62,14 @@ public class DataInsert {
     	} catch(Exception ex) {
     		ex.printStackTrace();
     	} finally {
-    		CreateConnection.disConnection(conn, ps);
+    		disConnection();
     	}
     }
     public static void main(String[] args) {
-		
+    	DataInsert di=new DataInsert();
+    	for(int i=1;i<=31;i++) {
+	    	di.foodReserveTimeInsert(i, di.reserve_rtime());
+	    }
+	    System.out.println("저장 완료");
 	}
 }

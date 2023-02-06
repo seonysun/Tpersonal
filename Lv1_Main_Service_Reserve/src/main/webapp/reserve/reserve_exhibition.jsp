@@ -34,7 +34,7 @@ $(function(){
 </head>
 <body>
   <table class="table">
-   <tr class="success">
+   <tr>
      <th class="text-center"></th>
      <th class="text-center">전시명</th>
    </tr>

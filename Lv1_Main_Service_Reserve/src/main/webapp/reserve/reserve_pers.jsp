@@ -9,19 +9,36 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#pers').change(function(){
-		let inwon=$(this).text()
+	$('#kpers').change(function(){
+		let inwon1=$(this).val()
+	})
+	$('#apers').change(function(){
+		let inwon=$(this).val()
 		$('#r_pers').text(inwon+"명")
+		$('#reservpers').val(inwon)
 		$('.rBtn').show()
 	})
 })
 </script>
 </head>
 <body>
-	<select id=pers>
-		<c:forEach var="i" begin="1" end="10">
-			<option>${i }</option>
-		</c:forEach>
-	</select>
+    <div style="height:10px"></div>
+	<div>
+		<label for=kpers><b>청소년</b></label>&nbsp;&nbsp;
+		<select name=kpers id=kpers>
+			<c:forEach var="i" begin="1" end="10">
+				<option value="${i }">${i }명</option>
+			</c:forEach>
+		</select>
+ 	</div>
+    <div style="height:10px"></div>
+ 	<div>
+		<label for=apers><b>성인</b></label>&nbsp;&nbsp;
+		<select name=apers id=apers>
+			<c:forEach var="i" begin="1" end="10">
+				<option value="${i }">${i }명</option>
+			</c:forEach>
+		</select>
+ 	</div>
 </body>
 </html>

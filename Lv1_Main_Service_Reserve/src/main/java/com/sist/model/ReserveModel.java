@@ -7,6 +7,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -16,7 +17,7 @@ public class ReserveModel {
 	@RequestMapping("reserve/reserve_main.do")
 	public String reserve_main(HttpServletRequest request, HttpServletResponse response) {
 		String geno=request.getParameter("geno");
-		if(geno==null) geno="1";
+		if(geno==null) geno="3";
 		request.setAttribute("geno", geno);
 		request.setAttribute("main_jsp", "../reserve/reserve_main.jsp");
 		return "../main/main.jsp";
@@ -58,30 +59,117 @@ public class ReserveModel {
 		String[] strWeek= {"일","월","화","수","목","금","토"};
 		int lastday=cal.getActualMaximum(Calendar.DATE);
 
+		ReserveDAO dao=new ReserveDAO();
+		String geno=request.getParameter("geno");
+		String period=dao.reserveDayData(Integer.parseInt(geno));
+			//2023-02-02 ~ 2023-02-05
+		String startday=period.substring(0, period.indexOf("~")).trim();
+		startday=startday.substring(startday.lastIndexOf("-")+1);
+		int sday=Integer.parseInt(startday);
+		String endday=period.substring(period.indexOf("~")+1).trim();
+		endday=endday.substring(endday.lastIndexOf("-")+1);
+		int eday=Integer.parseInt(endday);
+		
+		int[] temp=new int[eday-sday+1];
+		for(int i=0;i<temp.length;i++) {
+			temp[i]=sday;
+			sday++;
+		}
+		int[] rdays=new int[32];
+		for(int s:temp) {
+			if(s>day) {
+				rdays[s]=1;
+			}
+		}
+		
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
 		request.setAttribute("lastday", lastday);
 		request.setAttribute("week", week-1);
 		request.setAttribute("strWeek", strWeek);
+		request.setAttribute("rdays", rdays);
 		return "../reserve/reserve_date.jsp";
 	}
 	
 	@RequestMapping("reserve/reserve_time.do")
 	public String reserve_time(HttpServletRequest request, HttpServletResponse response) {
-		
+		String day=request.getParameter("day");
+		ReserveDAO dao=new ReserveDAO();
+		String rtime=dao.reserveTimeData(Integer.parseInt(day));
+		StringTokenizer st=new StringTokenizer(rtime,",");
+		List<String> rtimes=new ArrayList<String>();
+		while(st.hasMoreTokens()) {
+			String ss=dao.reserveTimeRealData(Integer.parseInt(st.nextToken()));
+			rtimes.add(ss);
+		}
+		request.setAttribute("rtimes", rtimes);
+		/*
+		StringTokenizer st1=new StringTokenizer(rtime,",");
+		List<Integer> rtn=new ArrayList<Integer>();
+		while(st1.hasMoreTokens()) {
+			rtn.add(Integer.parseInt(st1.nextToken()));
+		}
+		request.setAttribute("rtn", rtn);
+		 */
 		return "../reserve/reserve_time.jsp";
 	}
 	
 	@RequestMapping("reserve/reserve_pers.do")
 	public String reserve_pers(HttpServletRequest request, HttpServletResponse response) {
-		
 		return "../reserve/reserve_pers.jsp";
 	}
 	
-	@RequestMapping("reserve/reserve_seat.do")
-	public String reserve_seat(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("reserve/pay.do")
+	public String reserve_pay(HttpServletRequest request, HttpServletResponse response) {
+		String geno=request.getParameter("reserveno");
+		String rdate=request.getParameter("reservedate");
+		String rtime=request.getParameter("reservetime");
+		String inwon=request.getParameter("reservepers");
+		request.setAttribute("main_jsp", "../reserve/pay.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("reserve/reserve_ok.do")
+	public String reserve_ok(HttpServletRequest request, HttpServletResponse response) {
+		String geno=request.getParameter("reserveno");
+		String rdate=request.getParameter("reservedate");
+		String rtime=request.getParameter("reservetime");
+		String inwon=request.getParameter("reservepers");
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		
-		return "../reserve/reserve_seat.jsp";
+		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+		String reserve_no=sdf.format(date)+geno;
+		
+		ReserveDAO dao=new ReserveDAO();
+		ReserveVO vo=new ReserveVO();
+		vo.setRdate(rdate);
+		vo.setRtime(rtime);
+		vo.setInwon(Integer.parseInt(inwon));
+		vo.setId(id);
+		dao.reserveOk(vo);
+		return "redirect:../mypage/";
+	}
+	
+	@RequestMapping("reserve/reserve_delete.do")
+	public String reserve_delete(HttpServletRequest request, HttpServletResponse response) {
+		String gerno=request.getParameter("gerno");
+		ReserveDAO dao=new ReserveDAO();
+		dao.reserveDelete(Integer.parseInt(gerno));
+		return "redirect:../mypage/";
+	}
+	
+	@RequestMapping("reserve/reserve_exhib.do")
+	public String reserve_exhib(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String ed=request.getParameter("ed");
+		ReserveDAO dao=new ReserveDAO();
+		List<ExhibitionVO> list=dao.exhibitionListData(ed);
+		request.setAttribute("list", list);
+		return "../reserve/reserve_exhibition.jsp";
 	}
 }

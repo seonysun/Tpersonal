@@ -10,44 +10,46 @@
 	text-align: left;
 }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-$(function(){
-	//예매하기 클릭시 결제창으로 이동
-	$('.rBtn').click(function(){
-		
-	})
-})
-</script>
 </head>
 <body>
 	<table class="table rlist">
 	  <tr>
-    	<th width=30%>선택한 전시</th>
+    	<th width=40%>선택한 전시</th>
+    	<td width=60%></td>
+      </tr>
+      <tr colspan=2 rowspan=3>
     	<td class=text-center colspan=2>
-    	 	<img src="${vo.poster }" style="width: 150px;height: 200px"><br>
-    	 	<span style="color: black">${vo.title }</span>
-    	</td>
+    	 	<img src="${vo.poster }" style="width: 150px;height: 200px">
+    	 	<div style="height:5px"></div>
+        	<b>&lt;&nbsp;${vo.title }&nbsp;&gt;</b><br>
+        	${vo.period }
+        </td>
       </tr>
       <tr>
-    	<th width=30%>예매날짜</th>
-    	<td width=70%><span id="r_day"></span></td>
+    	<th width=35%>예매날짜</th>
+    	<td width=65%><span id="r_day"></span></td>
       </tr>
       <tr>
-    	<th width=30%>예매시간</th>
-    	<td width=70%><span id="r_time"></span></td>
+    	<th width=35%>예매시간</th>
+    	<td width=65%><span id="r_time"></span></td>
       </tr>
       <tr>
-    	<th width=30%>수량</th>
-    	<td width=70%><span id="r_pers"></span></td>
+    	<th width=35%>수량</th>
+    	<td width=65%><span id="r_pers"></span></td>
       </tr>
       <tr>
-    	<th width=30%>금액</th>
-    	<td width=70%><span id="r_price"></span></td>
+    	<th width=35%>금액</th>
+    	<td width=65%><span id="r_price"></span></td>
       </tr>
       <tr>
     	<td colspan=2 class="text-center rBtn" style="display: none">
-    		<input type=button class="btn btn-sm btn-danger" value="예매하기">
+    	  <form method="post" action="../reserve/pay.do">
+    		<input type=hidden name="reserveno" id="reserveno">
+    		<input type=hidden name="reservedate" id="reservedate">
+    		<input type=hidden name="reservetime" id="reservetime">
+    		<input type=hidden name="reservepers" id="reservepers">
+    		<input type=submit class="btn btn-sm btn-danger" value="예매하기">
+    	  </form>
     	</td>
       </tr>
 	</table>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,28 +18,26 @@ $(function(){
 	$('.times tr').click(function(){
 		let time=$(this).text()
 		$('#r_time').text(time)
+		$('#reservetime').val(time)
+		$.ajax({
+			type:'post',
+			url:'../reserve/reserve_pers.do',
+			success:function(response){
+				$('#select_pers').html(response)
+			}
+		})
 	})
 })
 </script>
 </head>
 <body>
-	<table class="table times">
+  <table class="table times">
+	<c:forEach var="t" items="${rtimes }" varStatus="s">
 	  <tr>
-	  	<th>1회</th>
-	    <td>10:00 ~ 12:00</td>
+	  	<th>${s.index+1 }회</th>
+	    <td>${t }</td>
 	  </tr>
-	  <tr>
-	  	<th>2회</th>
-	    <td>12:00 ~ 14:00</td>
-	  </tr>
-	  <tr>
-	  	<th>3회</th>
-	    <td>12:00 ~ 16:00</td>
-	  </tr>
-	  <tr>
-	  	<th>4회</th>
-	    <td>16:00 ~ 18:00</td>
-	  </tr>
-	</table>
+	</c:forEach>
+  </table>
 </body>
 </html>
