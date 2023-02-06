@@ -19,7 +19,6 @@
 <script type="text/javascript">
 $(function(){
 	let geno=$('#r_no').val()
-	$('#reserveno').val(geno)
 	
 	//날짜 선택 달력 출력
 	$.ajax({
@@ -44,7 +43,7 @@ $(function(){
 	/*
 	//전시 재선택
 	$('.exhibs').click(function)(){
-		let ed=$(this).val()
+		let ed=$(this).text()
 		$.ajax({
 			type:'post',
 			url:'../reserve/reserve_exhib.do',
@@ -53,7 +52,7 @@ $(function(){
 				$('#select_exhib').html(response)
 			}
 		})
-	}
+	})
 	*/
 })
 </script>
@@ -64,12 +63,12 @@ $(function(){
 	<h3 class="text-primary px-3">GOD 전시 예매</h3>
     <table class=table style="width: 100%">
     	<tr>
-    	  <td width="30%" rowspan=2>
+    	  <td width="30%">
     	  	<table class="table re_section">
     	  		<caption align="top"><h5>날짜 선택</h5></caption>
     	  		<tr>
     	  		  <td>
-    	  		    <div id="select_date">
+    	  		    <div id="select_date" style="height: 330px">
     	  		    
     	  		    </div>
     	  		  </td>
@@ -81,43 +80,32 @@ $(function(){
     	  		<caption align="top"><h5>회차 선택</h5></caption>
     	  		<tr>
     	  		  <td>
-    	  		  	<div id="select_time" style="height: 250px">
+    	  		  	<div id="select_time" style="height: 330px">
     	  		  	
     	  		  	</div>
     	  		  </td>
     	  		</tr>
     	  	</table>
     	  </td>
-    	  <td width="25%" rowspan=2>
+    	  <td width="20%">
+    	  	<table class="table re_section">
+    	  		<caption align="top"><h5>인원 선택</h5></caption>
+    	  		<tr>
+    	  		  <td>
+    	  		  	<div id="select_pers" style="height: 330px">
+    	  		  	
+    	  		  	</div>
+    	  		  </td>
+    	  		</tr>
+    	  	</table>
+    	  </td>
+    	  <td width="30%" rowspan=2>
     	  	<table class="table re_section">
     	  		<caption align="top"><h5>예매 정보</h5></caption>
     	  		<tr>
     	  		  <td>
     	  		  	<input type=hidden value="${geno }" id="r_no">
-    	  		  	<div id="select_list" style="height: 530px">
-    	  		  	
-    	  		  	</div>
-    	  		  </td>
-    	  		</tr>
-    	  	</table>
-    	  </td>
-    	  <td width="25%" rowspan=2>
-    	  	<table class="table re_section">
-    	  		<caption align="top"><h5>예매할 전시 변경</h5></caption>
-    	  		<tr>
-    	  		  <td>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">예술</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">전기</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">기계</span>
-    	  		  	<span class="btn btn-sm btn-primary exhibs">농축산</span>
-    	  		  </td>
-    	  		</tr>
-    	  		<tr>
-    	  		  <td>
-    	  		  	<div id="select_exhib" style="height: 450px;overflow-y: auto">
+    	  		  	<div id="select_list" style="height: 800px">
     	  		  	
     	  		  	</div>
     	  		  </td>
@@ -126,18 +114,30 @@ $(function(){
     	  </td>
     	</tr>
     	<tr>
-    	  <td width="20%">
+    	  <td width="70%" colspan=3>
     	  	<table class="table re_section">
-    	  		<caption align="top"><h5>인원 선택</h5></caption>
+    	  		<caption align="top">
+    	  			<h5>
+    	  				예매할 전시 변경&nbsp;&nbsp;
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">예술</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">전기</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">기계</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">농축산</span>
+    	  			</h5>
+    	  		</caption>
     	  		<tr>
     	  		  <td>
-    	  		  	<div id="select_pers" style="height: 80px">
+    	  		  	<div id="select_exhib" style="height: 360px">
     	  		  	
     	  		  	</div>
     	  		  </td>
     	  		</tr>
     	  	</table>
     	  </td>
+    	  
     	</tr>
     </table>
 </div>

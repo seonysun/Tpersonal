@@ -14,6 +14,7 @@ $(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('.days').click(function(){
+		$('.days').css("background-color","white")
 		$(this).css("background-color","powderblue")
 		
 		//선택된 데이터 입력
@@ -37,6 +38,7 @@ $(function(){
 </script>
 </head>
 <body>
+	<div style="height: 10px"></div>
 	<h5>${year }년 ${month }월</h5>
 	<div style="height: 10px"></div>
 	
@@ -44,21 +46,21 @@ $(function(){
 	<table class="table">
 	  <tr>
   		<c:forEach var="w" items="${strWeek }">
-	  		<th height=35>${w }</th>
+	  		<th height=25>${w }</th>
 	  	</c:forEach>
 	  </tr>
 	  <tr>
 	    <c:forEach var="i" begin="1" end="${lastday }" varStatus="s">
 	  	  <c:if test="${i==1 }">
 	  	  	<c:forEach var="j" begin="1" end="${week }">
-		  	  	<td height=30></td>
+		  	  	<td height=25></td>
 	  	  	</c:forEach>
 	  	  </c:if>
 	  	  <c:if test="${rdays[s.index]==1 }">
-		  	  <td class="days" height=30 style="background-color: powderblue" data-year="${year }" data-month="${month }"><b>${i }</b></td>
+		  	  <td class="days" height=25 style="background-color: powderblue" data-year="${year }" data-month="${month }"><b>${i }</b></td>
 	  	  </c:if>
 	  	  <c:if test="${rdays[s.index]!=1 }">
-		  	  <td height=30 style="color: gray">${i }</td>
+		  	  <td height=25 style="color: gray">${i }</td>
 	  	  </c:if>
 	  	  <c:set var="week" value="${week+1 }"/>
 	  	  <c:if test="${week>6 }">
@@ -68,7 +70,7 @@ $(function(){
 	    </c:forEach>
 	  <tr>
 	    <td colspan=7>
-		  <span style="float: right">※<img src="../reserve/image/bluebox.png" style="width:10px;height:10px">표시된 날짜만 예매 가능</span>
+		  <span style="float: right">※ 표시된 날짜만 예매 가능</span>
 	    </td>
 	  </tr>
 	</table>

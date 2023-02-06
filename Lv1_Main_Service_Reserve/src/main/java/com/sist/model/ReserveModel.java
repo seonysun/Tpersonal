@@ -126,6 +126,10 @@ public class ReserveModel {
 		String rdate=request.getParameter("reservedate");
 		String rtime=request.getParameter("reservetime");
 		String inwon=request.getParameter("reservepers");
+		request.setAttribute("geno", geno);
+		request.setAttribute("rdate", rdate);
+		request.setAttribute("rtime", rtime);
+		request.setAttribute("inwon", inwon);
 		request.setAttribute("main_jsp", "../reserve/pay.jsp");
 		return "../main/main.jsp";
 	}
@@ -139,28 +143,17 @@ public class ReserveModel {
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		
-		Date date=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-		String reserve_no=sdf.format(date)+geno;
-		
 		ReserveDAO dao=new ReserveDAO();
 		ReserveVO vo=new ReserveVO();
+		vo.setGeno(Integer.parseInt(geno));
 		vo.setRdate(rdate);
 		vo.setRtime(rtime);
 		vo.setInwon(Integer.parseInt(inwon));
 		vo.setId(id);
 		dao.reserveOk(vo);
-		return "redirect:../mypage/";
+		return "redirect:../mypage/mypage_reserve_list.do";
 	}
-	
-	@RequestMapping("reserve/reserve_delete.do")
-	public String reserve_delete(HttpServletRequest request, HttpServletResponse response) {
-		String gerno=request.getParameter("gerno");
-		ReserveDAO dao=new ReserveDAO();
-		dao.reserveDelete(Integer.parseInt(gerno));
-		return "redirect:../mypage/";
-	}
-	
+
 	@RequestMapping("reserve/reserve_exhib.do")
 	public String reserve_exhib(HttpServletRequest request, HttpServletResponse response) {
 		try {

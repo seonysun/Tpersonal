@@ -2,8 +2,15 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
-
 /*
+GERNO NOT NULL NUMBER       
+RDATE NOT NULL VARCHAR2(30) 
+RTIME NOT NULL VARCHAR2(20) 
+INWON NOT NULL NUMBER       
+OK    NOT NULL VARCHAR2(10) 
+GENO           NUMBER       
+ID             VARCHAR2(20) 
+
 GENO    NOT NULL NUMBER        
 POSTER  NOT NULL VARCHAR2(260) 
 TITLE   NOT NULL VARCHAR2(150) 
@@ -24,43 +31,42 @@ GOOD             NUMBER
 CONTENT          CLOB          
 HIT              NUMBER   
  */
-
 public class ReserveDAO {
-  private Connection conn;
-  private PreparedStatement ps;
-  //예약할 전시 선택 목록
-  public List<ExhibitionVO> exhibitionListData(String ed)
-  {
-	  List<ExhibitionVO> list=new ArrayList<ExhibitionVO>();
-	  try
-	  {
-		  conn=CreateConnection.getConnection();
-		  String sql="SELECT geno,poster,title,loc,rownum "
+    private Connection conn;
+    private PreparedStatement ps;
+    //예약할 전시 선택 목록
+    public List<ExhibitionVO> exhibitionListData(String ed)
+    {
+	    List<ExhibitionVO> list=new ArrayList<ExhibitionVO>();
+	    try
+	    {
+		    conn=CreateConnection.getConnection();
+		    String sql="SELECT geno,poster,title,loc,rownum "
 				    +"FROM god_exhibition_3 "
 				    +"WHERE rownum<=50 AND area LIKE '%'||?||'%'";
-		  ps=conn.prepareStatement(sql);
-		  ps.setString(1, ed);
-		  ResultSet rs=ps.executeQuery();
-		  while(rs.next())
-		  {
-			  ExhibitionVO vo=new ExhibitionVO();
-			  vo.setGeno(rs.getInt(1));
-			  vo.setPoster(rs.getString(2));
-			  vo.setTitle(rs.getString(3));
-			  vo.setLoc(rs.getString(4));
-			  list.add(vo);
-		  }
-		  rs.close();
-	  }catch(Exception ex)
-	  {
-		  ex.printStackTrace();
-	  }
-	  finally
-	  {
-		  CreateConnection.disConnection(conn, ps);
-	  }
-	  return list;
-  }
+		    ps=conn.prepareStatement(sql);
+		    ps.setString(1, ed);
+	  	    ResultSet rs=ps.executeQuery();
+		    while(rs.next())
+		    {
+			    ExhibitionVO vo=new ExhibitionVO();
+			    vo.setGeno(rs.getInt(1));
+			    vo.setPoster(rs.getString(2));
+			    vo.setTitle(rs.getString(3));
+			    vo.setLoc(rs.getString(4));
+			    list.add(vo);
+		    }
+		    rs.close();
+	    }catch(Exception ex)
+	    {
+		    ex.printStackTrace();
+	    }
+	    finally
+	    {
+		    CreateConnection.disConnection(conn, ps);
+	    }
+	    return list;
+    }
     //예약가능일 출력
     public String reserveDayData(int geno) {
 	    String period="";
@@ -125,27 +131,13 @@ public class ReserveDAO {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_exhibition_reserve_3 "
-					+ "VALUES((SELECT NVL(MAX(gerno)+1,1) FROM god_exhibition_reserve_3),?,?,?,?,?,?,'n',SYSDATE)";
+					+ "VALUES((SELECT NVL(MAX(gerno)+1,1) FROM god_exhibition_reserve_3),?,?,?,'n',?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(2, vo.getId());
-			ps.setString(3, vo.getRdate());
-			ps.setString(4, vo.getRtime());
-			ps.setInt(5, vo.getInwon());
-			ps.executeUpdate();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			CreateConnection.disConnection(conn, ps);
-		}
-	}
-    //예약취소
-    public void reserveDelete(int gerno) {
-		try {
-			conn=CreateConnection.getConnection();
-			String sql="DELETE FROM god_exhibition_reserve_3 "
-					+ "WHERE gerno=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, gerno);
+			ps.setString(1, vo.getRdate());
+			ps.setString(2, vo.getRtime());
+			ps.setInt(3, vo.getInwon());
+			ps.setInt(4, vo.getGeno());
+			ps.setString(5, vo.getId());
 			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();

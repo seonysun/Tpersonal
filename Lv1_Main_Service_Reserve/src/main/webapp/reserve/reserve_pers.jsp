@@ -9,13 +9,10 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#kpers').change(function(){
-		let inwon1=$(this).val()
-	})
-	$('#apers').change(function(){
+	$('#pers').change(function(){
 		let inwon=$(this).val()
 		$('#r_pers').text(inwon+"명")
-		$('#reservpers').val(inwon)
+		$('#reservepers').val(inwon)
 		$('.rBtn').show()
 	})
 })
@@ -24,8 +21,9 @@ $(function(){
 <body>
     <div style="height:10px"></div>
 	<div>
-		<label for=kpers><b>청소년</b></label>&nbsp;&nbsp;
+		<label for=kpers><b>할인</b></label>&nbsp;&nbsp;
 		<select name=kpers id=kpers>
+			<option>―― 선택 ――</option>
 			<c:forEach var="i" begin="1" end="10">
 				<option value="${i }">${i }명</option>
 			</c:forEach>
@@ -33,8 +31,9 @@ $(function(){
  	</div>
     <div style="height:10px"></div>
  	<div>
-		<label for=apers><b>성인</b></label>&nbsp;&nbsp;
-		<select name=apers id=apers>
+		<label for=pers><b>일반</b></label>&nbsp;&nbsp;
+		<select name=pers id=pers>
+			<option>―― 선택 ――</option>
 			<c:forEach var="i" begin="1" end="10">
 				<option value="${i }">${i }명</option>
 			</c:forEach>

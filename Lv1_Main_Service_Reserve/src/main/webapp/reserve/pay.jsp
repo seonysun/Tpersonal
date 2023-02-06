@@ -8,5 +8,9 @@
 </head>
 <body>
 	<h2>결제창</h2>
+	<h2>${geno }</h2>
+	<h2>${inwon }</h2>
+	<h2>${rdate }</h2>
+	<h2>${rtime }</h2>
 </body>
 </html>
