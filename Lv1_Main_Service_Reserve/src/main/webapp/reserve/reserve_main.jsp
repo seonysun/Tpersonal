@@ -39,10 +39,17 @@ $(function(){
 			$('#select_list').html(response)
 		}
 	})
-	
-	/*
+
 	//전시 재선택
-	$('.exhibs').click(function)(){
+	$.ajax({
+		type:'post',
+		url:'../reserve/reserve_exhib.do',
+		data:{"ed":'육아'},
+		success:function(response){
+			$('#select_exhib').html(response)
+		}
+	})
+	$('.exhibs').click(function(){
 		let ed=$(this).text()
 		$.ajax({
 			type:'post',
@@ -53,7 +60,6 @@ $(function(){
 			}
 		})
 	})
-	*/
 })
 </script>
 </head>
@@ -130,7 +136,7 @@ $(function(){
     	  		</caption>
     	  		<tr>
     	  		  <td>
-    	  		  	<div id="select_exhib" style="height: 360px">
+    	  		  	<div id="select_exhib" style="height: 360px;overflow-y: auto">
     	  		  	
     	  		  	</div>
     	  		  </td>

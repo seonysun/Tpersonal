@@ -9,6 +9,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	//선택된 데이터 입력
 	$('#pers').change(function(){
 		let inwon=$(this).val()
 		$('#r_pers').text(inwon+"명")

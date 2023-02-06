@@ -62,24 +62,11 @@ public class ReserveModel {
 		ReserveDAO dao=new ReserveDAO();
 		String geno=request.getParameter("geno");
 		String period=dao.reserveDayData(Integer.parseInt(geno));
-			//2023-02-02 ~ 2023-02-05
-		String startday=period.substring(0, period.indexOf("~")).trim();
-		startday=startday.substring(startday.lastIndexOf("-")+1);
-		int sday=Integer.parseInt(startday);
-		String endday=period.substring(period.indexOf("~")+1).trim();
-		endday=endday.substring(endday.lastIndexOf("-")+1);
-		int eday=Integer.parseInt(endday);
-		
-		int[] temp=new int[eday-sday+1];
-		for(int i=0;i<temp.length;i++) {
-			temp[i]=sday;
-			sday++;
-		}
+		int[] temp=dao.reserveDate(period);
 		int[] rdays=new int[32];
 		for(int s:temp) {
-			if(s>day) {
-				rdays[s]=1;
-			}
+			if(s>=day) rdays[s]=1;
+			else if(s<day) rdays[s]=2;
 		}
 		
 		request.setAttribute("year", year);
@@ -104,14 +91,6 @@ public class ReserveModel {
 			rtimes.add(ss);
 		}
 		request.setAttribute("rtimes", rtimes);
-		/*
-		StringTokenizer st1=new StringTokenizer(rtime,",");
-		List<Integer> rtn=new ArrayList<Integer>();
-		while(st1.hasMoreTokens()) {
-			rtn.add(Integer.parseInt(st1.nextToken()));
-		}
-		request.setAttribute("rtn", rtn);
-		 */
 		return "../reserve/reserve_time.jsp";
 	}
 	
@@ -142,7 +121,6 @@ public class ReserveModel {
 		String inwon=request.getParameter("reservepers");
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		
 		ReserveDAO dao=new ReserveDAO();
 		ReserveVO vo=new ReserveVO();
 		vo.setGeno(Integer.parseInt(geno));

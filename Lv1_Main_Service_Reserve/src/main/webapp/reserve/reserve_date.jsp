@@ -10,12 +10,13 @@
 <script type="text/javascript">
 $(function(){
 	//날짜 선택 효과
-	$('.days').hover(function(){
+	$('.days_true').hover(function(){
 		$(this).css("cursor","pointer")
 	})
-	$('.days').click(function(){
-		$('.days').css("background-color","white")
-		$(this).css("background-color","powderblue")
+	$('.days_true').click(function(){
+		$('.days_true').css("background-color","white")
+		$('.days_false').css("background-color","white")
+		$(this).css("background-color","lightblue")
 		
 		//선택된 데이터 입력
 		let year=$(this).attr("data-year")
@@ -56,12 +57,17 @@ $(function(){
 		  	  	<td height=25></td>
 	  	  	</c:forEach>
 	  	  </c:if>
-	  	  <c:if test="${rdays[s.index]==1 }">
-		  	  <td class="days" height=25 style="background-color: powderblue" data-year="${year }" data-month="${month }"><b>${i }</b></td>
-	  	  </c:if>
-	  	  <c:if test="${rdays[s.index]!=1 }">
+	  	  <c:choose>
+	  	  	<c:when test="${rdays[s.index]==1}">
+		  	  <td class="days_true" height=25 style="background-color: lightblue" data-year="${year }" data-month="${month }"><b>${i }</b></td>
+	  	  	</c:when>
+	  	  	<c:when test="${rdays[s.index]==2}">
+		  	  <td class="days_false" height=25 style="background-color: lightgray">${i }</td>
+	  	  	</c:when>
+	  	  	<c:otherwise>
 		  	  <td height=25 style="color: gray">${i }</td>
-	  	  </c:if>
+	  	  	</c:otherwise>
+	  	  </c:choose>
 	  	  <c:set var="week" value="${week+1 }"/>
 	  	  <c:if test="${week>6 }">
 		  	  <c:set var="week" value="0"/>

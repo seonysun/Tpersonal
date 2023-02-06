@@ -34,7 +34,7 @@ HIT              NUMBER
 public class ReserveDAO {
     private Connection conn;
     private PreparedStatement ps;
-    //예약할 전시 선택 목록
+    //예매할 전시 선택 목록
     public List<ExhibitionVO> exhibitionListData(String ed)
     {
 	    List<ExhibitionVO> list=new ArrayList<ExhibitionVO>();
@@ -67,7 +67,7 @@ public class ReserveDAO {
 	    }
 	    return list;
     }
-    //예약가능일 출력
+    //예매가능일 출력
     public String reserveDayData(int geno) {
 	    String period="";
 		try {
@@ -87,7 +87,41 @@ public class ReserveDAO {
 		}
 		return period;
     }
-    //예약가능시간 출력
+    public int[] reserveDate(String period) {
+    	int[] temp = null;
+    	
+    	//2023-02-02 ~ 2023-02-05
+    	String smonth=period.substring(0, period.indexOf("~")).trim();
+    	smonth=smonth.substring(smonth.indexOf("-")+1, smonth.lastIndexOf("-"));
+    	int sm=Integer.parseInt(smonth);
+    	String emonth=period.substring(period.indexOf("~")+1).trim();
+    	emonth=emonth.substring(emonth.indexOf("-")+1, emonth.lastIndexOf("-"));
+    	int em=Integer.parseInt(emonth);
+    	
+    	String startday=period.substring(0, period.indexOf("~")).trim();
+    	startday=startday.substring(startday.lastIndexOf("-")+1);
+    	int sday=Integer.parseInt(startday);
+    	String endday=period.substring(period.indexOf("~")+1).trim();
+    	endday=endday.substring(endday.lastIndexOf("-")+1);
+    	int eday=Integer.parseInt(endday);
+    	
+    	if(em==sm) {
+    		temp=new int[eday-sday+1];
+    		for(int i=0;i<temp.length;i++) {
+    			temp[i]=sday;
+    			sday++;
+    		}
+    	} else {
+    		temp=new int[32-sday];
+    		for(int i=0;i<temp.length;i++) {
+    			temp[i]=sday;
+    			sday++;
+    		}
+    	}
+		
+		return temp;
+    }
+    //예매가능시간 출력
     public String reserveTimeData(int grdno) {
 	    String rtime="";
 		try {
@@ -126,7 +160,7 @@ public class ReserveDAO {
 		}
 		return time;
 	}
-    //예약완료
+    //예매완료
     public void reserveOk(ReserveVO vo) {
 		try {
 			conn=CreateConnection.getConnection();

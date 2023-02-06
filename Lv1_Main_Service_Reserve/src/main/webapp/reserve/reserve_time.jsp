@@ -17,7 +17,7 @@ $(function(){
 	})
 	$('.times').click(function(){
 		$('.times').css("background-color","white")
-		$(this).css("background-color","powderblue")
+		$(this).css("background-color","lightblue")
 		
 		//선택된 데이터 입력
 		let time=$(this).text()

@@ -18,7 +18,7 @@
 	<table class="table rlist">
       <tr colspan=2>
     	<td class=text-center colspan=2>
-    	 	<img src="${vo.poster }" style="width: 250px;height: 300px">
+    	 	<img src="${vo.poster }" style="width: 250px;height: 350px">
         </td>
       </tr>
       <tr>
@@ -28,6 +28,10 @@
       <tr>
     	<th width=30%>전시기간</th>
     	<td width=70%>${vo.period }</td>
+      </tr>
+      <tr>
+    	<th width=30%>전시장소</th>
+    	<td width=70%>${vo.loc }</td>
       </tr>
       <tr>
     	<th width=30%>예매날짜</th>
