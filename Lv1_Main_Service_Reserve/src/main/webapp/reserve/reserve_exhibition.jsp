@@ -55,6 +55,7 @@ $(function(){
    <tr>
      <th class="text-center"></th>
      <th class="text-center">전시명</th>
+     <th class="text-center">전시기간</th>
    </tr>
    <c:forEach var="vo" items="${list }">
      <tr class="trs" data-no="${vo.geno }">
@@ -62,6 +63,7 @@ $(function(){
         <img src="${vo.poster }" style="width: 30px;height: 30px">
       </td>
       <td>${vo.title }</td>
+      <td>${vo.period }</td>
      </tr>
    </c:forEach>
   </table>

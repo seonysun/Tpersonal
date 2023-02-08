@@ -27,17 +27,67 @@ $(function(){
 			fileIndex--
 		}
 	})
+	
+	//검색바
+	$('#search').click(function(){
+		$(this).val("")
+	})
+	$('#sBtn').click(function(){
+		let ss=$('#search').val()
+		if(ss.trim()==""){
+			$('#search').focus()
+			return
+		}
+		$('#ss_frm').submit()
+	})
+	
+	//인기검색어 클릭 이벤트
+	$('#s-pop span:nth-child(n+2)').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	$('#s-pop span:nth-child(n+2)').click(function(){
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
+	})
 })
 </script>
 </head>
 <body>
-	<jsp:include page="../service/service_header.jsp"></jsp:include>
+	<!-- ### -->
+	<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white">고객센터</h1>
+<!-- faq 검색바, 인기검색어 -->
+    <div style="height: 20px"></div>
+	<div>
+		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
+    	<div style="height: 10px"></div>
+		  <form method=post action="../service/faq_list.do" id=ss_frm>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=button id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
+    </div>
+    <div style="height: 10px"></div>
+	<div id=s-pop style="color: white;font-size: 13px">
+		<span style="font-size: 14px">인기검색어</span>&nbsp;
+		<span>결제수단</span>&nbsp;|&nbsp;
+		<span>회원정보</span>&nbsp;|&nbsp;
+		<span>리뷰</span>&nbsp;|&nbsp;
+		<span>예매수수료</span>
+	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ### -->
     
 	<div class="container" style="width:700px">
 	<div class="row">
 	  <form method=post action="../service/insert_ok.do" enctype="multipart/form-data">
 		<table class="table">
-<!-- 문의 전 f10 확인 추가? -->
 		  <tr>
 		  	<th width=15%>문의유형</th>
 		  	<td width=85%>
@@ -81,7 +131,6 @@ $(function(){
 		  		<input type=checkbox>답변 시 SMS로 알림 받기
 		  	</td>
 		  </tr>
-<!-- 추가하려면 컬럼도 추가해야 할 듯?.. 그건좀.. -->
 		  <tr>
 		  	<td colspan=2 class="text-center" style="border-color: white">
 		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary">

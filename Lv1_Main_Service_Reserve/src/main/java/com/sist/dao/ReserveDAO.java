@@ -41,7 +41,7 @@ public class ReserveDAO {
 	    try
 	    {
 		    conn=CreateConnection.getConnection();
-		    String sql="SELECT geno,poster,title,loc,rownum "
+		    String sql="SELECT geno,poster,title,loc,period,rownum "
 				    +"FROM god_exhibition_3 "
 				    +"WHERE rownum<=50 AND area LIKE '%'||?||'%'";
 		    ps=conn.prepareStatement(sql);
@@ -54,6 +54,7 @@ public class ReserveDAO {
 			    vo.setPoster(rs.getString(2));
 			    vo.setTitle(rs.getString(3));
 			    vo.setLoc(rs.getString(4));
+			    vo.setPeriod(rs.getString(5));
 			    list.add(vo);
 		    }
 		    rs.close();
@@ -87,10 +88,19 @@ public class ReserveDAO {
 		}
 		return period;
     }
+    //2023-02-02 ~ 2023-02-05
+    public int reserveMonth(String period) {
+    	int mon=0;
+    	
+    	String smonth=period.substring(0, period.indexOf("~")).trim();
+    	smonth=smonth.substring(smonth.indexOf("-")+1, smonth.lastIndexOf("-"));
+    	mon=Integer.parseInt(smonth);
+    	
+    	return mon;
+    }
     public int[] reserveDate(String period) {
     	int[] temp = null;
     	
-    	//2023-02-02 ~ 2023-02-05
     	String smonth=period.substring(0, period.indexOf("~")).trim();
     	smonth=smonth.substring(smonth.indexOf("-")+1, smonth.lastIndexOf("-"));
     	int sm=Integer.parseInt(smonth);

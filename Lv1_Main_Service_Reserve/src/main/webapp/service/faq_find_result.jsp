@@ -59,19 +59,19 @@ $(function(){
 	  </table>
 	</c:if>
 	<c:if test="${count>0 }">
-	 <div style="height: 420px">
+	 <div>
 	  <table class=table>
 		  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index-(curpage-1)*10 }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
-		  	  	<td width=10% class="text-center">${vo.hit }</td>
+		  	  	<td width=10% class="text-center"></td>
 		  	  </tr>
 		  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>
 				<td>
-					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
+					<pre style="white-space: pre-wrap;background-color: white;border: none;height: 200px;overflow-y: auto">${vo.content }</pre>
 				</td>
 				<td>
 					<c:if test="${sessionScope.admin=='y' }">

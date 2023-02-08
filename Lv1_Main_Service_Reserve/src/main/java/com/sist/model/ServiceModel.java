@@ -10,6 +10,7 @@ import com.sist.dao.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -20,8 +21,11 @@ public class ServiceModel {
 	public String service_main(HttpServletRequest request, HttpServletResponse response) {
 		//qna
 		ServiceDAO sdao=new ServiceDAO();
-		List<AskVO> slist=sdao.qnaListData(1);
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		List<AskVO> slist=sdao.serviceMainQna(id);
 		request.setAttribute("slist", slist);
+		request.setAttribute("count", slist.size());
 		
 		//faq
 		FaqDAO fdao=new FaqDAO();
@@ -39,7 +43,7 @@ public class ServiceModel {
 		int curpage=Integer.parseInt(page);
 		ServiceDAO dao=new ServiceDAO();
 		List<AskVO> list=dao.qnaListData(curpage);
-		int count=dao.qnaRowCount();
+		int count=list.size();
 		int totalpage=(int)(Math.ceil(count/10.0));
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
