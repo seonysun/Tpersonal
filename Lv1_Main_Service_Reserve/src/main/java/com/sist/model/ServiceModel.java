@@ -45,10 +45,15 @@ public class ServiceModel {
 		List<AskVO> list=dao.qnaListData(curpage);
 		int count=list.size();
 		int totalpage=(int)(Math.ceil(count/10.0));
+		int startpage=1;
+		int endpage=5;
+		if(endpage>totalpage) endpage=totalpage;
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startpage", startpage);
+	    request.setAttribute("endpage", endpage);
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("main_jsp", "../service/list.jsp");
 		return "../main/main.jsp";

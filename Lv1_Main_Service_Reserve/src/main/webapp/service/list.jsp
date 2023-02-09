@@ -33,6 +33,59 @@ $(function(){
 	})
 }
 </script>
+<style type="text/css">
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    </style>
 </head>
 <body>
 	<!-- ### -->
@@ -66,12 +119,12 @@ $(function(){
     <!-- ### -->
     
 	<div class="container" style="width:960px">
-		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		<a href="../service/faq_list.do" class="btn btn-sm btn-primary thebogy">FAQ 목록</a>
 	  	<c:if test="${sessionScope.admin=='n' }">
-	  		<span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
-				<a href="../service/insert.do" class="btn btn-sm writerbtn">
-				  <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
-			    </a>
+	  		<span style="float: right">
+			    <a href="../service/insert.do" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">
+				  	<i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+				</a>
 			</span>
 	  	</c:if>
 	  <div style="height: 20px"></div>
@@ -128,15 +181,11 @@ $(function(){
 	  	  </c:forEach>
 	  	</table>
 	  </div>
-	  	<table class="table" style="border-color: white">
-	  	  <tr>
-	  	  	<td class="text-center">
-	  	  		<a href="../service/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-	  	  		${curpage } page / ${totalpage } pages
-	  	  		<a href="../service/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
-	  	  	</td>
-	  	  </tr>
-	  	</table>
+	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
+		          <li class="page_li"><a href="../service/list.do?page=${i }" class="qna_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</a></li>          
+		        </c:forEach>    
+		      </ul>
 	</div>
 </body>
 </html>

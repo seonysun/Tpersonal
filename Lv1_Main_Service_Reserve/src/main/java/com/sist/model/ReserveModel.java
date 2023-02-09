@@ -103,7 +103,7 @@ public class ReserveModel {
 	@RequestMapping("reserve/reserve_pers.do")
 	public String reserve_pers(HttpServletRequest request, HttpServletResponse response) {
 		int price[]= {15000, 18000, 20000};
-		int i=(int)Math.random()*3+1;
+		int i=(int)(Math.random()*3);
 		request.setAttribute("pr", price[i]);
 		return "../reserve/reserve_pers.jsp";
 	}
@@ -133,6 +133,7 @@ public class ReserveModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String ed=request.getParameter("ed");
+		if(ed==null) ed="육아";
 		ReserveDAO dao=new ReserveDAO();
 		List<ExhibitionVO> list=dao.exhibitionListData(ed);
 		request.setAttribute("list", list);

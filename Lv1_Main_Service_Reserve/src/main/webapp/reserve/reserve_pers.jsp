@@ -33,7 +33,6 @@ $(function(){
 		gpr=$('#gp').val()
 		$('#gprice').text(gpr+"원 * "+ginwon+"명")
 		
-		//선택된 데이터 입력
 		let inwon=Number(dinwon)+Number(ginwon)
 		let totalprice=Number(dinwon)*Number(dpr)+Number(ginwon)*Number(gpr)
 		$('#tp').html("<h5>"+"합계: "+totalprice+"원"+"</h5>")	
@@ -44,6 +43,14 @@ $(function(){
 	})
 })
 </script>
+    <style type="text/css">
+    * {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    </style>
 </head>
 <body>
     <div style="height:10px"></div>

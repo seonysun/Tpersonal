@@ -11,7 +11,9 @@
 $(function(){
 	//날짜 선택 효과
 	$('.days_true').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","color":"lightgray"})
+	},function(){
+		$(this).css({"cursor":"none","color":"#52565b"})
 	})
 	$('.days_true').click(function(){
 		$('.days_true').css("background-color","white")
@@ -37,6 +39,14 @@ $(function(){
 	})
 })
 </script>
+    <style type="text/css">
+    * {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    </style>
 </head>
 <body>
 	<div style="height: 10px"></div>
