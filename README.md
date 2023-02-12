@@ -33,14 +33,16 @@
     - 2번과 같은 이유
     ==> 각 페이지에 자바스크립트가 모두 추가하여 해결   
   
-  * 자바스크립트 오류 유형
-    - EvalError : eval() 함수 관련 오류
-    - InternalError : 자바스크립트 엔진 내부 오류
-    - RangeError : 숫자/매개변수 범위가 유효하지 않음
-    - ReferenceError : 참조 오류
-    - SyntaxError : 구문 오류
-    - TypeError : 변수/매개변수의 자료형이 유효하지 않음
-    - URIError : encode/decode URI 의 매개변수 부적절
+  
+    * 자바스크립트 오류 유형
+      - EvalError : eval() 함수 관련 오류
+      - InternalError : 자바스크립트 엔진 내부 오류
+      - RangeError : 숫자/매개변수 범위가 유효하지 않음
+      - ReferenceError : 참조 오류
+      - SyntaxError : 구문 오류
+      - TypeError : 변수/매개변수의 자료형이 유효하지 않음
+      - URIError : encode/decode URI 의 매개변수 부적절
+    
     
   4. insert, delete, update 등의 모델을 실행할 때 redirect를 사용하는데 그 차이를 모르겠음
   
@@ -76,6 +78,7 @@
          main.do의 실행 결과인 month 변수가 필요한 date.do는 비정상 작동
       -> ajax의 경우 비동기 방식이어서 post에 담긴 정보가 아닌 경우 바로 적용되지 않는 것으로 보임
     ==> 데이터 전송 방식을 링크로 설정하여 해결
+    
     
     * 자바스크립트에서의 화면 이동 : location.href -> GET 방식
     * 데이터 전송 방식
