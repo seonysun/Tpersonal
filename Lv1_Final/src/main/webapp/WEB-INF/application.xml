@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+  <bean class="com.sist.model.MainModel"/>
+  <bean class="com.sist.model.PictureModel"/>
+  <bean class="com.sist.model.MemberModel"/>
+  <bean class="com.sist.model.ReviewBoardModel"/>
+  <bean class="com.sist.model.NoticeBoardModel"/>
+  <bean class="com.sist.model.EventBoardModel"/>
+  <bean class="com.sist.model.ExhibitionModel"/>
+  <bean class="com.sist.model.MyPageModel"/>
+  <bean class="com.sist.model.ServiceModel"/>
+  <bean class="com.sist.model.FaqModel"/>
+  <bean class="com.sist.model.ReserveModel"/>
+  <bean class="com.sist.model.QuickModel"/>
+  <bean class="com.sist.model.JjimModel"/>
+  <bean class="com.sist.model.AllReplyModel"/>
+  <bean class="com.sist.model.AdminModel"/>
+  <bean class="com.sist.model.LikeModel"/>
+  <bean class="com.sist.model.ReviewBoardLikeModel"/>
+</beans>
