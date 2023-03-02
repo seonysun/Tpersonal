@@ -44,16 +44,18 @@
       - URIError : encode/decode URI 의 매개변수 부적절
     
     
-  4. insert, delete, update 등의 모델을 실행할 때 redirect를 사용하는데 그 차이를 모르겠음
+  4. redirect와 forward 방식의 차이
   
-    - .do에서 실행한 데이터 정보를 모두 함께 보내주는 것이 redirect
-      연결된 데이터 없이 단순 이동하는 것이 forward
-    - redirect와 forward 방식의 차이
-      - forward : 페이지 이동만 진행, 이동한 페이지의 URL 정보 확인 불가
-                  현재 실행중인 페이지와 이동되는 페이지는 servlet 객체(request, response) 서로 공유
-                  -> 이전 페이지에서 받았던 요청 정보 그대로 전달
-                  /////음.............위에 썼던 내용이랑 반대인데요.................롸...
-      - redirect :
+    - JSP에서 페이지 전환 기능
+    - forward : web container 차원에서의 페이지 이동
+      -> 이동한 페이지의 URL 정보 확인 불가
+      -> 현재 실행중인 페이지와 이동되는 페이지는 servlet 객체(request, response) 서로 공유
+         (이전 페이지에서 받았던 요청 정보 그대로 전달)
+      -> 동일한 web container 내에 있는 페이지로만 이동 가능
+    - redirect : web container가 웹브라우저에 페이지 이동 지시
+      -> 이동한 페이지로 URL 정보 변경
+      -> servlet 객체(request, response) 새롭게 생성
+      -> 다른 web container에 있는 페이지로 이동 가능
   
   5. 데이터 송수신 과정에서 오류가 없는데 화면에 출력되지 않는 경우 JSTL 설정이 되어있지 않은 경우가 대부분
   
