@@ -1,26 +1,33 @@
 
-# Team3 project 1 : AMJS 
+# Team3 project 1 🙌 아무전시 AMJS
+
+<h3> 🌱 한 줄 소개 </h3>
+누구나 원하는 전시를 검색하여 찾고, 관련 정보를 공유하고 예약까지 가능한 전시 플랫폼 사이트
+
+<br><br>
 
 <h3> 👩‍💻 사용 기술 </h3>
-<div align="center">
+<div>
   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+  <img src="https://img.shields.io/badge/bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white">
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/jquery-0769AD?style=flat&logo=jquery&logoColor=white">
   <img src="https://img.shields.io/badge/Oracle-F80000?style=flat&logo=Oracle&logoColor=white"/> 
   
   </br>
   
   <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=github&logoColor=white"/>
   <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat&logo=Eclipse IDE&logoColor=white"/> 
+  <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=white">
 </div>
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=seonysun&layout=compact">
-</div>
+<br>
 
 <h3> 💻 에러 기록 </h3>
 
-> 🙌 깃
+> 깃
 
   #### 1. merge branch
   
@@ -33,14 +40,14 @@
     - 1번과 같은 상황에서 서로 동일한 파일을 작업중이라면 자동으로 브랜치가 통합되지 않음
       -> 직접 충돌된 부분 수정하여 저장될 파일을 정리해줘야 함
       
-  * conflict 해결 4가지 옵션
+  * conflict 해결 4가지 옵션 
       - 깃에서 임의로 합친 파일로 업로드
       - 이전에 커밋된 파일로 되돌리기 
       - 최신 파일로 덮어쓰기 
       - 직접 수정하여 새로 작성
 <br><br>
 
-> 🙌 고객센터
+> 고객센터
 
   #### 1. 자바스크립트 실행 오류
   
@@ -61,7 +68,7 @@
     👉 각 페이지에 자바스크립트가 모두 추가하여 해결   
     
   
-  * 자바스크립트 오류 유형
+  * 자바스크립트 오류 유형 
     - EvalError : eval() 함수 관련 오류
     - InternalError : 자바스크립트 엔진 내부 오류
     - RangeError : 숫자/매개변수 범위가 유효하지 않음
@@ -96,7 +103,7 @@
     👉 list.do와 find.do를 이중으로 실행시켜 데이터를 받아오면 정상적으로 다음 페이지로 이동
 <br>
     
->🙌 예약
+> 예약
 
   #### 1. ajax 데이터 전송 오류
   
@@ -110,7 +117,8 @@
     👉 데이터 전송 방식을 링크로 설정하여 해결
     
     
-  * 자바스크립트에서의 화면 이동 : location.href -> GET 방식
+  * 자바스크립트에서의 화면 이동 
+    - location.href -> GET 방식
   * 데이터 전송 방식
     - post : form 태그, ajax(type:post)
     - get : a 태그, 자바스크립트 location 
