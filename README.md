@@ -1,20 +1,26 @@
 
 # Team3 project 1 : AMJS 
 
-> 👩‍💻 사용 기술
+<h3> 👩‍💻 사용 기술 </h3>
 <div align="center">
-	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
-	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
-	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+  <img src="https://img.shields.io/badge/Oracle-F80000?style=flat&logo=Oracle&logoColor=white"/> 
+  
+  </br>
+  
+  <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=github&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat&logo=Eclipse IDE&logoColor=white"/> 
 </div>
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=seonysun&layout=compact">
 </div>
 
-> 💻 에러 기록
+<h3> 💻 에러 기록 </h3>
 
-<h2>🙌 깃</h2>
+> 🙌 깃
 
   #### 1. merge branch
   
@@ -32,9 +38,9 @@
       - 이전에 커밋된 파일로 되돌리기 
       - 최신 파일로 덮어쓰기 
       - 직접 수정하여 새로 작성
+<br><br>
 
-
-<h2>🙌 고객센터</h2>
+> 🙌 고객센터
 
   #### 1. 자바스크립트 실행 오류
   
@@ -42,17 +48,17 @@
     - 검색결과 출력페이지에서 ajax로 검색 결과를 받아와서 출력
       -> 이때 데이터 송수신과 ajax 실행까지는 정상적으로 되지만 자바스크립트가 실행되지 않음
       -> form 태그를 통한 값의 전송과 ajax의 실행 사이에 충돌이 발생하는 문제
-    ==> form 태그로 값을 전송 후 첫번째 화면에서는 ajax 없이 form 태그 내 포함된 정보를 이용하여 데이터 출력하여 해결
+    👉 form 태그로 값을 전송 후 첫번째 화면에서는 ajax 없이 form 태그 내 포함된 정보를 이용하여 데이터 출력하여 해결
     
   #### 2. jsp 파일 간 include 시 자바스크립트 실행 오류
   
     - 자바스크립트가 실행되려면 실행될 파일에 모두 스크립트 문구가 명시되어있어야 함
-    ==> include 받는 파일에도 스크립트 추가하여 해결
+    👉 include 받는 파일에도 스크립트 추가하여 해결
     
   #### 3. ajax로 다른 jsp 파일로부터 데이터를 받아올 때 특정 페이지에서 자바스크립트가 실행되지 않는 오류
   
     - 2번과 같은 이유
-    ==> 각 페이지에 자바스크립트가 모두 추가하여 해결   
+    👉 각 페이지에 자바스크립트가 모두 추가하여 해결   
     
   
   * 자바스크립트 오류 유형
@@ -80,17 +86,17 @@
   
   #### 5. 데이터 송수신 과정에서 오류가 없는데 화면에 출력되지 않는 경우 JSTL 설정이 되어있지 않은 경우가 대부분
   
-    ==> JSTL 사용하기 전에 해당 JSP 파일 상단 먼저 확인하기
+    👉 JSTL 사용하기 전에 해당 JSP 파일 상단 먼저 확인하기
     
   #### 6. FAQ 검색 결과를 출력하는 화면에서 페이지네이션을 ajax로 할 때 url을 어떻게 설정해야하는지 고민
   
     - list.do에서 ajax로 find.do를 실행시켜서 결과값을 받아옴
     - list.do를 실행시키면 검색어 검색 결과가 초기화됨
     - find.do를 실행시키면 list.do의 폼 없이 데이터만 들어옴
-    ==> list.do와 find.do를 이중으로 실행시켜 데이터를 받아오면 정상적으로 다음 페이지로 이동
-  
+    👉 list.do와 find.do를 이중으로 실행시켜 데이터를 받아오면 정상적으로 다음 페이지로 이동
+<br>
     
-<h2>🙌 예약</h2>
+>🙌 예약
 
   #### 1. ajax 데이터 전송 오류
   
@@ -101,11 +107,10 @@
       -> geno 데이터만 필요한 list.do는 정상 작동
          main.do의 실행 결과인 month 변수가 필요한 date.do는 비정상 작동
       -> ajax의 경우 비동기 방식이어서 post에 담긴 정보가 아닌 경우 바로 적용되지 않는 것으로 보임
-    ==> 데이터 전송 방식을 링크로 설정하여 해결
+    👉 데이터 전송 방식을 링크로 설정하여 해결
     
     
   * 자바스크립트에서의 화면 이동 : location.href -> GET 방식
   * 데이터 전송 방식
     - post : form 태그, ajax(type:post)
     - get : a 태그, 자바스크립트 location 
-      
