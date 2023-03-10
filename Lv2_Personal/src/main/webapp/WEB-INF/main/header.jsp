@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-	<header id="header" class="pof">
+	<header id="header" class="pof" style="border-bottom:1px solid #eeeeee;">
 		<div class="header_wrapper">
 			<!-- logo -->
 			<h1 class="logo">
@@ -40,16 +40,17 @@
 			<!-- nav_gnb -->
 			<nav class="nav_gnb">
 				<ul>
-					<li><a href="/tutor/Register/Manual">튜터등록</a></li>
+					<li><a href="#">튜터등록</a></li>
+					<li><a href="../board/board_main.do">커뮤니티</a></li>
 					<c:if test="${sessionScope.id!=null }">
 						<li class="depth"><a onclick="qPop(0)">메시지💬</a></li>
 						<li><a href="#">수업신청서</a></li>
 						<li class="depth">
 							<p role="button" class="depth1">수강목록</p>
 							<ul class="lnb">
-								<li><a href="/My/MyTuteeVodList/">VOD 수강목록</a></li>
-								<li><a href="/Vod/vodCollection.php">VOD Q&amp;A</a></li>
-								<li><a href="/vod/orderList">도서/준비물 배송정보</a></li>
+								<li><a href="#">VOD 수강목록</a></li>
+								<li><a href="#">VOD Q&amp;A</a></li>
+								<li><a href="#">도서/준비물 배송정보</a></li>
 							</ul>
 						</li>
 						<li><a href="#">찜</a></li>
@@ -59,13 +60,14 @@
 									alt="프로필 이미지">
 							</p>
 							<ul class="lnb">
-								<li><a href="../mypage/main.do">내 프로필</a></li>
+								<li><a href="#">내 프로필</a></li>
 								<li><a href="javascript:void(0)" id="btn-menu-logout">로그아웃</a></li>
 							</ul>
 						</li>
 					</c:if>
 					<c:if test="${sessionScope.id==null }">
-						<li><a href="../mypage/main.do">로그인</a></li>
+						<li><a href="#">로그인</a></li>
+						<li><a href="../mypage/main.do">마이페이지임시</a></li>
 					</c:if>
 				</ul>
 			</nav>
