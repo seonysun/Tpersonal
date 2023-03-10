@@ -6,10 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.container {
-    width: 1040px;
-    margin: 0 auto;
-}
 .tutee_list {
   margin: 0 0 -40px -40px;
   font-size: 0;
@@ -284,18 +280,8 @@
 }
 </style>
 </head>
- <body>
+<body>
   <div class="container"><!--MyTItleBox head-->
-   <div class="title-box">
-    <h1>나의 탈잉</h1>
-    <ul>
-     <li class="cursor"><a href="/My/MyTuteeClassList/">LIVE &amp; 오프라인</a></li>
-     <li class="cursor on"><a href="/My/MyTuteeVodList/">브오디
-       <div class="title-tab-cir">
-        1
-       </div></a></li>
-    </ul>
-   </div>
    <p class="sec_description vod"><strong>VOD 클래스</strong>를 수강할 수 있는 공간이에요. 클래스 중에 궁금한 점이 있으면 <strong>Q&amp;A</strong>로 물어보세요.<br></p>
    <ul class="tutee_list" id="vodMyList">
     <li>
@@ -318,5 +304,5 @@
      </div></li>
    </ul><button type="button" class="btn_more" id="btnMore" style="display: none;">더보기</button>
   </div>
- </body>
+</body>
 </html>
