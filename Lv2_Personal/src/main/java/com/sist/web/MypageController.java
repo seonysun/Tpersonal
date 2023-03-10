@@ -10,4 +10,13 @@ public class MypageController {
 		return "mypage/main";
 	}
 	
+	@GetMapping("adminpage/main.do")
+	public String adminpage_main() {
+		return "adminpage/main";
+	}
+	
+	@GetMapping("tutorpage/main.do")
+	public String tutorpage_main() {
+		return "tutorpage/main";
+	}
 }

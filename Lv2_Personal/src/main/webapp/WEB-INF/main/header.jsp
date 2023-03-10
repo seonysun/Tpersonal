@@ -67,7 +67,9 @@
 					</c:if>
 					<c:if test="${sessionScope.id==null }">
 						<li><a href="#">로그인</a></li>
-						<li><a href="../mypage/main.do">마이페이지임시</a></li>
+						<li><a href="../mypage/main.do">마이페이지</a></li>
+						<li><a href="../adminpage/main.do">관리자페이지</a></li>
+						<li><a href="../tutorpage/main.do">튜터페이지</a></li>
 					</c:if>
 				</ul>
 			</nav>

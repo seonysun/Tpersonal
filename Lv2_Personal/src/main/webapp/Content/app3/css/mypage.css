@@ -1,0 +1,97 @@
+@charset "UTF-8";
+.mintBtn{
+	width:70px;
+	height:25px;
+	background-color: #45c5c5;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 10px;
+	padding: 5px 7px;;
+}
+.shBtn {
+	width:70px;
+	height:25px;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 10px;
+	padding: 5px 7px;;
+}
+.my_li {
+	padding-bottom: 15px;
+}
+.my_menu {
+	font-size: 15px;
+	font-weight: 550;
+	color: #45c5c5;
+	padding-bottom: 5px;
+}
+.my_menu a {
+	font-size: 15px;
+	font-weight: 550;
+	color: #45c5c5;
+}
+.my_menu:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+#my_menus {
+	font-size: 17px;
+	font-weight: 550;
+	color: #45c5c5;
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #E2E2E2;
+	margin-top: 2px;
+	margin-bottom: 10px;
+}
+#my_menus a {
+	font-size: 17px;
+	font-weight: 550;
+	color: #45c5c5;
+	text-align: center;
+	padding-bottom: 10px;
+	margin-top: 2px;
+	margin-bottom: 10px;
+}
+.my_menu2 {
+	color: black;
+	font-size: 12px;
+	margin-left: 10px;
+}
+.my_menu2:hover {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.my_menu2:active {
+	cursor: pointer;
+	font-weight: bold;
+}
+.my-card{
+	height: 280px;
+	margin: 5px;
+	text-align: center;
+	float: left;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.4);
+}
+.my-card dl{
+	margin: 0 auto;
+}
+.my-card dt{
+	color: #FFF;
+	font-weight: 700;
+	background: #45c5c5;
+	padding: 7px 0;
+	font-size: 1em;
+	text-align: center;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+.my-card dd{
+	padding: 10px;
+	font-size: 0.9rem;
+	text-align: left;
+}
