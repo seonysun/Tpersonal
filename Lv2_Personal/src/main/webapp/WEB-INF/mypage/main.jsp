@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<main class="container">
+<div class="container">
 	<div style="margin-left:20px"> 
 		<span style="font-size: 20px;font-weight: 700;line-height: 50px;">최선형</span>님 &gt; 
 		클래스 하루와 <span style="font-size:18px;color:#45c5c5;font-weight:400">30</span>일째 성장 중!
@@ -32,8 +32,7 @@
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
-				<span>쪽지함</span>&nbsp;(3)
-				  <template>
+				<template>
 				  	<b-sidebar id="my-sidebar" title="쪽지함" shadow>
 					    <div class="px-3 py-2">
 					    	<div>
@@ -45,7 +44,7 @@
 						</div>
 					</b-sidebar>
 					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;(3)
-				  </template>
+				</template>
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
@@ -63,12 +62,12 @@
 			<div class="my_li">
 		  	    <li id="my_menus"><a href="../mypage/main.do">대시보드</a></li>
 		  	    <li class="my_menu">내 학습</li>
-		  	    <span><li class="my_menu2">내 강의실</li></span>
-		  	    <span><li class="my_menu2">내가 남긴 질문</li></span>
+		  	    <span><li class="my_menu2"><a href="../mypage/myclass.do">내 강의실</a></li></span>
+		  	    <span><li class="my_menu2"><a href="../mypage/myquestion.do">내가 남긴 질문</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">수강 관리</li>
-	  	    	<span><li class="my_menu2">수강바구니</li></span>
+	  	    	<span><li class="my_menu2"><a href="../mypage/myjjim.do">수강바구니</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">내 활동</li>
@@ -154,7 +153,7 @@
 		  </div>
 	  </div>
 	</div>
-</main>
+</div>
 <script>
 // 	Vue.component('recentStudy',{
 // 		props:['data'],

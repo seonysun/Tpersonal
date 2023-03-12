@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<main class="container">
+<div class="container">
 	<div style="margin-left:20px"> 
 		<span style="font-size: 20px;font-weight: 700;line-height: 50px;">관리자</span> 페이지입니다
 	</div>
@@ -57,7 +57,6 @@
 	
 	<div style="width:80%;float:left;">
 	  <div class=rows>
-		<h4>공지사항 관리</h4>
 		<div class="mintBtn_m">
 			<i></i>&nbsp;공지등록
 		</div>
@@ -84,7 +83,7 @@
 		</div>
 	  </div>
 	</div>
-</main>
+</div>
 <script>
 	new Vue({
 		el:'.container'
