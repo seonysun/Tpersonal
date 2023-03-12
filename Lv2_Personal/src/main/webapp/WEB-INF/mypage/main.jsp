@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/> -->
-<!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/> -->
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
@@ -31,10 +31,25 @@
 	  	  		<span>최선형</span>
 	  		</div>
 	  		<div style="height:25px;">
-		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;<span>쪽지함</span>
+		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
+				<span>쪽지함</span>&nbsp;(3)
+				  <template>
+				  	<b-sidebar id="my-sidebar" title="쪽지함" shadow>
+					    <div class="px-3 py-2">
+					    	<div>
+						   		받은 쪽지함
+					    	</div>
+					    	<div>
+						   		보낸 쪽지함
+					    	</div>
+						</div>
+					</b-sidebar>
+					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;(3)
+				  </template>
 	  		</div>
 	  		<div style="height:25px;">
-		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;<span>수강중 강의</span>
+		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
+		  	  	<span>수강중 강의</span>&nbsp;(3)
 	  		</div>
 	  		<div style="height:30px;">
 		  		<span class="mintBtn" value="로그아웃">로그아웃</span>
@@ -54,18 +69,15 @@
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">수강 관리</li>
 	  	    	<span><li class="my_menu2">수강바구니</li></span>
-	  	    	<span><li class="my_menu2">찜한 강의</li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">내 활동</li>
 	  	    	<span><li class="my_menu2">커뮤니티</li></span>
-	  	    	<span><li class="my_menu2">리뷰</li></span>
-	  	    	<span><li class="my_menu2">고객센터</li></span>
+	  	    	<span><li class="my_menu2">리뷰 & 댓글</li></span>
 	  	    </div>
 	  	    <div class="my_li">
 		  	    <li class="my_menu">내 정보</li>
 		  	    <span><li class="my_menu2">계정 정보</li></span>
-		  	    <span><li class="my_menu2">알림 설정</li></span>
 			</div>
 		</ul>
 	  </div>
@@ -73,21 +85,24 @@
 	
 	<div style="width:80%;float:left;">
 	  <div class=rows>
-		  <div class=my-card style="width:35%;">
-			  <dl>
-			  	<dt>최근 학습 강의</dt>
-			  	<dd>
+<!-- 	    <template> -->
+<!-- 	  		<recentStudy></recentStudy> -->
+<!-- 	    </template> -->
+	  	  <div class=my-card style="width:35%;">
+	  	  	  <dl>
+				<dt>최근 학습 강의</dt>
+				<dd>
 					<table>
-					  <tr>
-					  	<td>최근 학습한 강의가 없습니다.</td>
+					  <tr v-if="">
+						<td>최근 학습한 강의가 없습니다.</td>
 					  </tr>
 					  <tr>
-					  	<td>
-						  	<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">
-					  	</td>
+						<td>
+							<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">
+						</td>
 					  </tr>
 					</table>
-			  	</dd>
+			    </dd>
 			  </dl>
 		  </div>
 		  <div class=my-card style="width:60%;">
@@ -139,12 +154,33 @@
 		  </div>
 	  </div>
 	</div>
-	
-	<div style="clear:both"></div>
 </main>
 <script>
+// 	Vue.component('recentStudy',{
+// 		props:['data'],
+// 		template:'<div class=my-card style="width:35%;">'
+// 			+'<dl>'
+// 			+'<dt>최근 학습 강의</dt>'
+// 			+'<dd>'
+// 			+'<table>'
+// 			+'<tr>'
+// 			+'<td>최근 학습한 강의가 없습니다.</td>'
+// 			+'</tr>'
+// 			+'<tr>'
+// 			+'<td>'
+// 			+'<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">'
+// 			+'</td>'
+// 			+'</tr>'
+// 			+'</table>'
+// 			+'</dd>'
+// 			+'</dl>'
+// 			+'</div>'
+// 	})
 	new Vue({
-		el:'.container'
+		el:'.container',
+		data:{
+			rec_s:''
+		}
 	})
 </script>
 </body>
