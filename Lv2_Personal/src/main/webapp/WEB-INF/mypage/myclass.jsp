@@ -32,7 +32,8 @@
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
-				<template>
+				<span>쪽지함</span>&nbsp;(3)
+				  <template>
 				  	<b-sidebar id="my-sidebar" title="쪽지함" shadow>
 					    <div class="px-3 py-2">
 					    	<div>
@@ -44,7 +45,7 @@
 						</div>
 					</b-sidebar>
 					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;(3)
-				</template>
+				  </template>
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
@@ -67,7 +68,7 @@
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">수강 관리</li>
-	  	    	<span><li class="my_menu2"><a href="../mypage/myjjim.do">수강바구니</a></li></span>
+	  	    	<span><li class="my_menu2"><a href="../mypage/main.do">수강바구니</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">내 활동</li>
@@ -84,103 +85,31 @@
 	
 	<div style="width:80%;float:left;">
 	  <div class=rows>
-<!-- 	    <template> -->
-<!-- 	  		<recentStudy></recentStudy> -->
-<!-- 	    </template> -->
-	  	  <div class=my-card style="width:35%;">
-	  	  	  <dl>
-				<dt>최근 학습 강의</dt>
-				<dd>
-					<table>
-					  <tr v-if="">
-						<td>최근 학습한 강의가 없습니다.</td>
-					  </tr>
-					  <tr>
-						<td>
-							<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">
-						</td>
-					  </tr>
-					</table>
-			    </dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:60%;">
-			  <dl>
-			  	<dt>주간 학습</dt>
-			  	<dd>
-					<table>
-					  <tr>
-					  	<td>달력 년 월 주</td>
-					  </tr>
-					  <tr>
-					  	<td>
-						  	동구랑미
-					  	</td>
-					  </tr>
-					  <tr>
-					  	<td>공부시간</td>
-					  </tr>
-					</table>
-			  	</dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:30%;">
-			  <dl>
-			  	<dt>스킬 태그</dt>
-			  	<dd>
-			  	</dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:65%;">
-			  <dl>
-			  	<dt>연간 학습</dt>
-			  	<dd>
-					<table>
-					  <tr>
-					  	<td>달력 년 월 주</td>
-					  </tr>
-					  <tr>
-					  	<td>
-						  	동구랑미
-					  	</td>
-					  </tr>
-					  <tr>
-					  	<td>공부시간</td>
-					  </tr>
-					</table>
-			  	</dd>
-			  </dl>
-		  </div>
+		  <p><strong>신청한 강의</strong>를 수강할 수 있는 공간이에요.
+		   클래스 중에 궁금한 점이 있으면 <strong>Q&amp;A</strong>로 물어보세요.<br>
+		  </p>
+		  <ul class="tutee_list">
+		    <li>
+		     <div class="thumb_box">
+		      <a href="../class/class_detail.do?cno="><img src="https://img.taling.me/Content/Uploads/Images/f751e30c61b31ef9e9b63e0b59537904e22e5697.png" alt=""></a>
+		     </div>
+		     <div class="text_box">
+		      <a href="../class/class_detail.do?cno=" class="title">매일 가고 싶은 호텔 인테리어의 비밀</a>
+		      <div class="course_info">
+		       <p class="tutor"><span class="profile"><img src="https://s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_1077c649d31a6a3dde112f75b085a151c7b568ff.jpg" alt=""></span>최유정(오꾸제이) 튜터</p>
+		      </div>
+		      <div class="progress_box">
+		       <div class="progress_bar">
+		        <div class="bar" style="width: 0%;"></div>
+		       </div><span class="play_time">0% 수강</span><span class="due_date ">만료까지 71일 남았어요!</span>
+		      </div>
+		      <div class="btn_box">
+		       <a href="/vod/view/39910" class="btn btn_intro">강의소개</a><a href="/vod/review/39910" class="btn btn_write"><i class="icon"></i>리뷰작성</a>
+		      </div>
+		     </div></li>
+		  </ul><button type="button" class="btn_more" id="btnMore" style="display: none;">더보기</button>
 	  </div>
 	</div>
 </div>
-<script>
-// 	Vue.component('recentStudy',{
-// 		props:['data'],
-// 		template:'<div class=my-card style="width:35%;">'
-// 			+'<dl>'
-// 			+'<dt>최근 학습 강의</dt>'
-// 			+'<dd>'
-// 			+'<table>'
-// 			+'<tr>'
-// 			+'<td>최근 학습한 강의가 없습니다.</td>'
-// 			+'</tr>'
-// 			+'<tr>'
-// 			+'<td>'
-// 			+'<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">'
-// 			+'</td>'
-// 			+'</tr>'
-// 			+'</table>'
-// 			+'</dd>'
-// 			+'</dl>'
-// 			+'</div>'
-// 	})
-	new Vue({
-		el:'.container',
-		data:{
-			rec_s:''
-		}
-	})
-</script>
 </body>
 </html>
