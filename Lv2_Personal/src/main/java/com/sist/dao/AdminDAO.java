@@ -10,4 +10,10 @@ import org.springframework.stereotype.Repository;
 public class AdminDAO {
 	@Autowired
 	private AdminMapper mapper;
+	public List<BoardVO> noticeList(Map map){
+		return mapper.noticeList(map);
+	}
+	public int noticeTotalPage() {
+		return mapper.noticeTotalPage();
+	}
 }
