@@ -345,7 +345,7 @@
 				style="transform: translate(0px, 0px);">
 				<div class="wrapper">
 					<!-- 로그인 전 -->
-					<c:if test="${sessionScope.id==null }">
+					<c:if test="${sessionScope.mvo.id==null }">
 						<div class="login_box">
 							<h2 class="blind">회원 로그인 영역</h2>
 							<p class="login_msg">
@@ -361,15 +361,15 @@
 					</c:if>
 					<!-- //로그인 전 -->
 					<!-- 로그인 후 -->
-					<c:if test="${sessionScope.id!=null }">
+					<c:if test="${sessionScope.mvo.id!=null }">
 						<div class="login_box status_logon">
 							<div class="area_info_top">
 								<a class="my_profile" href="#"> <img class="img_profile"
-									src="${sessionScope.image }" onerror="profileImgError(this,);"
+									src="${sessionScope.mvo.image }" onerror="profileImgError(this,);"
 									alt="프로필 이미지">
 								</a>
 								<div class="logon_msg">
-									<b><em class="level"></em>${sessionScope.name }님</b> <span>반가워요</span>
+									<b><em class="level"></em>${sessionScope.mvo.name }님</b> <span>반가워요</span>
 									<!-- 								<button class="btn_logout" type="button" id="btn-menu-logout">로그아웃</button> -->
 									<button class="btn_logout" type="button" id="btn-menu-logout"
 										onclick="location.href='../member/logout.do'">로그아웃</button>

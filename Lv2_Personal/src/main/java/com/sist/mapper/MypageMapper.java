@@ -45,7 +45,7 @@ public interface MypageMapper {
 	
 	@Select("SELECT * FROM ch_text_2_3 "
 			+ "WHERE tno=#{tno}")
-	public List<TextVO> myTextDetail(int tno);
+	public TextVO myTextDetail(int tno);
 	
 	//쪽지 보내기
 	@SelectKey(keyProperty = "tno", resultType = int.class, before = true, 
@@ -64,18 +64,22 @@ public interface MypageMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ReserveVO> myReserveList(Map map);
 
+	@Select("SELECT COUNT(*) FROM ch_reserve_2_3 "
+			+ "WHERE id=#{id}")
+	public int myReserveCount(Map map);
+	
 	@Select("SELECT * FROM ch_reserve_2_3 "
 			+ "WHERE crno=#{crno}")
-	public List<ReserveVO> myReserveDetail(int crno);
+	public ReserveVO myReserveDetail(int crno);
 	
 	//질문
-//	@Select("SELECT * FROM ch_question_2_3 "
-//			+ "WHERE id=#{id}")
-//	public List<QuestionVO> myQuestionList(String id);
-//	
-//	@Select("SELECT * FROM ch_question_2_3 "
-//			+ "WHERE qno=#{qno}")
-//	public List<QuestionVO> myQuestionDetail(int qno);
+	@Select("SELECT * FROM ch_question_2_3 "
+			+ "WHERE id=#{id}")
+	public List<QuestionVO> myQuestionList(String id);
+	
+	@Select("SELECT * FROM ch_question_2_3 "
+			+ "WHERE qno=#{qno}")
+	public QuestionVO myQuestionDetail(int qno);
 	
 	//찜
 	@Select("SELECT * FROM ch_alljjim_2_3 "

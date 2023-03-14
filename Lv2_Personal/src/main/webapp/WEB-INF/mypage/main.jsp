@@ -29,7 +29,7 @@
 	  	<div style="height:150px;margin:5px;padding:10px;border:2px solid #45c5c5;">
 	  		<div style="height:50px;">
 	  	  		<img src="../images/gtop.png" style="height: 40px">
-	  	  		<span>최선형</span>
+	  	  		<span>${sessionScope.mvo.nickname }</span>
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
@@ -50,7 +50,7 @@
 									  </tr>
 									  <tr class=text-center v-for="rt in stext_list">
 									  	<td width=20%>{{rt.nickname}}</td>
-									  	<td width=50%>{{rt.msg}}</td>
+									  	<td width=50% v-on:click="textdetail(rt.tno)">{{rt.msg}}</td>
 									  	<td width=25%>{{rt.dbday}}</td>
 									  </tr>
 									</table>
@@ -64,7 +64,7 @@
 									  </tr>
 									  <tr class=text-center v-for="st in rtext_list">
 									  	<td width=20%>{{st.receiver}}</td>
-									  	<td width=50%>{{st.msg}}</td>
+									  	<td width=50% v-on:click="textdetail(st.tno)">{{st.msg}}</td>
 									  	<td width=25%>{{st.dbday}}</td>
 									  </tr>
 									</table>
@@ -76,7 +76,11 @@
 						<table>
 						  <tr>
 						  	<th width=20%>받는 사람</th>
-						  	<td width=80%><input type=text size=15 class=input-sm v-model="receiver"></td>
+						  	<td width=80%>
+						  		<input type=text size=15 class=input-sm v-model="receiver">
+						  		<input type=text size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
+						  		<input type=text size=15 class=input-sm ref="nickname" value="${sessionScope.mvo.nickname }">
+						  	</td>
 						  </tr>
 					  	  <tr>
 					  	  	<th width=20%>내용</th>
@@ -89,27 +93,26 @@
 					  	  </tr>
 						</table>
 					</b-modal>
-					<b-modal id="text-detail" title="쪽지 상세보기">
+					<b-modal ref="text-detail" title="쪽지 상세보기">
 						<table>
 						  <tr>
 						  	<th width=20%>보낸 사람</th>
-						  	<td width=80%>이름</td>
+						  	<td width=80%>{{tdetail.nickname}}</td>
 						  </tr>
 					  	  <tr>
 					  	  	<th width=20%>내용</th>
 					  	  	<td width=80%>
-					  	  		<pre style="white-space: pre-wrap;background-color: white;border: none">본문</pre>
+					  	  		<p>{{tdetail.msg}}</p>
 					  	  	</td>
 					  	  </tr>
 					  	  <tr>
 					  	  	<td colspan=2 class=text-center>
-					  	  		<input type=button value="글쓰기" class="btn btn-sm btn-danger" v-on:click="sendtext()">
-					  	  		<input type=button value="취소" class="btn btn-sm btn-success" onclick="javascript:history.back()">
+					  	  		<input type=button value="삭제" class="btn btn-sm btn-danger" v-on:click="textdelete()">
 					  	  	</td>
 					  	  </tr>
 						</table>
 					</b-modal>
-					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;(3)
+					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;()
 				</template>
 	  		</div>
 	  		<div style="height:25px;">
@@ -149,103 +152,15 @@
 	</div>
 	
 	<div style="width:80%;float:left;">
-	  <div class=rows>
-<!-- 	    <template> -->
-<!-- 	  		<recentStudy></recentStudy> -->
-<!-- 	    </template> -->
-	  	  <div class=my-card style="width:35%;">
-	  	  	  <dl>
-				<dt>최근 학습 강의</dt>
-				<dd>
-					<table>
-					  <tr v-if="">
-						<td>최근 학습한 강의가 없습니다.</td>
-					  </tr>
-					  <tr>
-						<td>
-							<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">
-						</td>
-					  </tr>
-					</table>
-			    </dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:60%;">
-			  <dl>
-			  	<dt>주간 학습</dt>
-			  	<dd>
-					<table>
-					  <tr>
-					  	<td>달력 년 월 주</td>
-					  </tr>
-					  <tr>
-					  	<td>
-						  	동구랑미
-					  	</td>
-					  </tr>
-					  <tr>
-					  	<td>공부시간</td>
-					  </tr>
-					</table>
-			  	</dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:30%;">
-			  <dl>
-			  	<dt>스킬 태그</dt>
-			  	<dd>
-			  	</dd>
-			  </dl>
-		  </div>
-		  <div class=my-card style="width:65%;">
-			  <dl>
-			  	<dt>연간 학습</dt>
-			  	<dd>
-					<table>
-					  <tr>
-					  	<td>달력 년 월 주</td>
-					  </tr>
-					  <tr>
-					  	<td>
-						  	동구랑미
-					  	</td>
-					  </tr>
-					  <tr>
-					  	<td>공부시간</td>
-					  </tr>
-					</table>
-			  	</dd>
-			  </dl>
-		  </div>
-	  </div>
+		<jsp:include page="../mypage/home.jsp"></jsp:include>
 	</div>
 </div>
 <script>
-// 	Vue.component('recentStudy',{
-// 		props:['data'],
-// 		template:'<div class=my-card style="width:35%;">'
-// 			+'<dl>'
-// 			+'<dt>최근 학습 강의</dt>'
-// 			+'<dd>'
-// 			+'<table>'
-// 			+'<tr>'
-// 			+'<td>최근 학습한 강의가 없습니다.</td>'
-// 			+'</tr>'
-// 			+'<tr>'
-// 			+'<td>'
-// 			+'<input type=button value="강의 보러 가기" class="btn btn-sm btn-primary">'
-// 			+'</td>'
-// 			+'</tr>'
-// 			+'</table>'
-// 			+'</dd>'
-// 			+'</dl>'
-// 			+'</div>'
-// 	})
 	new Vue({
 		el:'.container',
 		data:{
-			id:'hong@naver.com',
-			nickname:'홍삼킬러',
+			id:'',
+			nickname:'',
 			msg:'',
 			receiver:'',
 			stext_list:[],
@@ -253,7 +168,8 @@
 			stotalpage:0,
 			rtext_list:[],
 			rcurpage:1,
-			rtotalpage:0
+			rtotalpage:0,
+			tdetail:{}
 		},
 		mounted:function(){
 			let _this=this
@@ -281,15 +197,30 @@
 		methods:{
 			sendtext:function(){
 				let _this=this
+				this.id=this.$refs.id.value
+				this.nickname=this.$refs.nickname.value
 				axios.get('http://localhost/web/mypage/text_insert_vue.do',{
 					params:{
 						id:this.id,
 						msg:this.msg,
-						receiver:this.receiver
+						receiver:this.receiver,
+						nickname:this.nickname
 					}
 				}).then(function(response){
 					location.href='../mypage/main.do'
 				})
+			},
+			textdetail:function(tno){
+				let _this=this
+				axios.get('http://localhost/web/mypage/text_detail_vue.do',{
+					params:{
+						tno:tno
+					}
+				}).then(function(response){
+					console.log(response.data)
+					_this.tdetail=response.data
+				})
+				this.$refs['text-detail'].show()
 			}
 		}
 	})

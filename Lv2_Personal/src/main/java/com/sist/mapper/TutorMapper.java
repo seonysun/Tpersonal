@@ -20,7 +20,7 @@ public interface TutorMapper {
 			+ "WHERE b.id=c.id "
 			+ "AND a.cno=b.cno "
 			+ "AND a.tno=#{tno}")
-	public List studentList();
+	public List<MemberVO> studentList();
 	
 	//질문 목록
 	

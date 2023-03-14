@@ -5,18 +5,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminpageController {
-	@GetMapping("adminpage/classCon.do")
-	public String adminpage_classConfirm() {
-		return "adminpage/classCon";
+	@GetMapping("adminpage/main.do")
+	public String adminpage_main() {
+		return "adminpage/main";
 	}
 	
-	@GetMapping("adminpage/tutCon.do")
-	public String adminpage_tutConfirm() {
-		return "adminpage/tutCon";
+	@GetMapping("adminpage/class.do")
+	public String adminpage_class() {
+		return "adminpage/class_main";
+	}
+	
+	@GetMapping("adminpage/tutor.do")
+	public String adminpage_tutor() {
+		return "adminpage/tutor_main";
 	}
 	
 	@GetMapping("adminpage/member.do")
 	public String adminpage_member() {
-		return "adminpage/member";
+		return "adminpage/member_main";
 	}
 }

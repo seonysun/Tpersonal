@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="margin-left:20px"> 
-		<span style="font-size: 20px;font-weight: 700;line-height: 50px;">관리자</span> 페이지입니다
+		<span style="font-size: 20px;font-weight: 700;line-height: 50px;">${sessionScope.mvo.name }</span> 페이지입니다
 	</div>
 </body>
 </html>

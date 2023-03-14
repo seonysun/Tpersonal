@@ -24,9 +24,7 @@
 	</div>
 	
 	<div style="width:80%;float:left;">
-	  <div class=rows>
 	  	<jsp:include page="${tutor_jsp }"></jsp:include>
-	  </div>
 	</div>
 </main>
 </body>
