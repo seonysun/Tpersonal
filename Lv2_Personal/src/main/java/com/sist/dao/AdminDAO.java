@@ -42,6 +42,15 @@ public class AdminDAO {
 		mapper.memberDelete(id);
 	}
 	
+	//튜터 승인
+	public MemberVO memberDetail(String id) {
+		return mapper.memberDetail(id);
+	}
+	public void tutorConfirm(String id) {
+		mapper.tutorConfirm(id);
+		mapper.tutorInsert(id);
+	}
+	
 	//튜터 관리
 	public List<MemberVO> tutorList(Map map){
 		return mapper.tutorList(map);
@@ -49,9 +58,7 @@ public class AdminDAO {
 	public int tutorTotalPage() {
 		return mapper.tutorTotalPage();
 	}
-	
-//	public void tutorConfirm(String id) {
-//		mapper.tutorConfirm(id);
-//		mapper.tutorInsert(id);
-//	}
+	public List<ClassDetailVO> tutorClassList(Map map){
+		return mapper.tutorClassList(map);
+	}
 }

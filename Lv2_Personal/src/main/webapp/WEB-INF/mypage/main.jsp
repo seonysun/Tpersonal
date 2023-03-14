@@ -28,7 +28,7 @@
 	  <div class=rows>
 	  	<div style="height:150px;margin:5px;padding:10px;border:2px solid #45c5c5;">
 	  		<div style="height:50px;">
-	  	  		<img src="../images/gtop.png" style="height: 40px">
+	  	  		<img src="${sessionScope.mvo.image }" style="height: 40px;border-radius: 50px">
 	  	  		<span>${sessionScope.mvo.nickname }</span>
 	  		</div>
 	  		<div style="height:25px;">
@@ -41,7 +41,6 @@
 					        </div>
 					    	<b-tabs content-class="mt-3">
 								<b-tab title="받은 쪽지함" active>
-<!-- 									<b-table hover :items="text_list" :fields="fields"></b-table> -->
 									<table>
 									  <tr class=text-center style="font-weight: bold">
 									  	<th width=20%>보낸 사람</th>
@@ -120,8 +119,8 @@
 		  	  	<button>수강중 강의</button>&nbsp;(3)
 	  		</div>
 	  		<div style="height:30px;">
-		  		<span class="mintBtn" value="로그아웃">로그아웃</span>
-		  		<span class="mintBtn">정보수정</span>
+		  		<a href="../member/logout.do"><span class="mintBtn">로그아웃</span></a>
+		  		<a href="#"><span class="mintBtn">정보수정</span></a>
 	  		</div>
 	  	</div>
 	  </div>
@@ -173,7 +172,7 @@
 		},
 		mounted:function(){
 			let _this=this
-			axios.get('http://localhost/web/mypage/stext_list_vue.do',{
+			axios.get('http://localhost:8080/web/mypage/stext_list_vue.do',{
 				params:{
 					page:this.scurpage
 				}
@@ -183,7 +182,7 @@
 				_this.scurpage=response.data[0].curpage
 				_this.stotalpage=response.data[0].totalpage
 			})
-			axios.get('http://localhost/web/mypage/rtext_list_vue.do',{
+			axios.get('http://localhost:8080/web/mypage/rtext_list_vue.do',{
 				params:{
 					page:this.rcurpage
 				}
@@ -199,7 +198,7 @@
 				let _this=this
 				this.id=this.$refs.id.value
 				this.nickname=this.$refs.nickname.value
-				axios.get('http://localhost/web/mypage/text_insert_vue.do',{
+				axios.get('http://localhost:8080/web/mypage/text_insert_vue.do',{
 					params:{
 						id:this.id,
 						msg:this.msg,
@@ -212,7 +211,7 @@
 			},
 			textdetail:function(tno){
 				let _this=this
-				axios.get('http://localhost/web/mypage/text_detail_vue.do',{
+				axios.get('http://localhost:8080/web/mypage/text_detail_vue.do',{
 					params:{
 						tno:tno
 					}

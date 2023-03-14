@@ -22,7 +22,7 @@ public class AdminRestController {
 		List<BoardVO> list=dao.noticeList(map);
 		int totalpage=dao.noticeTotalPage();
 		
-		final int BLOCK=10;
+		final int BLOCK=5;
 		int startpage=(page-1)/BLOCK*BLOCK+1;
 		int endpage=(page-1)/BLOCK*BLOCK+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
@@ -35,6 +35,7 @@ public class AdminRestController {
 			obj.put("btype", vo.getBtype());
 			obj.put("id", vo.getId());
 			obj.put("title", vo.getTitle());
+			obj.put("dbday", vo.getDbday());
 			obj.put("hit", vo.getHit());
 			obj.put("tag", vo.getTag());
 			if(i==0) {
@@ -107,5 +108,28 @@ public class AdminRestController {
 			arr.add(obj);
 		}
 		return arr.toJSONString();
+	}
+	
+	@GetMapping(value = "adminpage/member_detail_vue.do", produces = "text/plain;charset=UTF-8")
+	public String member_detail_vue(String id) {
+		MemberVO vo=dao.memberDetail(id);
+		JSONObject obj=new JSONObject();
+		obj.put("id", vo.getId());
+		obj.put("tel", vo.getTel());
+		obj.put("name", vo.getName());
+		obj.put("nickname", vo.getNickname());
+		obj.put("image", vo.getImage());
+		obj.put("tutor", vo.getTutor());
+		return obj.toJSONString();
+	}
+	
+	@GetMapping(value = "adminpage/tutor_ok_vue.do", produces = "text/plain;charset=UTF-8")
+	public void tutor_ok_vue(String id) {
+		dao.tutorConfirm(id);
+	}
+	
+	@GetMapping(value = "adminpage/member_delete_vue.do", produces = "text/plain;charset=UTF-8")
+	public void member_delete_vue(String id) {
+		dao.memberDelete(id);
 	}
 }

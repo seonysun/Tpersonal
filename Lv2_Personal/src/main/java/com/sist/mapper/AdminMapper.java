@@ -26,7 +26,7 @@ public interface AdminMapper {
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
 			+ "FROM ch_classdetail_2_3 "
-			+ "WHERE ok='y' "
+			+ "WHERE ok='n' "
 			+ "ORDER BY cno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ClassDetailVO> classList(Map map);
@@ -57,6 +57,20 @@ public interface AdminMapper {
 			+ "WHERE id=#{id}")
 	public void memberDelete(String id);
 	
+	//튜터 승인
+	@Select("SELECT * FROM ch_member_2_3 "
+			+ "WHERE id=#{id}")
+	public MemberVO memberDetail(String id);
+	
+	@Update("UPDATE ch_member_2_3 "
+			+ "SET tutor='y' "
+			+ "WHERE id=#{id}")
+	public void tutorConfirm(String id);
+	
+	@Insert("INSERT INTO ch_tutor_2_3 "
+			+ "VALUES(ch_tutor_tno_seq.nextval,#{id})")
+	public void tutorInsert(String id);
+	
 	//튜터 관리
 	@Select("SELECT id,tel,name,nickname,image,tutor,num "
 			+ "FROM (SELECT id,tel,name,nickname,image,tutor,rownum as num "
@@ -70,12 +84,12 @@ public interface AdminMapper {
 			+ "WHERE admin='n' AND tutor='y'")
 	public int tutorTotalPage();
 	
-//	@Update("UPDATE ch_member_2_3 "
-//			+ "SET tutor='y' "
-//			+ "WHERE id=#{id}")
-//	public void tutorConfirm(String id);
-//	
-//	@Insert("INSERT INTO ch_tutor_2_3 "
-//			+ "VALUES(ch_tutor_tno_seq.nextval,#{id})")
-//	public void tutorInsert(String id);
+	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,num "
+			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
+			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+			+ "FROM ch_classdetail_2_3 "
+			+ "WHERE tno=#{tno} "
+			+ "ORDER BY cno)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<ClassDetailVO> tutorClassList(Map map);
 }

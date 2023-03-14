@@ -10,7 +10,7 @@
 	  <div class=rows>
 	  	<div style="height:150px;margin:5px;padding:10px;border:2px solid #45c5c5;">
 	  		<div style="height:50px;">
-	  	  		<img src="../images/gtop.png" style="height: 40px">
+	  	  		<img src="${sessionScope.mvo.image }" style="height: 40px;border-radius: 50px">
 	  	  		<span>${sessionScope.mvo.nickname }</span> 튜터
 	  		</div>
 	  		<div style="height:25px;">
@@ -20,7 +20,7 @@
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;<span>개설된 강의</span>
 	  		</div>
 	  		<div style="height:30px;text-align:center;margin:5px">
-		  		<span class="mintBtn" value="로그아웃">로그아웃</span>
+		  		<a href="../member/logout.do"><span class="mintBtn">로그아웃</span></a>
 		  		<span class="mintBtn">정보수정</span>
 	  		</div>
 	  	</div>
