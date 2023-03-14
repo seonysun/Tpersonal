@@ -61,4 +61,7 @@ public class AdminDAO {
 	public List<ClassDetailVO> tutorClassList(Map map){
 		return mapper.tutorClassList(map);
 	}
+	public int tutorClassCount() {
+		return mapper.tutorClassCount();
+	}
 }

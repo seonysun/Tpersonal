@@ -88,8 +88,12 @@ public interface AdminMapper {
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
 			+ "FROM ch_classdetail_2_3 "
-			+ "WHERE tno=#{tno} "
+			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
 			+ "ORDER BY cno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ClassDetailVO> tutorClassList(Map map);
+	
+	@Select("SELECT COUNT(*) FROM ch_classdetail_2_3 "
+			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id})")
+	public int tutorClassCount();
 }
