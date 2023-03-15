@@ -58,8 +58,14 @@ public class AdminDAO {
 	public int tutorTotalPage() {
 		return mapper.tutorTotalPage();
 	}
-	public List<ClassDetailVO> tutorClassList(Map map){
-		return mapper.tutorClassList(map);
+	public List<ClassDetailVO> tutornullClassList(Map map){
+		return mapper.tutornullClassList(map);
+	}
+//	public List<ClassDetailVO> tutorClassList(Map map){
+//		return mapper.tutorClassList(map);
+//	}
+	public List<ClassDetailVO> tutorClassList(String id){
+		return mapper.tutorClassList(id);
 	}
 	public int tutorClassCount() {
 		return mapper.tutorClassCount();

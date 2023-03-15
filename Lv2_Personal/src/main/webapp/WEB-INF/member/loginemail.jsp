@@ -62,7 +62,7 @@ new Vue({
              return
           }
           
-          axios.get('http://localhost:8080/web/member/login_vue.do',{
+          axios.get('http://localhost/web/member/login_vue.do',{
              params:{
                 id:this.id,
                 pwd:this.pwd

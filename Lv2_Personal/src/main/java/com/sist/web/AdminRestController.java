@@ -167,7 +167,7 @@ public class AdminRestController {
 		map.put("start", 1);
 		map.put("end", 10);
 		map.put("id", id);
-		List<ClassDetailVO> list=dao.tutorClassList(map);
+		List<ClassDetailVO> list=dao.tutorClassList(id);
 		int count=dao.tutorClassCount();
 		int totalpage=(int)Math.ceil(count/10.0);
 		

@@ -33,7 +33,7 @@ public class MemberController {
 	public String member_logout(HttpSession session)
 	{
 		session.invalidate();
-		return "redirect:main";
+		return "redirect:../main/main.do";
 	}
 	
 }

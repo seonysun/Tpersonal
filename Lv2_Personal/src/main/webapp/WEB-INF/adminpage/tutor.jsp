@@ -40,7 +40,7 @@
 			+'<table class=table v-for="vo in tutordata">'
 			+'<tr>'
 			+'<td width=30% class=text-center rowspan=2>'
-			+'<img :src="vo.image" style="width: 120px;height: 120px" class="img-circle images" v-on:click="showClass(vo.id)">'
+			+'<img :src="vo.image" style="width: 70px;height: 70px" class="img-circle images" v-on:click="showClass(vo.id)">'
 			+'</td>'
 			+'<td colspan=2><h3 style="color: orange">{{vo.nickname}}</h3></td>'
 			+'</tr>'
@@ -53,15 +53,15 @@
 			+'</tr>'
 			+'<tr>'
 			+'<td class=text-center>'
-			+'<input type=button class="mintBtn" value="이전" v-on:click="this.$parent.prev">'
-			+'{{curpage}} page / {{totalpage}} pages'
-			+'<input type=button class="mintBtn" value="다음" v-on:click="this.$parent.next">'
+			+'<input type=button class="mintBtn" style="width:40px" value="이전" v-on:click="this.$parent.prev">'
+			+' {{curpage}} page / {{totalpage}} pages '
+			+'<input type=button class="mintBtn" style="width:40px" value="다음" v-on:click="this.$parent.next">'
 			+'</td>'
 			+'</tr>'
 			+'</table>',
 		methods:{
-			showClass:function(id){
-				eventBus.$emit('showClassEvent', id)
+			showClass:function(value){
+				eventBus.$emit('showClassEvent', value)
 			}
 		}
 	})
@@ -79,8 +79,9 @@
 		},
 		updated:function(){
 			let _this=this
-			eventBus.$on('showClassEvent', function(id){
-				_this.tutor_id=id
+			eventBus.$on('showClassEvent', function(value){
+				_this.tutor_id=value
+				alert(_this.tutor_id)
 				axios.get('http://localhost/web/adminpage/tutor_class_vue.do',{
 					params:{
 						id:_this.tutor_id

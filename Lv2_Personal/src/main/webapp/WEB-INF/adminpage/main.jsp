@@ -23,7 +23,7 @@
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;">
+	<div style="width:80%;float:left;padding-left:20px">
 	  <div class=rows>
 		<div class="mintBtn_m" style="float: right">
 			<a href="../board/board_insert.do?btype=3">공지 등록</a>

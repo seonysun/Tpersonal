@@ -10,32 +10,44 @@ import com.sist.vo.*;
 
 public interface MypageMapper {
 	//보낸 쪽지 목록
-	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname,num "
-			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname,rownum as num "
-			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname "
+//	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname,num "
+//			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname,rownum as num "
+//			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname "
+//			+ "FROM ch_text_2_3 "
+//			+ "WHERE id=#{id} "
+//			+ "ORDER BY tno)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+//	public List<TextVO> myTextsList(Map map);
+	
+	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname "
 			+ "FROM ch_text_2_3 "
 			+ "WHERE id=#{id} "
-			+ "ORDER BY tno)) "
-			+ "WHERE num BETWEEN #{start} AND #{end}")
-	public List<TextVO> myTextsList(Map map);
+			+ "ORDER BY tno")
+	public List<TextVO> myTextsList(String id);
 
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_text_2_3 "
 			+ "WHERE id=#{id}")
-	public int stextTotalPage(Map map);
+	public int stextTotalPage(String id);
 
 	//받은 쪽지 목록
-	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname,num "
-			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname,rownum as num "
-			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname "
+//	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname,num "
+//			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname,rownum as num "
+//			+ "FROM (SELECT tno,id,msg,receiver,regdate,ok,recvdate,nickname "
+//			+ "FROM ch_text_2_3 "
+//			+ "WHERE receiver=#{receiver} "
+//			+ "ORDER BY tno)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+//	public List<TextVO> myTextrList(Map map);
+	
+	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname "
 			+ "FROM ch_text_2_3 "
 			+ "WHERE receiver=#{receiver} "
-			+ "ORDER BY tno)) "
-			+ "WHERE num BETWEEN #{start} AND #{end}")
-	public List<TextVO> myTextrList(Map map);
+			+ "ORDER BY tno")
+	public List<TextVO> myTextrList(String receiver);
 	
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_text_2_3 "
 			+ "WHERE receiver=#{receiver}")
-	public int rtextTotalPage(Map map);
+	public int rtextTotalPage(String receiver);
 	
 	//쪽지 확인
 	@Update("UPDATE ch_text_2_3 "

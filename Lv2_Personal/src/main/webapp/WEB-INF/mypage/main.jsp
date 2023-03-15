@@ -34,36 +34,42 @@
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
 				<template>
-				  	<b-sidebar id="my-sidebar" title="쪽지함" shadow>
+				  	<b-sidebar id="my-sidebar" ref="my-sidebar" title="쪽지함" shadow>
 					    <div class="px-3 py-2">
 					        <div class="text-right" style="height: 25px">
 					    		<b-button variant="danger" v-b-modal.text-insert>쪽지보내기</b-button>
 					        </div>
 					    	<b-tabs content-class="mt-3">
-								<b-tab title="받은 쪽지함" active>
-									<table>
-									  <tr class=text-center style="font-weight: bold">
-									  	<th width=20%>보낸 사람</th>
-									  	<th width=50%>내용</th>
-									  	<th width=25%>날짜</th>
-									  </tr>
-									  <tr class=text-center v-for="rt in stext_list">
-									  	<td width=20%>{{rt.nickname}}</td>
-									  	<td width=50% v-on:click="textdetail(rt.tno)">{{rt.msg}}</td>
-									  	<td width=25%>{{rt.dbday}}</td>
-									  </tr>
-									</table>
-								</b-tab>
 								<b-tab title="보낸 쪽지함" active>
 									<table>
-									  <tr class=text-center>
+									  <tr class=text-center style="font-weight: bold">
 									  	<th width=20%>받는 사람</th>
 									  	<th width=50%>내용</th>
 									  	<th width=25%>날짜</th>
 									  </tr>
+									  <tr class=text-center v-for="rt in stext_list">
+									  	<td width=20%>{{rt.receiver}}</td>
+									  	<td width=50% v-on:click="textdetail(rt.tno)">
+									  		{{rt.msg}}
+									  		<img alt="" src="../images/new_red.png" style="height: 10px" v-if="rt.ok=='n'">
+									  	</td>
+									  	<td width=25%>{{rt.dbday}}</td>
+									  </tr>
+									</table>
+								</b-tab>
+								<b-tab title="받은 쪽지함" active>
+									<table>
+									  <tr class=text-center>
+									  	<th width=20%>보낸 사람</th>
+									  	<th width=50%>내용</th>
+									  	<th width=25%>날짜</th>
+									  </tr>
 									  <tr class=text-center v-for="st in rtext_list">
-									  	<td width=20%>{{st.receiver}}</td>
-									  	<td width=50% v-on:click="textdetail(st.tno)">{{st.msg}}</td>
+									  	<td width=20%>{{st.nickname}}</td>
+									  	<td width=50% v-on:click="textdetail(st.tno)">
+									  		{{st.msg}}
+									  		<img alt="" src="../images/new_red.png" style="height: 10px" v-if="st.ok=='n'">
+									  	</td>
 									  	<td width=25%>{{st.dbday}}</td>
 									  </tr>
 									</table>
@@ -77,8 +83,8 @@
 						  	<th width=20%>받는 사람</th>
 						  	<td width=80%>
 						  		<input type=text size=15 class=input-sm v-model="receiver">
-						  		<input type=text size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
-						  		<input type=text size=15 class=input-sm ref="nickname" value="${sessionScope.mvo.nickname }">
+						  		<input type=hidden size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
+						  		<input type=hidden size=15 class=input-sm ref="nickname" value="${sessionScope.mvo.nickname }">
 						  	</td>
 						  </tr>
 					  	  <tr>
@@ -96,7 +102,11 @@
 						<table>
 						  <tr>
 						  	<th width=20%>보낸 사람</th>
-						  	<td width=80%>{{tdetail.nickname}}</td>
+						  	<td width=30%>{{tdetail.nickname}}</td>
+						  </tr>
+						  <tr>
+						  	<th width=20%>받는 사람</th>
+						  	<td width=30%>{{tdetail.receiver}}</td>
 						  </tr>
 					  	  <tr>
 					  	  	<th width=20%>내용</th>
@@ -111,14 +121,16 @@
 					  	  </tr>
 						</table>
 					</b-modal>
-					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;()
+					<b-button v-b-toggle.my-sidebar v-on:click="textroom('${sessionScope.mvo.id }', '${sessionScope.mvo.nickname }')">쪽지함</b-button>&nbsp;
 				</template>
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
-		  	  	<button>수강중 강의</button>&nbsp;(3)
+		  	  	<template>
+			  	  	<b-button>수강중 강의</b-button>&nbsp;
+		  	  	</template>
 	  		</div>
-	  		<div style="height:30px;">
+	  		<div style="height:30px;text-align:center;margin:5px">
 		  		<a href="../member/logout.do"><span class="mintBtn">로그아웃</span></a>
 		  		<a href="#"><span class="mintBtn">정보수정</span></a>
 	  		</div>
@@ -131,7 +143,7 @@
 		  	    <li id="my_menus"><a href="../mypage/main.do">대시보드</a></li>
 		  	    <li class="my_menu">내 학습</li>
 		  	    <span><li class="my_menu2"><a href="../mypage/myclass.do">내 강의실</a></li></span>
-		  	    <span><li class="my_menu2"><a href="../mypage/myquestion.do">내가 남긴 질문</a></li></span>
+		  	    <span><li class="my_menu2"><a href="#">내가 남긴 질문</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">수강 관리</li>
@@ -139,8 +151,8 @@
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">내 활동</li>
-	  	    	<span><li class="my_menu2">커뮤니티</li></span>
-	  	    	<span><li class="my_menu2">리뷰 & 댓글</li></span>
+	  	    	<span><li class="my_menu2"><a href="../mypage/community.do">커뮤니티</a></li></span>
+	  	    	<span><li class="my_menu2"><a href="../mypage/repv.do">리뷰 & 댓글</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 		  	    <li class="my_menu">내 정보</li>
@@ -150,7 +162,7 @@
 	  </div>
 	</div>
 	
-	<div style="width:80%;float:left;">
+	<div style="width:80%;float:left;padding-left:20px">
 		<jsp:include page="../mypage/home.jsp"></jsp:include>
 	</div>
 </div>
@@ -163,42 +175,35 @@
 			msg:'',
 			receiver:'',
 			stext_list:[],
-			scurpage:1,
-			stotalpage:0,
 			rtext_list:[],
-			rcurpage:1,
-			rtotalpage:0,
 			tdetail:{}
 		},
-		mounted:function(){
-			let _this=this
-			axios.get('http://localhost:8080/web/mypage/stext_list_vue.do',{
-				params:{
-					page:this.scurpage
-				}
-			}).then(function(response){
-				console.log(response.data)
-				_this.stext_list=response.data
-				_this.scurpage=response.data[0].curpage
-				_this.stotalpage=response.data[0].totalpage
-			})
-			axios.get('http://localhost:8080/web/mypage/rtext_list_vue.do',{
-				params:{
-					page:this.rcurpage
-				}
-			}).then(function(response){
-				console.log(response.data)
-				_this.rtext_list=response.data
-				_this.rcurpage=response.data[0].curpage
-				_this.rtotalpage=response.data[0].totalpage
-			})
-		},
 		methods:{
+			textroom:function(tid, tnickname){
+				let _this=this
+				axios.get('http://localhost/web/mypage/stext_list_vue.do',{
+					params:{
+						id:tid
+					}
+				}).then(function(response){
+					console.log(response.data)
+					_this.stext_list=response.data
+				})
+				axios.get('http://localhost/web/mypage/rtext_list_vue.do',{
+					params:{
+						receiver:tnickname
+					}
+				}).then(function(response){
+					console.log(response.data)
+					_this.rtext_list=response.data
+				})
+				this.$refs['my-sidebar'].show()
+			},
 			sendtext:function(){
 				let _this=this
 				this.id=this.$refs.id.value
 				this.nickname=this.$refs.nickname.value
-				axios.get('http://localhost:8080/web/mypage/text_insert_vue.do',{
+				axios.get('http://localhost/web/mypage/text_insert_vue.do',{
 					params:{
 						id:this.id,
 						msg:this.msg,
@@ -211,7 +216,7 @@
 			},
 			textdetail:function(tno){
 				let _this=this
-				axios.get('http://localhost:8080/web/mypage/text_detail_vue.do',{
+				axios.get('http://localhost/web/mypage/text_detail_vue.do',{
 					params:{
 						tno:tno
 					}

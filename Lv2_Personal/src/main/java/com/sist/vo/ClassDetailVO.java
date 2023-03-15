@@ -11,4 +11,5 @@ public class ClassDetailVO {
 	private String title,image,place,location,schedule,notice,time,
 					perprice,totalprice,summary,target,tutor_intro,class_intro,
 					class_curri,class_video,onoff,inwon,tutor_info_nickname,tutor_info_img;
+	private TutorVO tvo=new TutorVO();
 }

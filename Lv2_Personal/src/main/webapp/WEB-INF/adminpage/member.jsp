@@ -24,7 +24,7 @@
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;">
+	<div style="width:80%;float:left;padding-left:20px">
 	  <div class=rows>
 		<div>
 			<table class="table" style="table-layout: fixed;">
@@ -48,7 +48,7 @@
 						<span v-on:click="tutorups(vo.id)">학생</span>
 					</td>
 					<td width="10%" class="text-center origin">
-						<span><img src="#" style="height:20px;" v-on:click="memberDelete(vo.id)"></span>
+						<span><img src="#" style="height:20px;" v-on:click="memberDelete(vo.id)"><i class="fa-solid fa-check"></i></span>
 					</td>
 				</tr>
 			</table>
@@ -65,16 +65,16 @@
 		  	  	<td width=17%>{{member_detail.name}}</td>
 		  	  	<td width=8%>ID</td>
 		  	  	<td width=35%>{{member_detail.id}}</td>
-		  	  	<td width=12%>닉넴</td>
+		  	  	<td width=12%>닉네임</td>
 		  	  	<td width=18%>{{member_detail.nickname}}</td>
 		  	  </tr>
 		  	  <tr>
-		  	  	<td colspan=4>
+		  	  	<td colspan=6>
 		  	  		<img :src="member_detail.image">
 		  	  	</td>
 		  	  </tr>
 		  	  <tr>
-		  	  	<td colspan=4>
+		  	  	<td colspan=6>
 		  	  		<p>{{member_detail.intro}}</p>
 		  	  	</td>
 		  	  </tr>

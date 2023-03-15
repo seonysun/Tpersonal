@@ -1,6 +1,5 @@
 package com.sist.web;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,16 +12,26 @@ public class MypageController {
 	
 	@GetMapping("mypage/myjjim.do")
 	public String mypage_jjim() {
-		return "mypage/main";
+		return "mypage/myjjim";
 	}
 	
 	@GetMapping("mypage/myclass.do")
 	public String mypage_class() {
-		return "mypage/main";
+		return "mypage/myclass";
 	}
 	
 	@GetMapping("mypage/myquestion.do")
 	public String mypage_question() {
-		return "mypage/main";
+		return "mypage/myquestion";
+	}
+	
+	@GetMapping("mypage/community.do")
+	public String mypage_community() {
+		return "mypage/community";
+	}
+	
+	@GetMapping("mypage/repv.do")
+	public String mypage_repv() {
+		return "mypage/repv";
 	}
 }

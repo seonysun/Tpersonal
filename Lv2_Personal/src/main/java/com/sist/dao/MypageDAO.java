@@ -13,19 +13,19 @@ public class MypageDAO {
 	private MypageMapper mapper;
 	
 	//보낸 쪽지
-	public List<TextVO> myTextsList(Map map){
-		return mapper.myTextsList(map);
+	public List<TextVO> myTextsList(String id){
+		return mapper.myTextsList(id);
 	}
-	public int stextTotalPage(Map map) {
-		return mapper.stextTotalPage(map);
+	public int stextTotalPage(String id) {
+		return mapper.stextTotalPage(id);
 	}
 	
 	//받은 쪽지
-	public List<TextVO> myTextrList(Map map){
-		return mapper.myTextrList(map);
+	public List<TextVO> myTextrList(String receiver){
+		return mapper.myTextrList(receiver);
 	}
-	public int rtextTotalPage(Map map) {
-		return mapper.rtextTotalPage(map);
+	public int rtextTotalPage(String receiver) {
+		return mapper.rtextTotalPage(receiver);
 	}
 	
 	//쪽지 확인

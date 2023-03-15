@@ -14,68 +14,17 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <link rel="stylesheet" href="../Content/app3/css/mypage.css">
-
+<style type="text/css">
+#my-sidebar{
+	width: 450px
+}
+</style>
 </head>
 <body>
 <div class="container">
+	<jsp:include page="../mypage/header.jsp"></jsp:include>
+	
 	<div style="width:20%;height:100%;padding:5px;float:left;">
-	  <div class=rows>
-	  	<div style="height:150px;margin:5px;padding:10px;border:2px solid #45c5c5;">
-	  		<div style="height:50px;">
-	  	  		<img src="../images/gtop.png" style="height: 40px">
-	  	  		<span>최선형</span>
-	  		</div>
-	  		<div style="height:25px;">
-		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
-				<span>쪽지함</span>&nbsp;(3)
-				  <template>
-				  	<b-sidebar id="my-sidebar" title="쪽지함" shadow>
-					    <div class="px-3 py-2">
-					    	<div>
-						   		받은 쪽지함
-					    	</div>
-					    	<div>
-						   		보낸 쪽지함
-					    	</div>
-						</div>
-					</b-sidebar>
-					<b-button v-b-toggle.my-sidebar>쪽지함</b-button>&nbsp;(3)
-				  </template>
-	  		</div>
-	  		<div style="height:25px;">
-		  	  	<img src="../images/letter.png" style="height: 20px">&nbsp;
-		  	  	<span>수강중 강의</span>&nbsp;(3)
-	  		</div>
-	  		<div style="height:30px;">
-		  		<span class="mintBtn" value="로그아웃">로그아웃</span>
-		  		<span class="mintBtn">정보수정</span>
-	  		</div>
-	  	</div>
-	  </div>
-	  <div style="height: 10px;"></div>
-	  <div class=rows>
-		<ul style="margin:5px;padding:10px;border:1px solid #45c5c5;border-radius:10px">
-			<div class="my_li">
-		  	    <li id="my_menus"><a href="../mypage/main.do">대시보드</a></li>
-		  	    <li class="my_menu">내 학습</li>
-		  	    <span><li class="my_menu2"><a href="../mypage/myclass.do">내 강의실</a></li></span>
-		  	    <span><li class="my_menu2"><a href="../mypage/myquestion.do">내가 남긴 질문</a></li></span>
-	  	    </div>
-	  	    <div class="my_li">
-	  	    	<li class="my_menu">수강 관리</li>
-	  	    	<span><li class="my_menu2"><a href="../mypage/main.do">수강바구니</a></li></span>
-	  	    </div>
-	  	    <div class="my_li">
-	  	    	<li class="my_menu">내 활동</li>
-	  	    	<span><li class="my_menu2">커뮤니티</li></span>
-	  	    	<span><li class="my_menu2">리뷰 & 댓글</li></span>
-	  	    </div>
-	  	    <div class="my_li">
-		  	    <li class="my_menu">내 정보</li>
-		  	    <span><li class="my_menu2">계정 정보</li></span>
-			</div>
-		</ul>
-	  </div>
 	</div>
 	
 	<div style="width:80%;float:left;">

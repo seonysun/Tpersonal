@@ -4,6 +4,8 @@ import com.sist.vo.*;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -88,10 +90,47 @@ public interface AdminMapper {
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
 			+ "FROM ch_classdetail_2_3 "
-			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
 			+ "ORDER BY cno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
-	public List<ClassDetailVO> tutorClassList(Map map);
+	public List<ClassDetailVO> tutornullClassList(Map map);
+
+//	@Results({
+//		@Result(property = "tvo.tno", column = "tno"),
+//		@Result(property = "tvo.id", column = "id")
+//	})
+//	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,num "
+//			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
+//			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+//			+ "FROM ch_classdetail_2_3 cd, ch_tutor_2_3 ct "
+//			+ "WHERE cd.tno=ct.tno AND ct.id=#{id} "
+//			+ "ORDER BY cno)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+//	public List<ClassDetailVO> tutorClassList(Map map);
+
+//	@Results({
+//		@Result(property = "tvo.tno", column = "tno"),
+//		@Result(property = "tvo.id", column = "id")
+//	})
+//	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+//			+ "FROM ch_classdetail_2_3 cd, ch_tutor_2_3 ct "
+//			+ "WHERE cd.tno=ct.tno AND ct.id=#{id} "
+//			+ "ORDER BY cno")
+//	public List<ClassDetailVO> tutorClassList(String id);
+
+//	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,num "
+//			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
+//			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+//			+ "FROM ch_classdetail_2_3 "
+//			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
+//			+ "ORDER BY cno)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+//	public List<ClassDetailVO> classList(Map map);
+	
+	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+			+ "FROM ch_classdetail_2_3 "
+			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
+			+ "ORDER BY cno")
+	public List<ClassDetailVO> tutorClassList(String id);
 	
 	@Select("SELECT COUNT(*) FROM ch_classdetail_2_3 "
 			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id})")

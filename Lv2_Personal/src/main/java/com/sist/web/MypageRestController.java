@@ -21,16 +21,16 @@ public class MypageRestController {
 	}
 	
 	@GetMapping(value = "mypage/stext_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String stext_vue(int page) {
-		Map map=new HashMap();
-		map.put("start", (page*10)-9);
-		map.put("end", page*10);
-		map.put("id", "hong@naver.com");
-		List<TextVO> list=dao.myTextsList(map);
-		int totalpage=dao.stextTotalPage(map);
+	public String stext_vue(String id) {
+//		Map map=new HashMap();
+//		map.put("start", (page*10)-9);
+//		map.put("end", page*10);
+//		map.put("id", id);
+		List<TextVO> list=dao.myTextsList(id);
+//		int totalpage=dao.stextTotalPage(map);
 		
 		JSONArray arr=new JSONArray();
-		int i=0;
+//		int i=0;
 		for(TextVO vo:list) {
 			JSONObject obj=new JSONObject();
 			obj.put("tno", vo.getTno());
@@ -40,27 +40,28 @@ public class MypageRestController {
 			obj.put("receiver", vo.getReceiver());
 			obj.put("dbday", vo.getDbday());
 			obj.put("recvday", vo.getRecvday());
-			if(i==0) {
-				obj.put("curpage", page);
-				obj.put("totalpage", totalpage);
-			}
-			i++;
+			obj.put("ok", vo.getOk());
+//			if(i==0) {
+//				obj.put("curpage", page);
+//				obj.put("totalpage", totalpage);
+//			}
+//			i++;
 			arr.add(obj);
 		}
 		return arr.toJSONString();
 	}
 	
 	@GetMapping(value = "mypage/rtext_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String rtext_vue(int page) {
-		Map map=new HashMap();
-		map.put("start", (page*10)-9);
-		map.put("end", page*10);
-		map.put("receiver", "떡볶이처돌이");
-		List<TextVO> list=dao.myTextrList(map);
-		int totalpage=dao.rtextTotalPage(map);
+	public String rtext_vue(String receiver) {
+//		Map map=new HashMap();
+//		map.put("start", (page*10)-9);
+//		map.put("end", page*10);
+//		map.put("receiver", receiver);
+		List<TextVO> list=dao.myTextrList(receiver);
+//		int totalpage=dao.rtextTotalPage(map);
 		
 		JSONArray arr=new JSONArray();
-		int i=0;
+//		int i=0;
 		for(TextVO vo:list) {
 			JSONObject obj=new JSONObject();
 			obj.put("tno", vo.getTno());
@@ -70,11 +71,12 @@ public class MypageRestController {
 			obj.put("receiver", vo.getReceiver());
 			obj.put("dbday", vo.getDbday());
 			obj.put("recvday", vo.getRecvday());
-			if(i==0) {
-				obj.put("curpage", page);
-				obj.put("totalpage", totalpage);
-			}
-			i++;
+			obj.put("ok", vo.getOk());
+//			if(i==0) {
+//				obj.put("curpage", page);
+//				obj.put("totalpage", totalpage);
+//			}
+//			i++;
 			arr.add(obj);
 		}
 		return arr.toJSONString();
@@ -92,5 +94,55 @@ public class MypageRestController {
 		obj.put("dbday", vo.getDbday());
 		obj.put("recvday", vo.getRecvday());
 		return obj.toJSONString();
+	}
+	
+	@GetMapping(value = "mypage/class_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String class_list_vue(int page, String id) {
+		Map map=new HashMap();
+		map.put("start", (page*3)-2);
+		map.put("end", page*3);
+		map.put("id", id);
+		List<ReserveVO> list=dao.myReserveList(map);
+		int totalpage=dao.myReserveCount(map);
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(ReserveVO vo:list) {
+			JSONObject obj=new JSONObject();
+			obj.put("id", vo.getId());
+			obj.put("crno", vo.getCrno());
+			obj.put("cno", vo.getCno());
+			obj.put("inwon", vo.getInwon());
+			obj.put("has_schedule", vo.getHas_schedule());
+			obj.put("cdate", vo.getCdate());
+			obj.put("ctime", vo.getCtime());
+			obj.put("msg", vo.getMsg());
+			if(i==0) {
+				obj.put("curpage", page);
+				obj.put("totalpage", totalpage);
+			}
+			i++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	
+	@GetMapping(value = "mypage/jjim_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String jjim_list_vue(int page) {
+		return "";
+	}
+	
+	@GetMapping(value = "mypage/commu_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String commu_list_vue(int page) {
+		return "";
+	}
+	
+	@GetMapping(value = "mypage/reply_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String reply_list_vue(int page) {
+		return "";
+	}
+	
+	@GetMapping(value = "mypage/review_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String review_list_vue(int page) {
+		return "";
 	}
 }
