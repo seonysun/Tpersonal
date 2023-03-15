@@ -96,8 +96,8 @@ public class MypageRestController {
 		return obj.toJSONString();
 	}
 	
-	@GetMapping(value = "mypage/class_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String class_list_vue(int page, String id) {
+	@GetMapping(value = "mypage/reserve_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String reserve_list_vue(int page, String id) {
 		Map map=new HashMap();
 		map.put("start", (page*3)-2);
 		map.put("end", page*3);
@@ -112,10 +112,11 @@ public class MypageRestController {
 			obj.put("crno", vo.getCrno());
 			obj.put("cno", vo.getCno());
 			obj.put("inwon", vo.getInwon());
-			obj.put("has_schedule", vo.getHas_schedule());
-			obj.put("cdate", vo.getCdate());
-			obj.put("ctime", vo.getCtime());
-			obj.put("msg", vo.getMsg());
+			obj.put("schedule", vo.getSchedule());
+			obj.put("place", vo.getPlace());
+			obj.put("totalprice", vo.getTotalprice());
+			obj.put("tutormsg", vo.getTutormsg());
+			obj.put("dbday", vo.getDbday());
 			if(i==0) {
 				obj.put("curpage", page);
 				obj.put("totalpage", totalpage);
@@ -126,23 +127,67 @@ public class MypageRestController {
 		return arr.toJSONString();
 	}
 	
+	@GetMapping(value = "mypage/reserve_class_vue.do", produces = "text/plain;charset=UTF-8")
+	public String reserve_class_vue(int cno) {
+		ClassDetailVO vo=dao.reserveClassDetail(cno);
+		JSONObject obj=new JSONObject();
+		obj.put("cno", vo.getCno());
+		obj.put("title", vo.getTitle());
+		obj.put("image", vo.getImage());
+		obj.put("notice", vo.getNotice());
+		obj.put("perprice", vo.getPerprice());
+		obj.put("jjim_count", vo.getJjim_count());
+		obj.put("cateno", vo.getCateno());
+		obj.put("summary", vo.getSummary());
+		obj.put("tutor_intro", vo.getTutor_intro());
+		obj.put("tutor_info_img", vo.getTutor_info_img());
+		obj.put("tutor_info_nickname", vo.getTutor_info_nickname());
+		obj.put("tutor_info_grade_total", vo.getTutor_info_grade_total());
+		return obj.toJSONString();
+	}
+	
 	@GetMapping(value = "mypage/jjim_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String jjim_list_vue(int page) {
 		return "";
 	}
 	
 	@GetMapping(value = "mypage/commu_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String commu_list_vue(int page) {
+	public String commu_list_vue(int page, String id) {
+		Map map=new HashMap();
+		map.put("start", (page*3)-2);
+		map.put("end", page*3);
+		map.put("id", id);
+		List<BoardVO> list=dao.myBoardList(map);
+		int totalpage=dao.BoardTotalPage(map);
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(BoardVO vo:list) {
+			JSONObject obj=new JSONObject();
+			obj.put("bno", vo.getBno());
+			obj.put("btype", vo.getBtype());
+			obj.put("id", vo.getId());
+			obj.put("title", vo.getTitle());
+			obj.put("content", vo.getContent());
+			obj.put("dbday", vo.getDbday());
+			obj.put("hit", vo.getHit());
+			obj.put("tag", vo.getTag());
+			if(i==0) {
+				obj.put("curpage", page);
+				obj.put("totalpage", totalpage);
+			}
+			i++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	
+	@GetMapping(value = "mypage/review_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String review_list_vue(int page) {
 		return "";
 	}
 	
 	@GetMapping(value = "mypage/reply_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String reply_list_vue(int page) {
-		return "";
-	}
-	
-	@GetMapping(value = "mypage/review_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String review_list_vue(int page) {
 		return "";
 	}
 }

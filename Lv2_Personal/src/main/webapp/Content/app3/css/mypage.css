@@ -89,6 +89,8 @@
 	font-size: 10px;
 	padding: 5px 7px;;
 }
+
+/* 메뉴 */
 .my_li {
 	padding-bottom: 15px;
 }
@@ -138,6 +140,8 @@
 	cursor: pointer;
 	font-weight: bold;
 }
+
+/* 마이페이지 홈 */
 .my-card{
 	height: 256px;
 	margin: 5px;
@@ -168,6 +172,7 @@
 /* jjim */
 .container .class-box {
     border-bottom: 1px solid #cccfd3;
+    display: block;
 }
 
 .container .class-box .class-info {
@@ -451,33 +456,33 @@
   height: 100%;
 }
 
-.tutee_list .thumb_box .reward_badge {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  width: auto;
-  height: 22px;
-  padding: 0 10px 0 23px;
-  border-radius: 22px;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 22px;
-  color: #000;
-  background-repeat: no-repeat;
-  background-position: 3px center;
-  background-size: 17px;
-}
+/* .tutee_list .thumb_box .reward_badge { */
+/*   position: absolute; */
+/*   left: 12px; */
+/*   bottom: 12px; */
+/*   width: auto; */
+/*   height: 22px; */
+/*   padding: 0 10px 0 23px; */
+/*   border-radius: 22px; */
+/*   font-weight: 500; */
+/*   font-size: 11px; */
+/*   line-height: 22px; */
+/*   color: #000; */
+/*   background-repeat: no-repeat; */
+/*   background-position: 3px center; */
+/*   background-size: 17px; */
+/* } */
 
-.tutee_list .thumb_box .reward_badge.year {
-  left: 10px;
-  bottom: 8px;
-  width: 31px;
-  height: 31px;
-  padding: 0;
-  border-radius: 0;
-  background-position: center;
-  background-size: cover;
-}
+/* .tutee_list .thumb_box .reward_badge.year { */
+/*   left: 10px; */
+/*   bottom: 8px; */
+/*   width: 31px; */
+/*   height: 31px; */
+/*   padding: 0; */
+/*   border-radius: 0; */
+/*   background-position: center; */
+/*   background-size: cover; */
+/* } */
 
 .tutee_list .text_box {
   padding: 12px 16px 15px;

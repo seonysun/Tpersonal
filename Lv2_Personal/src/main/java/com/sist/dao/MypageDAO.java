@@ -39,11 +39,30 @@ public class MypageDAO {
 		mapper.textInsert(vo);
 	}
 	
-	//내 강의
+	//강의 신청 목록
 	public List<ReserveVO> myReserveList(Map map){
 		return mapper.myReserveList(map);
 	}
 	public int myReserveCount(Map map) {
 		return mapper.myReserveCount(map);
+	}
+	public ReserveVO myReserveDetail(int crno) {
+		return mapper.myReserveDetail(crno);
+	}
+	
+	//신청 강의 상세
+	public int[] reserveClassList(String id) {
+		return mapper.reserveClassList(id);
+	}
+	public ClassDetailVO reserveClassDetail(int cno) {
+		return mapper.reserveClassDetail(cno);
+	}
+	
+	//커뮤니티
+	public List<BoardVO> myBoardList(Map map){
+		return mapper.myBoardList(map);
+	}
+	public int BoardTotalPage(Map map) {
+		return mapper.BoardTotalPage(map);
 	}
 }

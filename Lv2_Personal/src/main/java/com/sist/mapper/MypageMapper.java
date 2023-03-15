@@ -66,10 +66,10 @@ public interface MypageMapper {
 			+ "VALUES(#{tno},#{id},#{msg},#{receiver},sysdate,'n',null,#{nickname})")
 	public void textInsert(TextVO vo);
 	
-	//강의실
-	@Select("SELECT crno,cno,inwon,id,has_schedule,cdate,ctime,msg,num "
-			+ "FROM (SELECT crno,cno,inwon,id,has_schedule,cdate,ctime,msg,rownum as num "
-			+ "FROM (SELECT crno,cno,inwon,id,has_schedule,cdate,ctime,msg "
+	//강의 신청 목록
+	@Select("SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
+			+ "FROM (SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,regdate,rownum as num "
+			+ "FROM (SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,regdate "
 			+ "FROM ch_reserve_2_3 "
 			+ "WHERE id=#{id} "
 			+ "ORDER BY crno)) "
@@ -83,6 +83,15 @@ public interface MypageMapper {
 	@Select("SELECT * FROM ch_reserve_2_3 "
 			+ "WHERE crno=#{crno}")
 	public ReserveVO myReserveDetail(int crno);
+	
+	//신청 강의 상세
+	@Select("SELECT cno FROM ch_reserve_2_3 "
+			+ "WHERE id=#{id}")
+	public int[] reserveClassList(String id);
+	
+	@Select("SELECT * FROM ch_classdetail_2_3 "
+			+ "WHERE cno=#{cno}")
+	public ClassDetailVO reserveClassDetail(int cno);
 	
 	//질문
 	@Select("SELECT * FROM ch_question_2_3 "
@@ -99,9 +108,18 @@ public interface MypageMapper {
 	public List<JJimVO> myJjimList(Map map);
 	
 	//커뮤니티
+	@Select("SELECT bno,btype,id,title,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,tag,num "
+			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag,rownum as num "
+			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag "
+			+ "FROM ch_board_2_3 "
+			+ "WHERE id=#{id} "
+			+ "ORDER BY bno)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<BoardVO> myBoardList(Map map);
+	
 	@Select("SELECT * FROM ch_board_2_3 "
 			+ "WHERE id=#{id}")
-	public List<BoardVO> myBoardList(Map map);
+	public int BoardTotalPage(Map map);
 	
 	//리뷰
 	@Select("SELECT * FROM ch_review_2_3 "

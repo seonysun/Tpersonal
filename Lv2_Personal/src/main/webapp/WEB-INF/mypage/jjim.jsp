@@ -24,17 +24,16 @@
 <div class="container">
 	<jsp:include page="../mypage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
+	<div style="width:20%;height:100%;padding:5px;float:left">
+		<jsp:include page="../mypage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;">
+	<div style="width:80%;float:left;padding:20px">
 	  <div class=rows>
-			<div class="class-box">
+			<div class="class-box" v-for="vo in jjim_list">
 				<div class="class-info " style="position: relative;">
-					<a href="../class/class_detail.do?cno=">
-						<div class="image" style="background-image: url()">
-							<span class="reward_badge" style="background-image: url('https://s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Images/1361ccc0c7f91ae93dabd76286640f38961472ec.png'); background-color: #71F4FF;">리뷰 100건+@</span>
-						</div>
+					<a :href="'../class/class_detail.do?cno='+vo.cno">
+						<img class="image" src="#">
 					</a>
 					<div class="information-box">
 						<p><font class="pink">7,871명</font>이 찜했습니다.</p>

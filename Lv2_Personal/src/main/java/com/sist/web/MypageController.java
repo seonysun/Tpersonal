@@ -10,19 +10,19 @@ public class MypageController {
 		return "mypage/main";
 	}
 	
-	@GetMapping("mypage/myjjim.do")
-	public String mypage_jjim() {
-		return "mypage/myjjim";
-	}
-	
-	@GetMapping("mypage/myclass.do")
+	@GetMapping("mypage/class.do")
 	public String mypage_class() {
-		return "mypage/myclass";
+		return "mypage/class";
 	}
 	
-	@GetMapping("mypage/myquestion.do")
+	@GetMapping("mypage/question.do")
 	public String mypage_question() {
-		return "mypage/myquestion";
+		return "mypage/question";
+	}
+	
+	@GetMapping("mypage/jjim.do")
+	public String mypage_jjim() {
+		return "mypage/jjim";
 	}
 	
 	@GetMapping("mypage/community.do")

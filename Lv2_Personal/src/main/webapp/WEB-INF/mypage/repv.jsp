@@ -24,17 +24,13 @@
 <div class="container">
 	<jsp:include page="../mypage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
-
+	<div style="width:20%;height:100%;padding:5px;float:left">
+		<jsp:include page="../mypage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;padding-left:20px">
+	<div style="width:80%;float:left;padding-left:20px;margin-top:10px">
 	  <div class="rows rowss">
-		<div class="mintBtn_m" style="float: right">
-			<a href="../board/board_insert.do?btype=3">공지 등록</a>
-		</div>
-		<div style="display: inline-block;height: 30px"></div>
-		<div style="display: inline-block">
+		<div>
 			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="15%" class="text-center">번호</th>
@@ -64,7 +60,7 @@
 </div>
 <script>
 	new Vue({
-		el:'.container',
+		el:'.rowss',
 		data:{
 			reply_list:[],
 			curpage:1,

@@ -24,19 +24,16 @@
 <div class="container">
 	<jsp:include page="../mypage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
-	  
+	<div style="width:20%;height:100%;padding:5px;float:left">
+		<jsp:include page="../mypage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;padding-left:20px">
+	<div style="width:80%;float:left;padding-left:20px;margin-top:10px">
 	  <div class="rows rowss">
-		<div class="mintBtn_m" style="float: right">
-			<a href="../board/board_insert.do?btype=3">공지 등록</a>
-		</div>
-		<div style="display: inline-block;height: 30px"></div>
-		<div style="display: inline-block">
+		<div>
 			<table class="table" style="table-layout: fixed;">
 				<tr>
+					<input type=hidden size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
 					<th width="15%" class="text-center">번호</th>
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">작성일</th>
@@ -64,9 +61,10 @@
 </div>
 <script>
 	new Vue({
-		el:'.container',
+		el:'.rowss',
 		data:{
 			commu_list:[],
+			sessionId:'',
 			curpage:1,
 			totalpage:0
 		},
@@ -75,10 +73,12 @@
 		},
 		methods:{
 			send:function(){
+				this.sessionId=this.$refs.id.value
 				let _this=this
 				axios.get("http://localhost/web/mypage/commu_list_vue.do",{
 					params:{
-						page:this.curpage
+						page:this.curpage,
+						id:this.sessionId
 					}
 				}).then(function(response){
 					console.log(response.data)
