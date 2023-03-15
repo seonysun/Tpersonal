@@ -14,6 +14,39 @@ public class AdminRestController {
 	@Autowired
 	private AdminDAO dao;
 	
+	@GetMapping(value = "adminpage/faq_list_vue.do", produces = "text/plain;charset=UTF-8")
+	public String faq_list_vue(int page) {
+		Map map=new HashMap();
+		map.put("start", (page*10)-9);
+		map.put("end", page*10);
+		List<FAQVO> list=dao.faqList(map);
+		int totalpage=dao.faqTotalPage();
+		
+		final int BLOCK=5;
+		int startpage=(page-1)/BLOCK*BLOCK+1;
+		int endpage=(page-1)/BLOCK*BLOCK+BLOCK;
+		if(endpage>totalpage) endpage=totalpage;
+		
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(FAQVO vo:list) {
+			JSONObject obj=new JSONObject();
+			obj.put("no", vo.getNo());
+			obj.put("cate_no", vo.getCate_no());
+			obj.put("subject", vo.getSubject());
+			obj.put("content", vo.getContent());
+			if(i==0) {
+				obj.put("curpage", page);
+				obj.put("totalpage", totalpage);
+				obj.put("startpage", startpage);
+				obj.put("endpage", endpage);
+			}
+			i++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	
 	@GetMapping(value = "adminpage/notice_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String notice_list_vue(int page) {
 		Map map=new HashMap();
@@ -81,6 +114,11 @@ public class AdminRestController {
 		}
 		return arr.toJSONString();
 	}
+
+	@GetMapping(value = "adminpage/class_ok_vue.do", produces = "text/plain;charset=UTF-8")
+	public void class_ok_vue(int cno) {
+		dao.classConfirm(cno);
+	}
 	
 	@GetMapping(value = "adminpage/member_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String member_list_vue(int page) {
@@ -120,6 +158,7 @@ public class AdminRestController {
 		obj.put("nickname", vo.getNickname());
 		obj.put("image", vo.getImage());
 		obj.put("tutor", vo.getTutor());
+		obj.put("intro", vo.getIntro());
 		return obj.toJSONString();
 	}
 	
@@ -168,7 +207,7 @@ public class AdminRestController {
 		map.put("end", 10);
 		map.put("id", id);
 		List<ClassDetailVO> list=dao.tutorClassList(id);
-		int count=dao.tutorClassCount();
+		int count=dao.tutorClassCount(id);
 		int totalpage=(int)Math.ceil(count/10.0);
 		
 		JSONArray arr=new JSONArray();

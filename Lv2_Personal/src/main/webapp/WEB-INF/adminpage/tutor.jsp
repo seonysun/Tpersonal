@@ -19,7 +19,7 @@
 <div class="container">
 	<jsp:include page="../adminpage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
+	<div style="width:20%;height:100%;padding:5px;float:left">
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	

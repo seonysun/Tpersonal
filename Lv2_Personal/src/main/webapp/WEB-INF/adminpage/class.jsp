@@ -19,7 +19,7 @@
 <div class="container">
 	<jsp:include page="../adminpage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
+	<div style="width:20%;height:100%;padding:5px;float:left">
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
@@ -32,7 +32,7 @@
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">장소</th>
 					<th width="10%" class="text-center">가격</th>
-					<th width="15%" class="text-center">수정/삭제</th>
+					<th width="15%" class="text-center">승인</th>
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in class_list">
 					<td width="15%" class="text-center origin">
@@ -42,8 +42,7 @@
 					<td width="15%" class="text-center origin">{{vo.location}}</td>
 					<td width="10%" class="text-center origin">{{vo.perprice}}</td>
 					<td width="15%" class="text-center origin">
-						<span><img src="#" style="height:20px;"></span>
-						<span><img src="#" style="height:20px;"></span>
+						<span v-on:click="classcon(vo.cno)"><img src="#" style="height:20px;"></span>
 					</td>
 				</tr>
 			</table>
@@ -75,6 +74,21 @@
 					_this.curpage=response.data[0].curpage
 					_this.totalpage=response.data[0].totalpage
 				})
+			},
+			pageChange:function(page){
+				this.curpage=page
+				this.send()
+			},
+			classcon:function(cno){
+				if(confirm('선택한 수업을 메인에 노출하시겠습니까?\n클릭 즉시 강의 리스트가 업데이트됩니다')){
+					axios.get("http://localhost/web/adminpage/class_ok_vue.do",{
+						params:{
+							cno:cno
+						}
+					}).then(function(response){
+						location.href="../adminpage/class.do"
+					})
+				}
 			}
 		}
 	})

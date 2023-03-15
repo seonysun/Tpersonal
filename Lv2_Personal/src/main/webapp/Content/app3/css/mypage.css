@@ -127,6 +127,7 @@
 	color: black;
 	font-size: 12px;
 	margin-left: 20px;
+	margin-bottom: 3px;
 }
 .my_menu2:hover {
 	cursor: pointer;

@@ -16,18 +16,23 @@ public class AdminpageController {
 //		return "adminpage/main";
 //	}
 	
+	@GetMapping("adminpage/notice.do")
+	public String adminpage_notice() {
+		return "adminpage/notice";
+	}
+	
 	@GetMapping("adminpage/class.do")
 	public String adminpage_class() {
 		return "adminpage/class";
 	}
 	
-	@GetMapping("adminpage/tutor.do")
-	public String adminpage_tutor() {
-		return "adminpage/tutor";
-	}
-	
 	@GetMapping("adminpage/member.do")
 	public String adminpage_member() {
 		return "adminpage/member";
+	}
+	
+	@GetMapping("adminpage/tutor.do")
+	public String adminpage_tutor() {
+		return "adminpage/tutor";
 	}
 }

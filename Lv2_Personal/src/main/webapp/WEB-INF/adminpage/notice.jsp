@@ -38,31 +38,30 @@
 					<th width="10%" class="text-center">조회수</th>
 					<th width="15%" class="text-center">수정/삭제</th>
 				</tr>
-				<tr style="vertical-align: middle;" v-for="vo in faq_list">
-					<td width="10%" class="text-center origin">{{vo.ano}}</td>
-					<td width="45%" class="text-center origin"><a :href="'../faq/faq_detail.do?ano='+vo.ano">{{vo.subject}}</a></td>
+				<tr style="vertical-align: middle;" v-for="vo in notice_list">
+					<td width="10%" class="text-center origin">{{vo.bno}}</td>
+					<td width="45%" class="text-center origin"><a :href="'../board/board_detail.do?bno='+vo.bno">{{vo.title}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
 						<span>
-							<a :href="'../faq/faq_update.do?ano='+vo.ano"><img src="#" style="height:20px;"></a>
+							<a :href="'../board/board_update.do?bno='+vo.bno"><img src="#" style="height:20px;"></a>
 						</span>
 						<span>
-							<img src="#" style="height:20px;" v-on:click="faqDelete(vo.ano)">
+							<img src="#" style="height:20px;" v-on:click="boardDelete(vo.bno)">
 						</span>
 					</td>
 				</tr>
 			</table>
 		</div>
 	  </div>
-<%-- 		<jsp:include page="${admin_jsp }"></jsp:include> --%>
 	</div>
 </div>
 <script>
 	new Vue({
 		el:'.container',
 		data:{
-			faq_list:[],
+			notice_list:[],
 			curpage:1,
 			totalpage:0,
 			startpage:0,
@@ -74,13 +73,13 @@
 		methods:{
 			send:function(){
 				let _this=this
-				axios.get("http://localhost/web/adminpage/faq_list_vue.do",{
+				axios.get("http://localhost/web/adminpage/notice_list_vue.do",{
 					params:{
 						page:this.curpage
 					}
 				}).then(function(response){
 					console.log(response.data)
-					_this.faq_list=response.data
+					_this.notice_list=response.data
 					_this.curpage=response.data[0].curpage
 					_this.totalpage=response.data[0].totalpage
 					_this.startpage=response.data[0].startpage
@@ -95,27 +94,18 @@
 				this.curpage=this.endpage+1
 				this.send()
 			},
-// 			range:function(min, max){
-// 				let array=[],
-// 				j=0
-// 				for(let i=min;i<=max;i++){
-// 					array[j]=i
-// 					j++
-// 				}
-// 				return array
-// 			},
 			pageChange:function(page){
 				this.curpage=page
 				this.send()
 			},
-			faqDelete:function(ano){
+			boardDelete:function(bno){
 				if(confirm('정말로 삭제하시겠습니까?\n삭제된 항목은 복구되지 않습니다')){
-					axios.get('http://localhost/web/faq/faq_delete_vue.do',{
+					axios.get('http://localhost/web/board/board_delete_vue.do',{
 						params:{
-							ano:ano
+							bno:bno
 						}
 					}).then(function(response){
-						location.href="../adminpage/main.do"
+						location.href="../adminpage/notice.do"
 					})
 				}
 			}

@@ -20,7 +20,7 @@
 <div class="container">
 	<jsp:include page="../adminpage/header.jsp"></jsp:include>
 	
-	<div style="width:20%;height:100%;padding:5px;float:left;">
+	<div style="width:20%;height:100%;padding:5px;float:left">
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
@@ -61,20 +61,28 @@
 		  <div>
 		  	<table class=table>
 		  	  <tr>
-		  	  	<td width=10%>이름</td>
-		  	  	<td width=17%>{{member_detail.name}}</td>
-		  	  	<td width=8%>ID</td>
-		  	  	<td width=35%>{{member_detail.id}}</td>
-		  	  	<td width=12%>닉네임</td>
-		  	  	<td width=18%>{{member_detail.nickname}}</td>
+		  	  	<td width=20%>이름</td>
+		  	  	<td width=80%>{{member_detail.name}}</td>
 		  	  </tr>
 		  	  <tr>
-		  	  	<td colspan=6>
+		  	  	<td width=20%>ID</td>
+		  	  	<td width=80%>{{member_detail.id}}</td>
+		  	  </tr>
+		  	  <tr>
+		  	  	<td width=20%>닉네임</td>
+		  	  	<td width=80%>{{member_detail.nickname}}</td>
+		  	  </tr>
+		  	  <tr>
+		  	  	<td width=20%>전화번호</td>
+		  	  	<td width=80%>{{member_detail.tel}}</td>
+		  	  </tr>
+		  	  <tr>
+		  	  	<td colspan=2 class=text-center>
 		  	  		<img :src="member_detail.image">
 		  	  	</td>
 		  	  </tr>
 		  	  <tr>
-		  	  	<td colspan=6>
+		  	  	<td colspan=2>
 		  	  		<p>{{member_detail.intro}}</p>
 		  	  	</td>
 		  	  </tr>

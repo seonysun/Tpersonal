@@ -12,6 +12,14 @@ public class AdminDAO {
 	@Autowired
 	private AdminMapper mapper;
 	
+	//FAQ 목록
+	public List<FAQVO> faqList(Map map){
+		return mapper.faqList(map);
+	}
+	public int faqTotalPage() {
+		return mapper.faqTotalPage();
+	}
+	
 	//공지 목록
 	public List<BoardVO> noticeList(Map map){
 		return mapper.noticeList(map);
@@ -58,16 +66,16 @@ public class AdminDAO {
 	public int tutorTotalPage() {
 		return mapper.tutorTotalPage();
 	}
+	public List<ClassDetailVO> tutorClassList(String id){
+		return mapper.tutorClassList(id);
+	}
+	public int tutorClassCount(String id) {
+		return mapper.tutorClassCount(id);
+	}
 	public List<ClassDetailVO> tutornullClassList(Map map){
 		return mapper.tutornullClassList(map);
 	}
 //	public List<ClassDetailVO> tutorClassList(Map map){
 //		return mapper.tutorClassList(map);
 //	}
-	public List<ClassDetailVO> tutorClassList(String id){
-		return mapper.tutorClassList(id);
-	}
-	public int tutorClassCount() {
-		return mapper.tutorClassCount();
-	}
 }

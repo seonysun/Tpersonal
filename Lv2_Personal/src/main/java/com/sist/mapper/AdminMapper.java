@@ -10,6 +10,15 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 public interface AdminMapper {
+	//FAQ 목록
+	@Select("SELECT * "
+			+ "FROM ch_faq_2_3 "
+			+ "ORDER BY ano")
+	public List<FAQVO> faqList(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_faq_2_3")
+	public int faqTotalPage();
+	
 	//공지 목록
 	@Select("SELECT bno,btype,id,title,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,tag,num "
 			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag,rownum as num "
@@ -86,6 +95,16 @@ public interface AdminMapper {
 			+ "WHERE admin='n' AND tutor='y'")
 	public int tutorTotalPage();
 	
+	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
+			+ "FROM ch_classdetail_2_3 "
+			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
+			+ "ORDER BY cno")
+	public List<ClassDetailVO> tutorClassList(String id);
+	
+	@Select("SELECT COUNT(*) FROM ch_classdetail_2_3 "
+			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id})")
+	public int tutorClassCount(String id);
+	
 	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,num "
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname,rownum as num "
 			+ "FROM (SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
@@ -125,14 +144,4 @@ public interface AdminMapper {
 //			+ "ORDER BY cno)) "
 //			+ "WHERE num BETWEEN #{start} AND #{end}")
 //	public List<ClassDetailVO> classList(Map map);
-	
-	@Select("SELECT cno,title,image,location,perprice,jjim_count,cateno,detail_cateno,onoff,tutor_info_nickname "
-			+ "FROM ch_classdetail_2_3 "
-			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id}) "
-			+ "ORDER BY cno")
-	public List<ClassDetailVO> tutorClassList(String id);
-	
-	@Select("SELECT COUNT(*) FROM ch_classdetail_2_3 "
-			+ "WHERE tno=(SELECT tno FROM ch_tutor_2_3 WHERE id=#{id})")
-	public int tutorClassCount();
 }
