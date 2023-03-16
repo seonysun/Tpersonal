@@ -94,8 +94,10 @@
 					  	  </tr>
 					  	  <tr>
 					  	  	<td colspan=2 class=text-center>
-					  	  		<input type=button value="전송" class="mintBtn" v-on:click="textsend()">
-					  	  		<input type=button value="취소" class="mintBtn" v-on:click="hide()">
+					  	  		<b-button variant="info" inline @click="textsend">전송</b-button>
+		    					<b-button variant="outline-info" inline @click="hide">취소</b-button>
+<!-- 					  	  		<input type=button value="전송" class="mintBtn" v-on:click="textsend()"> -->
+<!-- 					  	  		<input type=button value="취소" class="mintBtn" v-on:click="hide()"> -->
 					  	  	</td>
 					  	  </tr>
 						</table>
@@ -119,8 +121,10 @@
 					  	  </tr>
 					  	  <tr>
 					  	  	<td colspan=2 class=text-center>
-					  	  		<input type=button value="삭제" class="mintBtn" v-on:click="textdelete(tdetail.tno)">
-					  	  		<input type=button value="닫기" class="mintBtn" v-on:click="hide()">
+					  	  		<b-button variant="info" inline @click="textdelete(tdetail.tno)">삭제</b-button>
+		    					<b-button variant="outline-info" inline @click="hide">닫기</b-button>
+<!-- 					  	  		<input type=button value="삭제" class="mintBtn" v-on:click="textdelete(tdetail.tno)"> -->
+<!-- 					  	  		<input type=button value="닫기" class="mintBtn" v-on:click="hide()"> -->
 					  	  	</td>
 					  	  </tr>
 						</table>

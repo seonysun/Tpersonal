@@ -54,7 +54,7 @@ public interface MypageMapper {
 	
 	//쪽지 확인
 	@Update("UPDATE ch_text_2_3 "
-			+ "SET ok='y' "
+			+ "SET ok='y',recvdate=sysdate "
 			+ "WHERE tno=#{tno}")
 	public void myTextCheck(int tno);
 	
