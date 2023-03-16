@@ -10,11 +10,6 @@ public class AdminpageController {
 	public String adminpage_main() {
 		return "adminpage/main";
 	}
-//	@GetMapping("adminpage/main.do")
-//	public String adminpage_main(Model model) {
-//		model.addAttribute("admin_jsp", "../adminpage/home.jsp");
-//		return "adminpage/main";
-//	}
 	
 	@GetMapping("adminpage/notice.do")
 	public String adminpage_notice() {

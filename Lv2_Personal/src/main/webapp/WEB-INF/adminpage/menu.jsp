@@ -10,12 +10,12 @@
 	  <div class=rows>
 	  	<div style="height:100px;margin:5px;padding:10px;border:2px solid #45c5c5;">
 	  		<div style="height:50px;">
-	  	  		<img src="${sessionScope.mvo.image }" style="height: 40px;border-radius: 50px">
-	  	  		<span>${sessionScope.mvo.nickname }</span>
+	  	  		<img src="${sessionScope.mvo.image }" style="height: 45px;border-radius: 50px">
+	  	  		<span style="line-height: 45px;margin: 10px">${sessionScope.mvo.nickname }</span>
 	  		</div>
 	  		<div style="height:30px;text-align:center;margin:5px">
+		  		<a href="../mypage/profileUpdate.do"><span class="mintBtn">정보수정</span></a>&nbsp;&nbsp;
 		  		<a href="../member/logout.do"><span class="mintBtn">로그아웃</span></a>
-		  		<a href="#"><span class="mintBtn">정보수정</span></a>
 	  		</div>
 	  	</div>
 	  </div>

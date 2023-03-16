@@ -48,6 +48,34 @@
 		  	<td width=80%>{{cvo.perprice}}</td>
 		  </tr>
 		</table>
+<!-- 	  <div> -->
+<!-- 			  <ul class="tutee_list swiper-wrapper"> -->
+<!-- 			    <li class="swiper-slide" style="width: 300px" v-for="tvo in tutor_class"> -->
+<!-- 			      <div class="thumb_box"> -->
+<!-- 			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="tvo.image"></a> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="text_box"> -->
+<!-- 			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{tvo.title}}</a> -->
+<!-- 				      <div> -->
+<!-- 				      	<table class="table text-center"> -->
+<!-- 				      	  <tr> -->
+<!-- 				      	  	<th width=20%>일정</th> -->
+<!-- 				      	  	<td width=80%>{{tvo.schedule}}</td> -->
+<!-- 				      	  </tr> -->
+<!-- 				      	  <tr> -->
+<!-- 				      	  	<th width=20%>장소</th> -->
+<!-- 				      	  	<td width=80%>{{tvo.location}}</td> -->
+<!-- 				      	  </tr> -->
+<!-- 				      	  <tr> -->
+<!-- 				      	  	<th width=20%>가격</th> -->
+<!-- 				      	  	<td width=70%>{{tvo.perprice}}원</td> -->
+<!-- 				      	  </tr> -->
+<!-- 				      	</table> -->
+<!-- 				      </div> -->
+<!-- 			      </div> -->
+<!-- 			    </li> -->
+<!-- 			  </ul> -->
+<!-- 	  </div> -->
 	</div>
 </div>
 <script>
@@ -78,9 +106,9 @@
 			+'</tr>'
 			+'<tr>'
 			+'<td class=text-center>'
-			+'<input type=button class="mintBtn" style="width:40px" value="이전" v-on:click="this.$parent.prev">'
-			+' {{curpage}} page / {{totalpage}} pages '
-			+'<input type=button class="mintBtn" style="width:40px" value="다음" v-on:click="this.$parent.next">'
+			+'<span class="mintBtn presspoint" v-on:click="this.$parent.prev">이전</span>'
+			+' {{curpage}} / {{totalpage}} '
+			+'<span class="mintBtn presspoint" v-on:click="this.$parent.next">다음</span>'
 			+'</td>'
 			+'</tr>'
 			+'</table>',
@@ -131,10 +159,6 @@
 					_this.curpage=response.data[0].curpage
 					_this.totalpage=response.data[0].totalpage
 				})
-			},
-			pageChange:function(page){
-				this.curpage=page
-				this.send()
 			},
 			prev:function(){
 				this.curpage=this.curpage>1?this.curpage-1:this.curpage

@@ -145,8 +145,8 @@ public class AdminRestController {
 	@GetMapping(value = "adminpage/member_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String member_list_vue(int page) {
 		Map map=new HashMap();
-		map.put("start", (page*10)-9);
-		map.put("end", page*10);
+		map.put("start", (page*8)-7);
+		map.put("end", page*8);
 		List<MemberVO> list=dao.memberList(map);
 		int totalpage=dao.memberTotalPage();
 		
@@ -197,8 +197,8 @@ public class AdminRestController {
 	@GetMapping(value = "adminpage/tutor_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String tutor_list_vue(int page) {
 		Map map=new HashMap();
-		map.put("start", (page*10)-9);
-		map.put("end", page*10);
+		map.put("start", (page*4)-3);
+		map.put("end", page*4);
 		List<MemberVO> list=dao.tutorList(map);
 		int totalpage=dao.tutorTotalPage();
 		

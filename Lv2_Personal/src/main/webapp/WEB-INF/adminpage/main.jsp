@@ -26,17 +26,17 @@
 	<div style="width:80%;float:left;padding-left:20px;margin-top:-25px">
 	  <div class=rows>
 		<div class="mintBtn_m" style="float: right">
-			<a href="../faq/insert.do">FAQ 등록</a>
+			<a href="../faq/insert.do" style="padding: 0px">FAQ 등록</a>
 		</div>
 		<div style="display: inline-block;height: 30px"></div>
-		<div style="display: inline-block">
+		<div style="display: inline-block;height: 430px">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="15%" class="text-center">번호</th>
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회수</th>
-					<th width="15%" class="text-center">수정/삭제</th>
+					<th width="15%" class="text-center">수정 / 삭제</th>
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in faq_list">
 					<td width="10%" class="text-center origin">{{vo.ano}}</td>
@@ -44,18 +44,28 @@
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
-						<span>
-							<a :href="'../faq/update.do?ano='+vo.ano">수정</a>
+						<span class="presspoint">
+							<a :href="'../faq/update.do?ano='+vo.ano">
+								<img src="../images/up3.png" style="height: 18px;margin: 2px 10px;">
+							</a>
 						</span>
-						<span>
-							<a :href="'../faq/delete.do?ano='+vo.ano">삭제</a>
+						<span class="presspoint">
+							<a :href="'../faq/delete.do?ano='+vo.ano">
+								<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
+							</a>
 						</span>
 					</td>
 				</tr>
 			</table>
 		</div>
+		<div style="height: 10px"></div>
+			<div class="text-center" v-if="totalpage>0">
+	         <span class="mintBtn presspoint" @click="prev()">이전</span>
+		         {{curpage}} / {{totalpage}} 
+	         <span class="mintBtn presspoint" @click="next()">다음</span>
+	      	</div>
+		<div style="height: 20px"></div>
 	  </div>
-<%-- 		<jsp:include page="${admin_jsp }"></jsp:include> --%>
 	</div>
 </div>
 <script>
@@ -88,26 +98,13 @@
 				})
 			},
 			prev:function(){
-				this.curpage=this.startpage-1
-				this.send()
-			},
-			next:function(){
-				this.curpage=this.endpage+1
-				this.send()
-			},
-// 			range:function(min, max){
-// 				let array=[],
-// 				j=0
-// 				for(let i=min;i<=max;i++){
-// 					array[j]=i
-// 					j++
-// 				}
-// 				return array
-// 			},
-			pageChange:function(page){
-				this.curpage=page
-				this.send()
-			}
+		    	this.curpage=this.curpage>1?this.curpage-1:this.curpage
+		        this.send()
+		    },
+		    next:function(){
+		        this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
+		        this.send()               
+		    }
 		}
 	})
 </script>

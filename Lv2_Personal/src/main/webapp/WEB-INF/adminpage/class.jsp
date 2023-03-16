@@ -25,11 +25,11 @@
 	
 	<div style="width:80%;float:left;padding-left:20px">
 	  <div class=rows>
-	  	<p style="height: 30px">
-			튜터들이 <strong>새롭게 등록한 클래스</strong> 목록입니다.<br>
+	  	<p style="height: 25px;margin-top: -25px;font-size: initial;text-align: right">
+			<strong style="color: #45c5c5">승인 대기</strong> 클래스<br>
 			<input type=hidden size=15 class=input-sm ref="sid" value="${sessionScope.mvo.id }">
 		</p>
-		<div>
+		<div style="height: 570px">
 			<div class="class-box" v-for="vo in class_list">
 				<div class="class-info " style="position: relative;padding-top:10px;padding-bottom:10px">
 					<a :href="'../class/class_detail.do?cno='+vo.cno">
@@ -44,21 +44,20 @@
 							<font>수업 장소 : {{vo.location}}</font>
 						</div>
                         <div class="price">
-                        	<font>￦</font>{{vo.perprice}}<span class="hour_unit">/시간</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        	<span class="mintBtn" v-on:click="classcon(vo.cno)">강의 승인</span>
+                        	<font>￦</font>{{vo.perprice}}원<span class="hour_unit">/ 시간</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        	<span class="mintBtn presspoint" id="del" v-on:click="classcon(vo.cno)">승인</span>
                         </div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div style="height: 10px"></div>
-		
-		<div class="text-center" v-if="totalpage>0">
-         <input type="button" class="mintBtn" value="이전" @click="prev()">
-         {{curpage}} / {{totalpage}} 
-         <input type="button" class="mintBtn" value="다음" @click="next()">
-      	</div>
-		<div style="height: 10px"></div>
+			<div class="text-center" v-if="totalpage>0">
+	         <span class="mintBtn presspoint" @click="prev()">이전</span>
+		         {{curpage}} / {{totalpage}} 
+	         <span class="mintBtn presspoint" @click="next()">다음</span>
+	      	</div>
+		<div style="height: 20px"></div>
 	  </div>
 	</div>
 </div>

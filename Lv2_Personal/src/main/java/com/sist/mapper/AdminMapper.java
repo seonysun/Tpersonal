@@ -45,7 +45,7 @@ public interface AdminMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ClassDetailVO> classList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_classdetail_2_3 "
+	@Select("SELECT CEIL(COUNT(*)/4.0) FROM ch_classdetail_2_3 "
 			+ "WHERE ok='n'")
 	public int classTotalPage();
 	
@@ -63,7 +63,7 @@ public interface AdminMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<MemberVO> memberList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_member_2_3 "
+	@Select("SELECT CEIL(COUNT(*)/8.0) FROM ch_member_2_3 "
 			+ "WHERE admin='n'")
 	public int memberTotalPage();
 	
@@ -94,7 +94,7 @@ public interface AdminMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<MemberVO> tutorList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_member_2_3 "
+	@Select("SELECT CEIL(COUNT(*)/4.0) FROM ch_member_2_3 "
 			+ "WHERE admin='n' AND tutor='y'")
 	public int tutorTotalPage();
 	
