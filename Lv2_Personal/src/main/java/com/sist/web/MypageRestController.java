@@ -98,7 +98,6 @@ public class MypageRestController {
 	
 	@GetMapping(value = "mypage/my_reserve_vue.do", produces = "text/plain;charset=UTF-8")
 	public String my_reserve_vue(int page, String id) {
-		System.out.println(id);
 		Map map=new HashMap();
 		map.put("start", (page*3)-2);
 		map.put("end", page*3);
@@ -117,8 +116,15 @@ public class MypageRestController {
 				JSONObject obj=new JSONObject();
 				obj.put("crno", vo.getCrno());
 				obj.put("cno", vo.getCno());
-				obj.put("dvo.title", vo.getDvo().getTitle());
-				obj.put("dvo.image", vo.getDvo().getImage());
+				obj.put("title", vo.getDvo().getTitle());
+				String image=vo.getDvo().getImage();
+				int isize=image.indexOf("^");
+		        if(isize<0) {
+		            image=image;
+		        } else {
+		            image=image.substring(0,image.indexOf("^"));
+		        }
+				obj.put("image", image);
 				obj.put("inwon", vo.getInwon());
 				obj.put("schedule", vo.getSchedule());
 				obj.put("place", vo.getPlace());
@@ -134,11 +140,13 @@ public class MypageRestController {
 			}
 			res=arr.toJSONString();
 		} else {
+			JSONArray arr=new JSONArray();
 			JSONObject obj=new JSONObject();
 			obj.put("curpage", page);
 			obj.put("totalpage", 0);
 			obj.put("count", 0);
-			res=obj.toJSONString();
+			arr.add(obj);
+			res=arr.toJSONString();
 		}
 		return res;
 	}

@@ -24,7 +24,7 @@
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;padding-left:20px">
+	<div style="width:80%;float:left;padding-left:20px;margin-top:10px">
 	  <div class=rows>
 		<div>
 			<table class="table" style="table-layout: fixed;">
@@ -32,8 +32,8 @@
 					<th width="15%" class="text-center">프로필</th>
 					<th width="15%" class="text-center">닉네임</th>
 					<th width="30%" class="text-center">아이디</th>
-					<th width="20%" class="text-center">이름</th>
-					<th width="10%" class="text-center">튜터</th>
+					<th width="15%" class="text-center">이름</th>
+					<th width="15%" class="text-center">튜터승인</th>
 					<th width="10%" class="text-center">관리</th>
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in member_list">
@@ -42,9 +42,9 @@
 					</td>
 					<td width="15%" class="text-center origin">{{vo.nickname}}</td>
 					<td width="30%" class="text-center origin">{{vo.id}}</td>
-					<td width="20%" class="text-center origin">{{vo.name}}</td>
-					<td width="10%" class="text-center origin" v-if="vo.tutor=='y'">튜터</td>
-					<td width="10%" class="text-center origin" v-if="vo.tutor=='n'">
+					<td width="15%" class="text-center origin">{{vo.name}}</td>
+					<td width="15%" class="text-center origin" v-if="vo.tutor=='y'">튜터</td>
+					<td width="15%" class="text-center origin" v-if="vo.tutor=='n'">
 						<span v-on:click="tutorups(vo.id)">학생</span>
 					</td>
 					<td width="10%" class="text-center origin">

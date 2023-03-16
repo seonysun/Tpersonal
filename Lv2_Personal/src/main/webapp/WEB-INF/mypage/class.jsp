@@ -30,7 +30,7 @@
 	
 	<div style="width:80%;float:left;padding-left:20px;padding-top:10px">
 	  <div class="rows rowss">
-		  <p style="height: 40px">
+		  <p style="height: 40px;">
 		  	<strong>신청한 클래스</strong> 목록입니다. 클래스 중에 궁금한 점이 있으면 <strong>Q&amp;A</strong>로 물어보세요.<br>
 			<input type=hidden size=15 class=input-sm ref="sid" value="${sessionScope.mvo.id }">
 		  </p>
@@ -45,10 +45,10 @@
 			  <ul class="tutee_list">
 			    <li v-for="vo in class_list">
 			      <div class="thumb_box">
-			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.dvo.image"></a>
+			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.image"></a>
 			      </div>
 			      <div class="text_box">
-			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{vo.dvo.title}}</a>
+			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{vo.title}}</a>
 	<!-- 			      <div class="course_info"> -->
 	<!-- 			       <p class="tutor"> -->
 	<!-- 			       	<span class="profile"> -->

@@ -74,7 +74,7 @@
 							</b-tabs>
 						</div>
 					</b-sidebar>
-					<b-modal id="text-insert" title="쪽지보내기">
+					<b-modal id="text-insert" title="쪽지보내기" hide-footer>
 						<table>
 						  <tr>
 						  	<th width=20%>받는 사람</th>
@@ -90,7 +90,8 @@
 					  	  </tr>
 					  	  <tr>
 					  	  	<td colspan=2 class=text-center>
-					  	  		<input type=button value="전송" class="btn btn-sm btn-danger" v-on:click="textsend()">
+					  	  		<input type=button value="전송" class="mintBtn" v-on:click="textsend()">
+					  	  		<input type=button value="취소" class="mintBtn">
 					  	  	</td>
 					  	  </tr>
 						</table>
@@ -142,10 +143,10 @@
 		  	    <li class="my_menu">내 학습</li>
 		  	    <span><li class="my_menu2"><a href="../mypage/class.do">내 강의실</a></li></span>
 	  	    </div>
-	  	    <div class="my_li">
-	  	    	<li class="my_menu">수강 관리</li>
-	  	    	<span><li class="my_menu2"><a href="../mypage/jjim.do">수강바구니</a></li></span>
-	  	    </div>
+<!-- 	  	    <div class="my_li"> -->
+<!-- 	  	    	<li class="my_menu">수강 관리</li> -->
+<!-- 	  	    	<span><li class="my_menu2"><a href="../mypage/jjim.do">수강바구니</a></li></span> -->
+<!-- 	  	    </div> -->
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">내 활동</li>
 	  	    	<span><li class="my_menu2"><a href="../mypage/community.do">커뮤니티</a></li></span>

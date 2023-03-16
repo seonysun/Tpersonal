@@ -90,8 +90,8 @@ public class AdminRestController {
 	@GetMapping(value = "adminpage/class_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String class_list_vue(int page) {
 		Map map=new HashMap();
-		map.put("start", (page*5)-4);
-		map.put("end", page*5);
+		map.put("start", (page*4)-3);
+		map.put("end", page*4);
 		List<ClassDetailVO> list=dao.classList(map);
 		int totalpage=dao.classTotalPage();
 		
@@ -102,17 +102,25 @@ public class AdminRestController {
 			obj.put("cno", vo.getCno());
 			obj.put("title", vo.getTitle());
 			String image=vo.getImage();
-			image=image.substring(0, image.indexOf("^"));
-//	        int size=image.indexOf("^");
-//	        if(size<0) {
-//	            image=image;
-//	        } else {
-//	            image=image.substring(0,image.indexOf("^"));
-//	        }
+			int isize=image.indexOf("^");
+	        if(isize<0) {
+	            image=image;
+	        } else {
+	            image=image.substring(0,image.indexOf("^"));
+	        }
 	        obj.put("image", image);
-			obj.put("location", vo.getLocation());
+
+			String location=vo.getLocation();
+			int lsize=location.indexOf("^");
+			if(lsize<0) {
+				location=location;
+			} else {
+				location=location.substring(0,location.indexOf("^"));
+			}
+			obj.put("location", location);
+			
 			String price=vo.getPerprice();
-			price=price.substring(0, price.indexOf("원")+1);
+			price=price.substring(0, price.indexOf("원"));
 			obj.put("perprice", price);
 			obj.put("jjim_count", vo.getJjim_count());
 			obj.put("cateno", vo.getCateno());
@@ -235,7 +243,7 @@ public class AdminRestController {
 	        }
 	        obj.put("image", image);
 	        
-	        String place=vo.getSchedule();
+	        String place=vo.getPlace();
 	        int psize=place.indexOf("^");
 	        if(psize<0) {
 	        	place=place;
