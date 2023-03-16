@@ -65,7 +65,7 @@
 		<div style="height: 20px"></div>
 	  	  </b-tab>
 	  	  
-		  <b-tab title="나의 댓글" active>
+		  <b-tab title="나의 댓글">
 		<div style="height:500px;">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
