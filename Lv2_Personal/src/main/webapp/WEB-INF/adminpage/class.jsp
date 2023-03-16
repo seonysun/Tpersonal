@@ -42,7 +42,7 @@
 					<td width="15%" class="text-center origin">{{vo.location}}</td>
 					<td width="10%" class="text-center origin">{{vo.perprice}}</td>
 					<td width="15%" class="text-center origin">
-						<span v-on:click="classcon(vo.cno)"><img src="#" style="height:20px;"></span>
+						<span v-on:click="classcon(vo.cno)">승인</span>
 					</td>
 				</tr>
 			</table>

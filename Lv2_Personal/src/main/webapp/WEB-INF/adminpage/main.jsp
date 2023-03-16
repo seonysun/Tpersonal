@@ -45,11 +45,9 @@
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
 						<span>
-							<a :href="'../faq/faq_update.do?ano='+vo.ano"><img src="#" style="height:20px;"></a>
+							<a :href="'../faq/faq_update.do?ano='+vo.ano">수정</a>
 						</span>
-						<span>
-							<img src="#" style="height:20px;" v-on:click="faqDelete(vo.ano)">
-						</span>
+						<span v-on:click="faqDelete(vo.ano)">삭제</span>
 					</td>
 				</tr>
 			</table>
