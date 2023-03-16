@@ -35,6 +35,10 @@ public class AdminRestController {
 			obj.put("cate_no", vo.getCate_no());
 			obj.put("subject", vo.getSubject());
 			obj.put("content", vo.getContent());
+			obj.put("ano", vo.getAno());
+			obj.put("dbday", vo.getDbday());
+			obj.put("name", vo.getName());
+			obj.put("hit", vo.getHit());
 			if(i==0) {
 				obj.put("curpage", page);
 				obj.put("totalpage", totalpage);
@@ -86,8 +90,8 @@ public class AdminRestController {
 	@GetMapping(value = "adminpage/class_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String class_list_vue(int page) {
 		Map map=new HashMap();
-		map.put("start", (page*10)-9);
-		map.put("end", page*10);
+		map.put("start", (page*5)-4);
+		map.put("end", page*5);
 		List<ClassDetailVO> list=dao.classList(map);
 		int totalpage=dao.classTotalPage();
 		
@@ -97,9 +101,19 @@ public class AdminRestController {
 			JSONObject obj=new JSONObject();
 			obj.put("cno", vo.getCno());
 			obj.put("title", vo.getTitle());
-			obj.put("image", vo.getImage());
+			String image=vo.getImage();
+			image=image.substring(0, image.indexOf("^"));
+//	        int size=image.indexOf("^");
+//	        if(size<0) {
+//	            image=image;
+//	        } else {
+//	            image=image.substring(0,image.indexOf("^"));
+//	        }
+	        obj.put("image", image);
 			obj.put("location", vo.getLocation());
-			obj.put("perprice", vo.getPerprice());
+			String price=vo.getPerprice();
+			price=price.substring(0, price.indexOf("원")+1);
+			obj.put("perprice", price);
 			obj.put("jjim_count", vo.getJjim_count());
 			obj.put("cateno", vo.getCateno());
 			obj.put("detail_cateno", vo.getDetail_cateno());
@@ -202,13 +216,8 @@ public class AdminRestController {
 	
 	@GetMapping(value = "adminpage/tutor_class_vue.do", produces = "text/plain;charset=UTF-8")
 	public String tutor_class_vue(String id) {
-		Map map=new HashMap();
-		map.put("start", 1);
-		map.put("end", 10);
-		map.put("id", id);
 		List<ClassDetailVO> list=dao.tutorClassList(id);
 		int count=dao.tutorClassCount(id);
-		int totalpage=(int)Math.ceil(count/10.0);
 		
 		JSONArray arr=new JSONArray();
 		int i=0;
@@ -216,19 +225,45 @@ public class AdminRestController {
 			JSONObject obj=new JSONObject();
 			obj.put("cno", vo.getCno());
 			obj.put("title", vo.getTitle());
-			obj.put("image", vo.getImage());
-			obj.put("location", vo.getLocation());
+			
+			String image=vo.getImage();
+			int isize=image.indexOf("^");
+	        if(isize<0) {
+	            image=image;
+	        } else {
+	            image=image.substring(0,image.indexOf("^"));
+	        }
+	        obj.put("image", image);
+	        
+	        String place=vo.getSchedule();
+	        int psize=place.indexOf("^");
+	        if(psize<0) {
+	        	place=place;
+	        } else {
+	        	place=place.substring(0,place.indexOf("^"));
+	        }
+	        obj.put("place", place);
+			
+	        String schedule=vo.getSchedule();
+			int ssize=schedule.indexOf("^");
+			if(ssize<0) {
+				schedule=schedule;
+			} else {
+				schedule=schedule.substring(0,schedule.indexOf("^"));
+			}
+			obj.put("schedule", schedule);
+
+			String location=vo.getLocation();
+			int lsize=location.indexOf("^");
+			if(lsize<0) {
+				location=location;
+			} else {
+				location=location.substring(0,location.indexOf("^"));
+			}
+			obj.put("location", location);
+
 			obj.put("perprice", vo.getPerprice());
 			obj.put("jjim_count", vo.getJjim_count());
-			obj.put("cateno", vo.getCateno());
-			obj.put("detail_cateno", vo.getDetail_cateno());
-			obj.put("onoff", vo.getOnoff());
-			obj.put("tutor_info_nickname", vo.getTutor_info_nickname());
-			if(i==0) {
-				obj.put("curpage", 1);
-				obj.put("totalpage", totalpage);
-			}
-			i++;
 			arr.add(obj);
 		}
 		return arr.toJSONString();

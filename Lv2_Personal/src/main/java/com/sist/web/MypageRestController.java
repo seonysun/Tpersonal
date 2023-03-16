@@ -96,6 +96,53 @@ public class MypageRestController {
 		return obj.toJSONString();
 	}
 	
+	@GetMapping(value = "mypage/my_reserve_vue.do", produces = "text/plain;charset=UTF-8")
+	public String my_reserve_vue(int page, String id) {
+		System.out.println(id);
+		Map map=new HashMap();
+		map.put("start", (page*3)-2);
+		map.put("end", page*3);
+		map.put("id", id);
+		List<ReserveVO> list=dao.myReserve(map);
+		int count=dao.myReserveCount(id);
+		int totalpage;
+		
+		String res="";
+		if(count>0) {
+			totalpage=(int)Math.ceil(count/10.0);
+			
+			JSONArray arr=new JSONArray();
+			int i=0;
+			for(ReserveVO vo:list) {
+				JSONObject obj=new JSONObject();
+				obj.put("crno", vo.getCrno());
+				obj.put("cno", vo.getCno());
+				obj.put("dvo.title", vo.getDvo().getTitle());
+				obj.put("dvo.image", vo.getDvo().getImage());
+				obj.put("inwon", vo.getInwon());
+				obj.put("schedule", vo.getSchedule());
+				obj.put("place", vo.getPlace());
+				obj.put("totalprice", vo.getTotalprice());
+				obj.put("tutormsg", vo.getTutormsg());
+				if(i==0) {
+					obj.put("curpage", page);
+					obj.put("totalpage", totalpage);
+					obj.put("count", count);
+				}
+				i++;
+				arr.add(obj);
+			}
+			res=arr.toJSONString();
+		} else {
+			JSONObject obj=new JSONObject();
+			obj.put("curpage", page);
+			obj.put("totalpage", 0);
+			obj.put("count", 0);
+			res=obj.toJSONString();
+		}
+		return res;
+	}
+	
 	@GetMapping(value = "mypage/reserve_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String reserve_list_vue(int page, String id) {
 		Map map=new HashMap();
@@ -103,7 +150,11 @@ public class MypageRestController {
 		map.put("end", page*3);
 		map.put("id", id);
 		List<ReserveVO> list=dao.myReserveList(map);
-		int totalpage=dao.myReserveCount(map);
+		int count=dao.myReserveCount(id);
+		int totalpage;
+		if(count>0) {
+			totalpage=(int)Math.ceil(count/10.0);
+		} else totalpage=0; 
 		JSONArray arr=new JSONArray();
 		int i=0;
 		for(ReserveVO vo:list) {
@@ -120,6 +171,7 @@ public class MypageRestController {
 			if(i==0) {
 				obj.put("curpage", page);
 				obj.put("totalpage", totalpage);
+				obj.put("count", count);
 			}
 			i++;
 			arr.add(obj);
@@ -154,8 +206,8 @@ public class MypageRestController {
 	@GetMapping(value = "mypage/commu_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String commu_list_vue(int page, String id) {
 		Map map=new HashMap();
-		map.put("start", (page*3)-2);
-		map.put("end", page*3);
+		map.put("start", (page*10)-9);
+		map.put("end", page*10);
 		map.put("id", id);
 		List<BoardVO> list=dao.myBoardList(map);
 		int totalpage=dao.BoardTotalPage(map);

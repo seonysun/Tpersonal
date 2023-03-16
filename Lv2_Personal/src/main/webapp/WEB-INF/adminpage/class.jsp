@@ -28,20 +28,20 @@
 		<div>
 			<table class="table" style="table-layout: fixed;">
 				<tr>
-					<th width="15%" class="text-center"></th>
-					<th width="45%" class="text-center">제목</th>
+					<th width="20%" class="text-center"></th>
+					<th width="40%" class="text-center">제목</th>
 					<th width="15%" class="text-center">장소</th>
-					<th width="10%" class="text-center">가격</th>
-					<th width="15%" class="text-center">승인</th>
+					<th width="15%" class="text-center">가격</th>
+					<th width="10%" class="text-center">승인</th>
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in class_list">
-					<td width="15%" class="text-center origin">
-						<img :src="vo.image" style="height: 40px;border-radius: 50px">
+					<td width="20%" class="text-center origin">
+						<img :src="vo.image" style="width: 150px;height:100px">
 					</td>
-					<td width="45%" class="text-center origin"><a href="#">{{vo.title}}</a></td>
+					<td width="40%" class="text-center origin"><a href="#">{{vo.title}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.location}}</td>
-					<td width="10%" class="text-center origin">{{vo.perprice}}</td>
-					<td width="15%" class="text-center origin">
+					<td width="15%" class="text-center origin">{{vo.perprice}}</td>
+					<td width="10%" class="text-center origin">
 						<span v-on:click="classcon(vo.cno)">승인</span>
 					</td>
 				</tr>

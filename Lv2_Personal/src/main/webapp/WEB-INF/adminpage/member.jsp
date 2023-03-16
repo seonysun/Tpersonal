@@ -48,7 +48,7 @@
 						<span v-on:click="tutorups(vo.id)">학생</span>
 					</td>
 					<td width="10%" class="text-center origin">
-						<span><img src="#" style="height:20px;" v-on:click="memberDelete(vo.id)"><i class="fa-solid fa-check"></i></span>
+						<span v-on:click="memberDelete(vo.id)">탈퇴</span>
 					</td>
 				</tr>
 			</table>

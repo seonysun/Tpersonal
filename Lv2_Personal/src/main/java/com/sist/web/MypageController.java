@@ -34,4 +34,14 @@ public class MypageController {
 	public String mypage_repv() {
 		return "mypage/repv";
 	}
+	
+	@GetMapping("mypage/profileUpdate.do")
+	public String mypage_profileUpdate() {
+		return "mypage/profileUpdate";
+	}
+	
+	@GetMapping("mypage/register.do")
+	public String mypage_register() {
+		return "mypage/register";
+	}
 }

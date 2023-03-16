@@ -39,12 +39,17 @@ public class MypageDAO {
 		mapper.textInsert(vo);
 	}
 	
+	//내 강의실
+	public List<ReserveVO> myReserve(Map map){
+		return mapper.myReserve(map);
+	}
+	public int myReserveCount(String id) {
+		return mapper.myReserveCount(id);
+	}
+	
 	//강의 신청 목록
 	public List<ReserveVO> myReserveList(Map map){
 		return mapper.myReserveList(map);
-	}
-	public int myReserveCount(Map map) {
-		return mapper.myReserveCount(map);
 	}
 	public ReserveVO myReserveDetail(int crno) {
 		return mapper.myReserveDetail(crno);
@@ -64,5 +69,21 @@ public class MypageDAO {
 	}
 	public int BoardTotalPage(Map map) {
 		return mapper.BoardTotalPage(map);
+	}
+	
+	//리뷰
+	public List<ReviewVO> myReviewList(Map map){
+		return mapper.myReviewList(map);
+	}
+	public int reviewTotalPage(Map map) {
+		return mapper.reviewTotalPage(map);
+	}
+	
+	//댓글
+	public List<BoardReplyVO> myReplyList(Map map){
+		return mapper.myReplyList(map);
+	}
+	public int replyTotalPage(Map map) {
+		return mapper.replyTotalPage(map);
 	}
 }

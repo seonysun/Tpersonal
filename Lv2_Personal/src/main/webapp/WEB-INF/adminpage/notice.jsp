@@ -45,11 +45,9 @@
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
 						<span>
-							<a :href="'../board/board_update.do?bno='+vo.bno"><img src="#" style="height:20px;"></a>
+							<a :href="'../board/board_update.do?bno='+vo.bno">수정</a>
 						</span>
-						<span>
-							<img src="#" style="height:20px;" v-on:click="boardDelete(vo.bno)">
-						</span>
+						<span v-on:click="boardDelete(vo.bno)">삭제</span>
 					</td>
 				</tr>
 			</table>

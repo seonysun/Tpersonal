@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,7 +141,6 @@
 		  	    <li id="my_menus"><a href="../mypage/main.do">대시보드</a></li>
 		  	    <li class="my_menu">내 학습</li>
 		  	    <span><li class="my_menu2"><a href="../mypage/class.do">내 강의실</a></li></span>
-		  	    <span><li class="my_menu2"><a href="#">내가 남긴 질문</a></li></span>
 	  	    </div>
 	  	    <div class="my_li">
 	  	    	<li class="my_menu">수강 관리</li>
@@ -153,8 +153,14 @@
 	  	    </div>
 	  	    <div class="my_li">
 		  	    <li class="my_menu">내 정보</li>
-		  	    <span><li class="my_menu2">계정 정보</li></span>
+		  	    <span><li class="my_menu2"><a href="../mypage/profileUpdate.do">계정 정보</a></li></span>
 			</div>
+			<c:if test="${sessionScope.mvo.tutor=='y' }">
+		  	    <div class="my_li">
+		  	    	<li class="my_menu">강의 등록</li>
+			  	    <span><li class="my_menu2"><a href="../mypage/register.do">강의 신청서</a></li></span>
+		  	    </div>
+			</c:if>
 		</ul>
 	  </div>
 <script>

@@ -33,24 +33,23 @@
 		<div>
 			<table class="table" style="table-layout: fixed;">
 				<tr>
+					<input type=hidden size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
 					<th width="15%" class="text-center">번호</th>
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회수</th>
 					<th width="15%" class="text-center">수정/삭제</th>
 				</tr>
-				<tr style="vertical-align: middle;" v-for="vo in reply_list">
+				<tr style="vertical-align: middle;" v-for="vo in commu_list">
 					<td width="10%" class="text-center origin">{{vo.bno}}</td>
 					<td width="45%" class="text-center origin"><a :href="'../board/board_detail.do?bno='+vo.bno">{{vo.title}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
 						<span>
-							<a :href="'../board/board_update.do?bno='+vo.bno"><img src="#" style="height:20px;"></a>
+							<a :href="'../board/board_update.do?bno='+vo.bno">수정</a>
 						</span>
-						<span>
-							<img src="#" style="height:20px;" v-on:click="boardDelete(vo.bno)">
-						</span>
+						<span v-on:click="boardDelete(vo.bno)">삭제</span>
 					</td>
 				</tr>
 			</table>
@@ -62,7 +61,8 @@
 	new Vue({
 		el:'.rowss',
 		data:{
-			reply_list:[],
+			commu_list:[],
+			sessionId:'',
 			curpage:1,
 			totalpage:0
 		},
@@ -71,14 +71,16 @@
 		},
 		methods:{
 			send:function(){
+				this.sessionId=this.$refs.id.value
 				let _this=this
 				axios.get("http://localhost/web/mypage/reply_list_vue.do",{
 					params:{
-						page:this.curpage
+						page:this.curpage,
+						id:this.sessionId
 					}
 				}).then(function(response){
 					console.log(response.data)
-					_this.reply_list=response.data
+					_this.commu_list=response.data
 					_this.curpage=response.data[0].curpage
 					_this.totalpage=response.data[0].totalpage
 				})
@@ -87,14 +89,14 @@
 				this.curpage=page
 				this.send()
 			},
-			myDelete:function(bno){
+			boardDelete:function(bno){
 				if(confirm('정말로 삭제하시겠습니까?\n삭제된 항목은 복구되지 않습니다')){
 					axios.get('http://localhost/web/board/board_delete_vue.do',{
 						params:{
 							bno:bno
 						}
 					}).then(function(response){
-						location.href="../mypage/repv.do"
+						location.href="../mypage/community.do"
 					})
 				}
 			}

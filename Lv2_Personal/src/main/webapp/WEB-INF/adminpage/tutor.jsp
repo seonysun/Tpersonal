@@ -23,30 +23,55 @@
 		<jsp:include page="../adminpage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:40%;float:left;">
+	<div style="width:40%;float:left;margin-top:10px">
 		<tutorlist :tutordata='tutor_list' :curpage='curpage' :totalpage='totalpage'></tutorlist>
 	</div>
-	<div style="width:40%;float:left;">
-		
+	<div style="width:40%;float:left;margin-top:10px" v-if="isShow">
+		<table class="table" v-for="cvo in tutor_class">
+		  <tr>
+		  	<td colspan=2><img :src="cvo.image"></td>
+		  </tr>
+		  <tr>
+		  	<th width=20%>제목</th>
+		  	<td width=80%>{{cvo.title}}&nbsp;<span class="mintBtn" style="font-size: 12px">찜 {{cvo.jjim_count}}개</span></td>
+		  </tr>
+		  <tr>
+		  	<th width=20%>장소</th>
+		  	<td width=80%>{{cvo.location}}</td>
+		  </tr>
+		  <tr>
+		  	<th width=20%>일정</th>
+		  	<td width=80%>{{cvo.schedule}}</td>
+		  </tr>
+		  <tr>
+		  	<th width=20%>가격</th>
+		  	<td width=80%>{{cvo.perprice}}</td>
+		  </tr>
+		</table>
 	</div>
 </div>
 <script>
 	let eventBus=new Vue()
 	Vue.component('tutorlist',{
 		props:['tutordata','curpage','totalpage'],
-		template:'<table class=table>'
+		template:'<table class=table style="border-color:white">'
 			+'<tr>'
 			+'<td>'
 			+'<table class=table v-for="vo in tutordata">'
 			+'<tr>'
-			+'<td width=30% class=text-center rowspan=2>'
+			+'<td width=30% class=text-center rowspan=3>'
 			+'<img :src="vo.image" style="width: 70px;height: 70px" class="img-circle images" v-on:click="showClass(vo.id)">'
 			+'</td>'
-			+'<td colspan=2><h3 style="color: orange">{{vo.nickname}}</h3></td>'
+			+'<td width=20%>닉네임</td>'
+			+'<td width=80%><h3 style="color: orange">{{vo.nickname}}</h3></td>'
 			+'</tr>'
 			+'<tr>'
-			+'<td class=text-center><img src="#" style="width: 20px"></td>'
-			+'<td class=text-center><img src="#" style="width: 20px"></td>'
+			+'<td width=20%>이름</td>'
+			+'<td width=80%>{{vo.name}}</td>'
+			+'</tr>'
+			+'<tr>'
+			+'<td width=20%>번호</td>'
+			+'<td width=80%>{{vo.tel}}</td>'
 			+'</tr>'
 			+'</table>'
 			+'</td>'
@@ -72,7 +97,8 @@
 			curpage:1,
 			totalpage:0,
 			tutor_id:'',
-			tutor_class:[]
+			tutor_class:[],
+			isShow:false
 		},
 		mounted:function(){
 			this.send()
@@ -81,7 +107,7 @@
 			let _this=this
 			eventBus.$on('showClassEvent', function(value){
 				_this.tutor_id=value
-				alert(_this.tutor_id)
+				_this.isShow=true
 				axios.get('http://localhost/web/adminpage/tutor_class_vue.do',{
 					params:{
 						id:_this.tutor_id

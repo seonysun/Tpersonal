@@ -32,51 +32,60 @@
 	  <div class="rows rowss">
 		  <p style="height: 40px">
 		  	<strong>신청한 클래스</strong> 목록입니다. 클래스 중에 궁금한 점이 있으면 <strong>Q&amp;A</strong>로 물어보세요.<br>
+			<input type=hidden size=15 class=input-sm ref="sid" value="${sessionScope.mvo.id }">
 		  </p>
-		  <input type=hidden size=15 class=input-sm ref="sid" value="${sessionScope.mvo.id }">
-		  <ul class="tutee_list">
-		    <li v-for="vo in class_list">
-		      <div class="thumb_box">
-		        <a :href="'../class/class_detail.do?cno='+vo.cno"><img src="https://img.taling.me/Content/Uploads/Images/f751e30c61b31ef9e9b63e0b59537904e22e5697.png" alt=""></a>
-		      </div>
-		      <div class="text_box">
-		        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">제목</a>
-<!-- 			      <div class="course_info"> -->
-<!-- 			       <p class="tutor"> -->
-<!-- 			       	<span class="profile"> -->
-<!-- 			       		<img src="https://s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_1077c649d31a6a3dde112f75b085a151c7b568ff.jpg" alt=""> -->
-<!-- 			       	</span> -->
-<!-- 			       	튜터이름(튜터닉네임) 튜터 -->
-<!-- 			       </p> -->
-<!-- 			      </div> -->
-<!-- 			      <div class="progress_box"> -->
-<!-- 			       <div class="progress_bar"> -->
-<!-- 			        <div class="bar" style="width: 0%;"></div> -->
-<!-- 			       </div><span class="play_time">0% 수강</span><span class="due_date ">만료까지 71일 남았어요!</span> -->
-<!-- 			      </div> -->
-			      <div>
-			      	<table class="table text-center">
-			      	  <tr>
-			      	  	<th width=20%>일정</th>
-			      	  	<td width=80%>{{vo.schedule}}</td>
-			      	  </tr>
-			      	  <tr>
-			      	  	<th width=20%>장소</th>
-			      	  	<td width=80%>{{vo.place}}</td>
-			      	  </tr>
-			      	  <tr>
-			      	  	<th width=30%>{{vo.inwon}}명</th>
-			      	  	<td width=70%>{{vo.totalprice}}원</td>
-			      	  </tr>
-			      	</table>
+		  <div v-if="class_count==0" class="text-center">
+		  	<p style="font-size:20px">
+		  		신청한 클래스가 없습니다. <br>
+		  		다양한 클래스를 구경해보세요! <br>
+		  		<a href="../main/main.do" class="mintBtn_m" style="font-size:15px;width:200px;height:100px;padding:10px;margin-top:10px">클래스 구경가기</a>
+		  	</p>
+		  </div>
+		  <div v-if="class_count>0">
+			  <ul class="tutee_list">
+			    <li v-for="vo in class_list">
+			      <div class="thumb_box">
+			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.dvo.image"></a>
 			      </div>
-			      <div class="btn_box">
-			       <span class="btn btn_intro" v-on:click="reservedetail(vo.cno)">신청상세</span>
-			       <a href="#" class="btn btn_write"><i class="icon"></i>리뷰작성</a>
+			      <div class="text_box">
+			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{vo.dvo.title}}</a>
+	<!-- 			      <div class="course_info"> -->
+	<!-- 			       <p class="tutor"> -->
+	<!-- 			       	<span class="profile"> -->
+	<!-- 			       		<img src="https://s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_1077c649d31a6a3dde112f75b085a151c7b568ff.jpg" alt=""> -->
+	<!-- 			       	</span> -->
+	<!-- 			       	튜터이름(튜터닉네임) 튜터 -->
+	<!-- 			       </p> -->
+	<!-- 			      </div> -->
+	<!-- 			      <div class="progress_box"> -->
+	<!-- 			       <div class="progress_bar"> -->
+	<!-- 			        <div class="bar" style="width: 0%;"></div> -->
+	<!-- 			       </div><span class="play_time">0% 수강</span><span class="due_date ">만료까지 71일 남았어요!</span> -->
+	<!-- 			      </div> -->
+				      <div>
+				      	<table class="table text-center">
+				      	  <tr>
+				      	  	<th width=20%>일정</th>
+				      	  	<td width=80%>{{vo.schedule}}</td>
+				      	  </tr>
+				      	  <tr>
+				      	  	<th width=20%>장소</th>
+				      	  	<td width=80%>{{vo.place}}</td>
+				      	  </tr>
+				      	  <tr>
+				      	  	<th width=30%>{{vo.inwon}}명</th>
+				      	  	<td width=70%>{{vo.totalprice}}원</td>
+				      	  </tr>
+				      	</table>
+				      </div>
+				      <div class="btn_box">
+				       <span class="btn btn_intro"><a :href="'../class/class_detail.do?cno='+vo.cno">강의 상세</a></span>
+				       <a href="#" class="btn btn_write"><i class="icon"></i>리뷰작성</a>
+				      </div>
 			      </div>
-		       </div>
-		     </li>
-		   </ul>
+			    </li>
+			  </ul>
+		  </div>
 	  </div>
 	</div>
 </div>
@@ -88,6 +97,7 @@
 			sessionId:'',
 			curpage:1,
 			totalpage:0,
+			class_count:0,
 			class_detail:{}
 		},
 		mounted:function(){
@@ -97,7 +107,7 @@
 			send:function(){
 				this.sessionId=this.$refs.sid.value
 				let _this=this
-				axios.get('http://localhost/web/mypage/reserve_list_vue.do',{
+				axios.get('http://localhost/web/mypage/my_reserve_vue.do',{
 					params:{
 						page:this.curpage,
 						id:this.sessionId
@@ -107,23 +117,24 @@
 					_this.class_list=response.data
 					_this.curpage=response.data[0].curpage
 					_this.totalpage=response.data[0].totalpage
+					_this.class_count=response.data[0].count
 				})
 			},
 			pageChange:function(page){
 				this.curpage=page
 				this.send()
-			},
-			reservedetail:function(cno){
-				let _this=this
-				axios.get('http://localhost/web/mypage/reserve_class_vue.do',{
-					params:{
-						cno:cno
-					}
-				}).then(function(response){
-					console.log(response.data)
-					_this.class_detail=response.data
-				})
 			}
+// 			reservedetail:function(cno){
+// 				let _this=this
+// 				axios.get('http://localhost/web/mypage/reserve_class_vue.do',{
+// 					params:{
+// 						cno:cno
+// 					}
+// 				}).then(function(response){
+// 					console.log(response.data)
+// 					_this.class_detail=response.data
+// 				})
+// 			}
 		}
 	})
 </script>

@@ -2,6 +2,8 @@ package com.sist.mapper;
 import java.util.*;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
@@ -66,6 +68,25 @@ public interface MypageMapper {
 			+ "VALUES(#{tno},#{id},#{msg},#{receiver},sysdate,'n',null,#{nickname})")
 	public void textInsert(TextVO vo);
 	
+	//내 강의실
+	@Results({
+		@Result(property = "dvo.title", column = "title"),
+		@Result(property = "dvo.image", column = "image")
+	})
+	@Select("SELECT crno,cno,title,image,schedule,place,inwon,totalprice,tutormsg,num "
+			+ "FROM (SELECT crno,cno,title,image,schedule,place,inwon,totalprice,tutormsg,rownum as num "
+			+ "FROM (SELECT cr.crno,cr.cno,cd.title,cd.image,cr.schedule,cr.place,cr.inwon,cr.totalprice,cr.tutormsg "
+			+ "FROM ch_reserve_2_3 cr, ch_classdetail_2_3 cd "
+			+ "WHERE cr.cno=cd.cno "
+			+ "AND id=#{id} "
+			+ "ORDER BY crno DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<ReserveVO> myReserve(Map map);
+	
+	@Select("SELECT COUNT(*) FROM ch_reserve_2_3 "
+			+ "WHERE id=#{id}")
+	public int myReserveCount(String id);
+	
 	//강의 신청 목록
 	@Select("SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
 			+ "FROM (SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,regdate,rownum as num "
@@ -75,10 +96,6 @@ public interface MypageMapper {
 			+ "ORDER BY crno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ReserveVO> myReserveList(Map map);
-
-	@Select("SELECT COUNT(*) FROM ch_reserve_2_3 "
-			+ "WHERE id=#{id}")
-	public int myReserveCount(Map map);
 	
 	@Select("SELECT * FROM ch_reserve_2_3 "
 			+ "WHERE crno=#{crno}")
@@ -93,41 +110,51 @@ public interface MypageMapper {
 			+ "WHERE cno=#{cno}")
 	public ClassDetailVO reserveClassDetail(int cno);
 	
-	//질문
-	@Select("SELECT * FROM ch_question_2_3 "
-			+ "WHERE id=#{id}")
-	public List<QuestionVO> myQuestionList(String id);
-	
-	@Select("SELECT * FROM ch_question_2_3 "
-			+ "WHERE qno=#{qno}")
-	public QuestionVO myQuestionDetail(int qno);
-	
-	//찜
-	@Select("SELECT * FROM ch_alljjim_2_3 "
-			+ "WHERE id=#{id}")
-	public List<JJimVO> myJjimList(Map map);
-	
 	//커뮤니티
 	@Select("SELECT bno,btype,id,title,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,tag,num "
-			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag,rownum as num "
-			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag "
+			+ "FROM (SELECT bno,btype,id,title,content,regdate,hit,tag,rownum as num "
+			+ "FROM (SELECT bno,btype,id,title,content,regdate,hit,tag "
 			+ "FROM ch_board_2_3 "
 			+ "WHERE id=#{id} "
 			+ "ORDER BY bno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BoardVO> myBoardList(Map map);
 	
-	@Select("SELECT * FROM ch_board_2_3 "
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_board_2_3 "
 			+ "WHERE id=#{id}")
 	public int BoardTotalPage(Map map);
 	
 	//리뷰
-	@Select("SELECT * FROM ch_review_2_3 "
-			+ "WHERE id=#{id}")
+	@Select("SELECT rno,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,content,id,cno,num "
+			+ "FROM (SELECT rno,regdate,content,id,cno,rownum as num "
+			+ "FROM (SELECT rno,regdate,content,id,cno "
+			+ "FROM ch_review_2_3 "
+			+ "WHERE id=#{id} "
+			+ "ORDER BY rno)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ReviewVO> myReviewList(Map map);
 	
-	//댓글
-	@Select("SELECT * FROM ch_boardreply_2_3 "
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_review_2_3 "
 			+ "WHERE id=#{id}")
+	public int reviewTotalPage(Map map);
+	
+	//댓글
+	@Select("SELECT brno,bno,id,msg,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,group_id,group_step,group_tab,root,depth,num "
+			+ "FROM (SELECT brno,bno,id,msg,regdate,group_id,group_step,group_tab,root,depth,rownum as num "
+			+ "FROM (SELECT brno,bno,id,msg,regdate,group_id,group_step,group_tab,root,depth "
+			+ "FROM ch_boardreply_2_3 "
+			+ "WHERE id=#{id} "
+			+ "ORDER BY brno)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BoardReplyVO> myReplyList(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_boardreply_2_3 "
+			+ "WHERE id=#{id}")
+	public int replyTotalPage(Map map);
+	
+	//강의 신청
+	@Insert("INSERT INTO ch_classdetail_2_3 "
+			+ "VALUES(ch_cd_cno_seq_2_3.nextval,#{title},#{image},#{place},#{location},#{schedule},#{notice},#{time},#{perPrice},#{totalprice},#{jjim_count},#{cateno},#{tno},"
+			+ "#{detail_cateno},#{summary},#{target},#{tutor_intro},#{class_intro},#{class_curri},#{class_video},#{onoff},#{inwon},#{tutor_info_nickname},#{tutor_info_img},#{tutor_info_grade_total},'n')")
+	public void classInsert(ClassDetailVO vo);
 }

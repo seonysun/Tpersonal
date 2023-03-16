@@ -10,4 +10,5 @@ public class ReserveVO {
 	private int crno,cno,inwon;
 	private String id,schedule,place,totalprice,tutormsg,ok,dbday;
 	private Date regdate;
+	private ClassDetailVO dvo=new ClassDetailVO();
 }

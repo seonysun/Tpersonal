@@ -26,7 +26,7 @@
 	<div style="width:80%;float:left;padding-left:20px;margin-top:-25px">
 	  <div class=rows>
 		<div class="mintBtn_m" style="float: right">
-			<a href="../board/board_insert.do?btype=3">공지 등록</a>
+			<a href="../faq/insert.do">FAQ 등록</a>
 		</div>
 		<div style="display: inline-block;height: 30px"></div>
 		<div style="display: inline-block">
@@ -40,14 +40,16 @@
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in faq_list">
 					<td width="10%" class="text-center origin">{{vo.ano}}</td>
-					<td width="45%" class="text-center origin"><a :href="'../faq/faq_detail.do?ano='+vo.ano">{{vo.subject}}</a></td>
+					<td width="45%" class="text-center origin"><a :href="'../faq/detail.do?ano='+vo.ano">{{vo.subject}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
 						<span>
-							<a :href="'../faq/faq_update.do?ano='+vo.ano">수정</a>
+							<a :href="'../faq/update.do?ano='+vo.ano">수정</a>
 						</span>
-						<span v-on:click="faqDelete(vo.ano)">삭제</span>
+						<span>
+							<a :href="'../faq/delete.do?ano='+vo.ano">삭제</a>
+						</span>
 					</td>
 				</tr>
 			</table>
@@ -105,17 +107,6 @@
 			pageChange:function(page){
 				this.curpage=page
 				this.send()
-			},
-			faqDelete:function(ano){
-				if(confirm('정말로 삭제하시겠습니까?\n삭제된 항목은 복구되지 않습니다')){
-					axios.get('http://localhost/web/faq/faq_delete_vue.do',{
-						params:{
-							ano:ano
-						}
-					}).then(function(response){
-						location.href="../adminpage/main.do"
-					})
-				}
 			}
 		}
 	})
