@@ -15,16 +15,6 @@ public class MypageController {
 		return "mypage/class";
 	}
 	
-	@GetMapping("mypage/question.do")
-	public String mypage_question() {
-		return "mypage/question";
-	}
-	
-	@GetMapping("mypage/jjim.do")
-	public String mypage_jjim() {
-		return "mypage/jjim";
-	}
-	
 	@GetMapping("mypage/community.do")
 	public String mypage_community() {
 		return "mypage/community";

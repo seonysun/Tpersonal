@@ -7,7 +7,7 @@
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
-	font-size: 10px;
+	font-size: 11px;
 	padding: 5px 7px;
 }
 .mintBtn a{
@@ -18,7 +18,7 @@
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
-	font-size: 10px;
+	font-size: 11px;
 	padding: 5px 7px;
 }
 /* .mintBtn:hover{ */
@@ -30,7 +30,7 @@
 /* 	color: #45c5c5; */
 /* 	font-weight: bold; */
 /* 	border-radius: 5px; */
-/* 	font-size: 10px; */
+/* 	font-size: 12px; */
 /* 	padding: 5px 7px; */
 /* } */
 .mintBtn_m{
@@ -41,7 +41,7 @@
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 3px 0px;
 }
 .mintBtn_m a{
@@ -52,7 +52,7 @@
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 5px 7px;
 }
 /* .mintBtn_m:hover{ */
@@ -64,7 +64,7 @@
 /* 	color: #45c5c5; */
 /* 	font-weight: bold; */
 /* 	border-radius: 5px; */
-/* 	font-size: 10px; */
+/* 	font-size: 14px; */
 /* 	padding: 5px 7px;; */
 /* } */
 .mintBtn_o{
@@ -426,15 +426,15 @@
   margin: 0 0 40px 40px;
 }
 
-.tutee_list li:hover .thumb_box a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url(https://front-img.taling.me/Content/app3/images/vod/icon_play.png) rgba(0, 0, 0, 0.2) no-repeat center/15% 26.96%;
-}
+/* .tutee_list li:hover .thumb_box a::after { */
+/*   content: ''; */
+/*   position: absolute; */
+/*   left: 0; */
+/*   top: 0; */
+/*   width: 100%; */
+/*   height: 100%; */
+/*   background: url(https://front-img.taling.me/Content/app3/images/vod/icon_play.png) rgba(0, 0, 0, 0.2) no-repeat center/15% 26.96%; */
+/* } */
 
 .tutee_list .thumb_box {
   overflow: hidden;
@@ -637,7 +637,8 @@
 }
 
 .tutee_list .btn_box .btn_intro {
-  margin-left: 0;
+  margin: 0px 10px;
+  line-height: 40px
 }
 
 .tutee_list .btn_box .icon {

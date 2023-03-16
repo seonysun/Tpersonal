@@ -18,6 +18,9 @@
 #my-sidebar{
 	width: 450px
 }
+#del:hover{
+	cursor: pointer
+}
 </style>
 </head>
 <body>
@@ -28,32 +31,41 @@
 		<jsp:include page="../mypage/menu.jsp"></jsp:include>
 	</div>
 	
-	<div style="width:80%;float:left;padding-left:20px;margin-top:10px">
+	<div style="width:80%;float:left;padding-left:20px;margin-top:20px">
 	  <div class="rows rowss">
-		<div>
+		<div style="height:500px;">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<input type=hidden size=15 class=input-sm ref="id" value="${sessionScope.mvo.id }">
-					<th width="15%" class="text-center">번호</th>
+					<th width="15%" class="text-center">게시물번호</th>
 					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회수</th>
-					<th width="15%" class="text-center">수정/삭제</th>
+					<th width="15%" class="text-center">수정 / 삭제</th>
 				</tr>
 				<tr style="vertical-align: middle;" v-for="vo in commu_list">
 					<td width="10%" class="text-center origin">{{vo.bno}}</td>
-					<td width="45%" class="text-center origin"><a :href="'../board/board_detail.do?bno='+vo.bno">{{vo.title}}</a></td>
+					<td width="45%" class="origin"><a :href="'../board/board_detail.do?bno='+vo.bno">{{vo.title}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
-						<span>
-							<a :href="'../board/board_update.do?bno='+vo.bno">수정</a>
+						<span class="mintBtn" style="padding: 0px">
+							<a :href="'../board/board_update.do?bno='+vo.bno" style="background-color: white;color: #45c5c5;border: 1px solid #45c5c5">수정</a>
 						</span>
-						<span v-on:click="boardDelete(vo.bno)">삭제</span>
+						<span id="del" v-on:click="boardDelete(vo.bno)">
+							<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
+						</span>
 					</td>
 				</tr>
 			</table>
 		</div>
+		<div style="height: 10px"></div>
+			<div class="text-center" v-if="totalpage>0">
+	         <span class="mintBtn" @click="prev()">이전</span>
+		         {{curpage}} / {{totalpage}} 
+	         <span class="mintBtn" @click="next()">다음</span>
+	      	</div>
+		<div style="height: 20px"></div>
 	  </div>
 	</div>
 </div>
@@ -85,10 +97,14 @@
 					_this.totalpage=response.data[0].totalpage
 				})
 			},
-			pageChange:function(page){
-				this.curpage=page
-				this.send()
-			},
+			prev:function(){
+		    	this.curpage=this.curpage>1?this.curpage-1:this.curpage
+		        this.send()
+		    },
+		    next:function(){
+		        this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
+		        this.send()               
+		    },
 			boardDelete:function(bno){
 				if(confirm('정말로 삭제하시겠습니까?\n삭제된 항목은 복구되지 않습니다')){
 					axios.get('http://localhost/web/board/board_delete_vue.do',{

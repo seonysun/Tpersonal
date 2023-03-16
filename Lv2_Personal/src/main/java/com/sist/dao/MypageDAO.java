@@ -39,12 +39,20 @@ public class MypageDAO {
 		mapper.textInsert(vo);
 	}
 	
+	//쪽지 삭제
+	public void textDelete(int tno) {
+		mapper.textDelete(tno);
+	}
+	
 	//내 강의실
 	public List<ReserveVO> myReserve(Map map){
 		return mapper.myReserve(map);
 	}
 	public int myReserveCount(String id) {
 		return mapper.myReserveCount(id);
+	}
+	public int myReserveTotalPage(String id) {
+		return mapper.myReserveTotalPage(id);
 	}
 	
 	//강의 신청 목록

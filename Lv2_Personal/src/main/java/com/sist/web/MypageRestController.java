@@ -20,6 +20,12 @@ public class MypageRestController {
 		return "";
 	}
 	
+	@GetMapping("mypage/text_delete_vue.do")
+	public String text_delete_vue(int tno) {
+		dao.textDelete(tno);
+		return "";
+	}
+	
 	@GetMapping(value = "mypage/stext_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String stext_vue(String id) {
 //		Map map=new HashMap();
@@ -99,17 +105,15 @@ public class MypageRestController {
 	@GetMapping(value = "mypage/my_reserve_vue.do", produces = "text/plain;charset=UTF-8")
 	public String my_reserve_vue(int page, String id) {
 		Map map=new HashMap();
-		map.put("start", (page*3)-2);
-		map.put("end", page*3);
+		map.put("start", (page*2)-1);
+		map.put("end", page*2);
 		map.put("id", id);
 		List<ReserveVO> list=dao.myReserve(map);
 		int count=dao.myReserveCount(id);
-		int totalpage;
+		int totalpage=dao.myReserveTotalPage(id);
 		
 		String res="";
 		if(count>0) {
-			totalpage=(int)Math.ceil(count/10.0);
-			
 			JSONArray arr=new JSONArray();
 			int i=0;
 			for(ReserveVO vo:list) {
@@ -143,7 +147,7 @@ public class MypageRestController {
 			JSONArray arr=new JSONArray();
 			JSONObject obj=new JSONObject();
 			obj.put("curpage", page);
-			obj.put("totalpage", 0);
+			obj.put("totalpage", totalpage);
 			obj.put("count", 0);
 			arr.add(obj);
 			res=arr.toJSONString();
@@ -206,11 +210,6 @@ public class MypageRestController {
 		return obj.toJSONString();
 	}
 	
-	@GetMapping(value = "mypage/jjim_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String jjim_list_vue(int page) {
-		return "";
-	}
-	
 	@GetMapping(value = "mypage/commu_list_vue.do", produces = "text/plain;charset=UTF-8")
 	public String commu_list_vue(int page, String id) {
 		Map map=new HashMap();
@@ -242,12 +241,56 @@ public class MypageRestController {
 	}
 	
 	@GetMapping(value = "mypage/review_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String review_list_vue(int page) {
-		return "";
+	public String review_list_vue(int page, String id) {
+		Map map=new HashMap();
+		map.put("start", (page*10)-9);
+		map.put("end", page*10);
+		map.put("id", id);
+		List<ReviewVO> list=dao.myReviewList(map);
+		int totalpage=dao.reviewTotalPage(map);
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(ReviewVO vo:list) {
+			JSONObject obj=new JSONObject();
+			obj.put("rno", vo.getRno());
+			obj.put("regdate", vo.getRegdate());
+			obj.put("id", vo.getId());
+			obj.put("content", vo.getContent());
+			obj.put("cno", vo.getCno());
+			if(i==0) {
+				obj.put("curpage", page);
+				obj.put("totalpage", totalpage);
+			}
+			i++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
 	}
 	
 	@GetMapping(value = "mypage/reply_list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String reply_list_vue(int page) {
-		return "";
+	public String reply_list_vue(int page, String id) {
+		Map map=new HashMap();
+		map.put("start", (page*10)-9);
+		map.put("end", page*10);
+		map.put("id", id);
+		List<BoardReplyVO> list=dao.myReplyList(map);
+		int totalpage=dao.replyTotalPage(map);
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(BoardReplyVO vo:list) {
+			JSONObject obj=new JSONObject();
+			obj.put("bno", vo.getBno());
+			obj.put("brno", vo.getBrno());
+			obj.put("id", vo.getId());
+			obj.put("msg", vo.getMsg());
+			obj.put("dbday", vo.getDbday());
+			if(i==0) {
+				obj.put("curpage", page);
+				obj.put("totalpage", totalpage);
+			}
+			i++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
 	}
 }

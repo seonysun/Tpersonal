@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class BoardReplyVO {
 	private int brno,bno,group_id,group_step,group_tab,root,depth;
-	private String id,msg;
+	private String id,msg,dbday;
 	private Date regdate;
 }

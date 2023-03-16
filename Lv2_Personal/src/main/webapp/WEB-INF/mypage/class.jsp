@@ -30,10 +30,12 @@
 	
 	<div style="width:80%;float:left;padding-left:20px;padding-top:10px">
 	  <div class="rows rowss">
-		  <p style="height: 40px;">
+	    <div style="height:500px;">
+		  <p style="height: 20px;">
 		  	<strong>신청한 클래스</strong> 목록입니다. 클래스 중에 궁금한 점이 있으면 <strong>Q&amp;A</strong>로 물어보세요.<br>
 			<input type=hidden size=15 class=input-sm ref="sid" value="${sessionScope.mvo.id }">
 		  </p>
+		  <p style="margin:0px 5px 10px 10px">&gt; 총 <span style="font-size: 20px;font-weight: 600;color: #45c5c5">{{class_count}}</span>개의 클래스</p>
 		  <div v-if="class_count==0" class="text-center">
 		  	<p style="font-size:20px">
 		  		신청한 클래스가 없습니다. <br>
@@ -43,7 +45,7 @@
 		  </div>
 		  <div v-if="class_count>0">
 			  <ul class="tutee_list">
-			    <li v-for="vo in class_list">
+			    <li style="width: 350px" v-for="vo in class_list">
 			      <div class="thumb_box">
 			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.image"></a>
 			      </div>
@@ -80,12 +82,20 @@
 				      </div>
 				      <div class="btn_box">
 				       <span class="btn btn_intro"><a :href="'../class/class_detail.do?cno='+vo.cno">강의 상세</a></span>
-				       <a href="#" class="btn btn_write"><i class="icon"></i>리뷰작성</a>
+				       <span class="btn btn_intro"><a :href="'../class/class_detail.do?cno='+vo.cno"><i class="icon"></i>리뷰 작성</a></span>
 				      </div>
 			      </div>
 			    </li>
 			  </ul>
 		  </div>
+	    </div>
+	    <div style="height: 10px"></div>
+			<div class="text-center" v-if="totalpage>0">
+	         <span class="mintBtn" @click="prev()">이전</span>
+		         {{curpage}} / {{totalpage}} 
+	         <span class="mintBtn" @click="next()">다음</span>
+	      	</div>
+		<div style="height: 20px"></div>
 	  </div>
 	</div>
 </div>
@@ -120,10 +130,14 @@
 					_this.class_count=response.data[0].count
 				})
 			},
-			pageChange:function(page){
-				this.curpage=page
-				this.send()
-			}
+			prev:function(){
+		    	this.curpage=this.curpage>1?this.curpage-1:this.curpage
+		        this.send()
+		    },
+		    next:function(){
+		        this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
+		        this.send()               
+		    }
 // 			reservedetail:function(cno){
 // 				let _this=this
 // 				axios.get('http://localhost/web/mypage/reserve_class_vue.do',{

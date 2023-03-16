@@ -1,6 +1,7 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -57,7 +58,8 @@ public interface MypageMapper {
 			+ "WHERE tno=#{tno}")
 	public void myTextCheck(int tno);
 	
-	@Select("SELECT * FROM ch_text_2_3 "
+	@Select("SELECT tno,id,msg,receiver,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,ok,TO_CHAR(recvdate,'YYYY-MM-DD') as recvday,nickname "
+			+ "FROM ch_text_2_3 "
 			+ "WHERE tno=#{tno}")
 	public TextVO myTextDetail(int tno);
 	
@@ -67,6 +69,11 @@ public interface MypageMapper {
 	@Insert("INSERT INTO ch_text_2_3 "
 			+ "VALUES(#{tno},#{id},#{msg},#{receiver},sysdate,'n',null,#{nickname})")
 	public void textInsert(TextVO vo);
+	
+	//쪽지 삭제
+	@Delete("DELETE FROM ch_text_2_3 "
+			+ "WHERE tno=#{tno}")
+	public void textDelete(int tno);
 	
 	//내 강의실
 	@Results({
@@ -86,6 +93,10 @@ public interface MypageMapper {
 	@Select("SELECT COUNT(*) FROM ch_reserve_2_3 "
 			+ "WHERE id=#{id}")
 	public int myReserveCount(String id);
+	
+	@Select("SELECT CEIL(COUNT(*)/2.0) FROM ch_reserve_2_3 "
+			+ "WHERE id=#{id}")
+	public int myReserveTotalPage(String id);
 	
 	//강의 신청 목록
 	@Select("SELECT crno,cno,id,schedule,place,inwon,totalprice,tutormsg,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
@@ -125,7 +136,7 @@ public interface MypageMapper {
 	public int BoardTotalPage(Map map);
 	
 	//리뷰
-	@Select("SELECT rno,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,content,id,cno,num "
+	@Select("SELECT rno,regdate,content,id,cno,num "
 			+ "FROM (SELECT rno,regdate,content,id,cno,rownum as num "
 			+ "FROM (SELECT rno,regdate,content,id,cno "
 			+ "FROM ch_review_2_3 "
