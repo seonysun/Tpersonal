@@ -18,9 +18,6 @@
 #my-sidebar{
 	width: 450px
 }
-#del:hover{
-	cursor: pointer
-}
 </style>
 </head>
 <body>
@@ -49,10 +46,12 @@
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">{{vo.hit}}</td>
 					<td width="15%" class="text-center origin">
-						<span class="mintBtn" style="padding: 0px">
-							<a :href="'../board/board_update.do?bno='+vo.bno" style="background-color: white;color: #45c5c5;border: 1px solid #45c5c5">수정</a>
+						<span class="presspoint">
+							<a :href="'../board/board_update.do?bno='+vo.bno">
+								<img src="../images/up3.png" style="height: 18px;margin: 2px 10px;">
+							</a>
 						</span>
-						<span id="del" v-on:click="boardDelete(vo.bno)">
+						<span class="presspoint" v-on:click="boardDelete(vo.bno)">
 							<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
 						</span>
 					</td>

@@ -18,9 +18,6 @@
 #my-sidebar{
 	width: 450px
 }
-#del:hover{
-	cursor: pointer
-}
 </style>
 </head>
 <body>
@@ -49,7 +46,7 @@
 					<td width="60%" class="origin"><a :href="'../class/class_detail.do?cno='+vo.cno">{{vo.content}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.regdate}}</td>
 					<td width="10%" class="text-center origin">
-						<span id="del" v-on:click="reviewDelete(vo.rno)">
+						<span class="presspoint" v-on:click="reviewDelete(vo.rno)">
 							<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
 						</span>
 					</td>
@@ -79,7 +76,7 @@
 					<td width="60%" class="origin"><a :href="'../board/board_detail.do?cno='+vo.bno">{{vo.msg}}</a></td>
 					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">
-						<span id="del" v-on:click="replyDelete(vo.brno)">
+						<span class="presspoint" v-on:click="replyDelete(vo.brno)">
 							<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
 						</span>
 					</td>
