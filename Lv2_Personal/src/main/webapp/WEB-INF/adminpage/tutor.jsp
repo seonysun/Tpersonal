@@ -27,55 +27,55 @@
 		<tutorlist :tutordata='tutor_list' :curpage='curpage' :totalpage='totalpage'></tutorlist>
 	</div>
 	<div style="width:40%;float:left;margin-top:10px" v-if="isShow">
-		<table class="table" v-for="cvo in tutor_class">
-		  <tr>
-		  	<td colspan=2><img :src="cvo.image"></td>
-		  </tr>
-		  <tr>
-		  	<th width=20%>제목</th>
-		  	<td width=80%>{{cvo.title}}&nbsp;<span class="mintBtn" style="font-size: 12px">찜 {{cvo.jjim_count}}개</span></td>
-		  </tr>
-		  <tr>
-		  	<th width=20%>장소</th>
-		  	<td width=80%>{{cvo.location}}</td>
-		  </tr>
-		  <tr>
-		  	<th width=20%>일정</th>
-		  	<td width=80%>{{cvo.schedule}}</td>
-		  </tr>
-		  <tr>
-		  	<th width=20%>가격</th>
-		  	<td width=80%>{{cvo.perprice}}</td>
-		  </tr>
-		</table>
-<!-- 	  <div> -->
-<!-- 			  <ul class="tutee_list swiper-wrapper"> -->
-<!-- 			    <li class="swiper-slide" style="width: 300px" v-for="tvo in tutor_class"> -->
-<!-- 			      <div class="thumb_box"> -->
-<!-- 			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="tvo.image"></a> -->
-<!-- 			      </div> -->
-<!-- 			      <div class="text_box"> -->
-<!-- 			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{tvo.title}}</a> -->
-<!-- 				      <div> -->
-<!-- 				      	<table class="table text-center"> -->
-<!-- 				      	  <tr> -->
-<!-- 				      	  	<th width=20%>일정</th> -->
-<!-- 				      	  	<td width=80%>{{tvo.schedule}}</td> -->
-<!-- 				      	  </tr> -->
-<!-- 				      	  <tr> -->
-<!-- 				      	  	<th width=20%>장소</th> -->
-<!-- 				      	  	<td width=80%>{{tvo.location}}</td> -->
-<!-- 				      	  </tr> -->
-<!-- 				      	  <tr> -->
-<!-- 				      	  	<th width=20%>가격</th> -->
-<!-- 				      	  	<td width=70%>{{tvo.perprice}}원</td> -->
-<!-- 				      	  </tr> -->
-<!-- 				      	</table> -->
-<!-- 				      </div> -->
-<!-- 			      </div> -->
-<!-- 			    </li> -->
-<!-- 			  </ul> -->
-<!-- 	  </div> -->
+<!-- 		<table class="table" v-for="cvo in tutor_class"> -->
+<!-- 		  <tr> -->
+<!-- 		  	<td colspan=2><img :src="cvo.image"></td> -->
+<!-- 		  </tr> -->
+<!-- 		  <tr> -->
+<!-- 		  	<th width=20%>제목</th> -->
+<!-- 		  	<td width=80%>{{cvo.title}}&nbsp;<span class="mintBtn" style="font-size: 12px">찜 {{cvo.jjim_count}}개</span></td> -->
+<!-- 		  </tr> -->
+<!-- 		  <tr> -->
+<!-- 		  	<th width=20%>장소</th> -->
+<!-- 		  	<td width=80%>{{cvo.location}}</td> -->
+<!-- 		  </tr> -->
+<!-- 		  <tr> -->
+<!-- 		  	<th width=20%>일정</th> -->
+<!-- 		  	<td width=80%>{{cvo.schedule}}</td> -->
+<!-- 		  </tr> -->
+<!-- 		  <tr> -->
+<!-- 		  	<th width=20%>가격</th> -->
+<!-- 		  	<td width=80%>{{cvo.perprice}}</td> -->
+<!-- 		  </tr> -->
+<!-- 		</table> -->
+	  <div>
+			  <ul class="tutee_list swiper-wrapper" style="padding-left: 25px">
+			    <li class="swiper-slide" style="width: 300px" v-for="tvo in tutor_class">
+			      <div class="thumb_box">
+			        <a :href="'../class/class_detail.do?cno='+tvo.cno"><img :src="tvo.image"></a>
+			      </div>
+			      <div class="text_box">
+			        <a :href="'../class/class_detail.do?cno='+tvo.cno" class="title">{{tvo.title}}</a>
+				      <div>
+				      	<table class="table text-center">
+				      	  <tr>
+				      	  	<th width=20%>일정</th>
+				      	  	<td width=80%>{{tvo.schedule}}</td>
+				      	  </tr>
+				      	  <tr>
+				      	  	<th width=20%>장소</th>
+				      	  	<td width=80%>{{tvo.location}}</td>
+				      	  </tr>
+				      	  <tr>
+				      	  	<th width=20%>가격</th>
+				      	  	<td width=70%>{{tvo.perprice}}</td>
+				      	  </tr>
+				      	</table>
+				      </div>
+			      </div>
+			    </li>
+			  </ul>
+	  </div>
 	</div>
 </div>
 <script>
