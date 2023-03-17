@@ -136,7 +136,7 @@ public interface MypageMapper {
 	public int BoardTotalPage(Map map);
 	
 	//리뷰
-	@Select("SELECT rno,regdate,content,id,cno,num "
+	@Select("SELECT rno,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,content,id,cno,num "
 			+ "FROM (SELECT rno,regdate,content,id,cno,rownum as num "
 			+ "FROM (SELECT rno,regdate,content,id,cno "
 			+ "FROM ch_review_2_3 "
@@ -148,6 +148,10 @@ public interface MypageMapper {
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_review_2_3 "
 			+ "WHERE id=#{id}")
 	public int reviewTotalPage(Map map);
+	
+	@Delete("DELETE FROM ch_review_2_3 "
+			+ "WHERE rno=#{rno}")
+	public void reviewDelete(int rno);
 	
 	//댓글
 	@Select("SELECT brno,bno,id,msg,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,group_id,group_step,group_tab,root,depth,num "

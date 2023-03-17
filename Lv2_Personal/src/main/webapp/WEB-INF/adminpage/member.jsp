@@ -26,7 +26,7 @@
 	
 	<div style="width:80%;float:left;padding-left:20px;margin-top:10px">
 	  <div class=rows>
-		<div style="height: 450px">
+		<div style="height: 480px">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="15%" class="text-center">프로필</th>

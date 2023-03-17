@@ -26,7 +26,7 @@
 	  	<div style="height:150px;margin:5px;padding:10px;border:2px solid #45c5c5;">
 	  		<div style="height:50px;">
 	  	  		<img src="${sessionScope.mvo.image }" style="height: 45px;border-radius: 50px">
-	  	  		<span style="line-height: 45px">${sessionScope.mvo.nickname }</span>
+	  	  		<span style="line-height: 45px;margin: 10px">${sessionScope.mvo.nickname }</span>
 	  		</div>
 	  		<div style="height:25px;">
 		  	  	<img src="../images/letter.png" style="height: 20px;margin-top:3px">

@@ -131,7 +131,10 @@ public class MypageRestController {
 				obj.put("image", image);
 				obj.put("inwon", vo.getInwon());
 				obj.put("schedule", vo.getSchedule());
-				obj.put("place", vo.getPlace());
+				String place=vo.getPlace();
+				if(place.length()>12)
+					place=place.substring(0, 12)+"..";
+				obj.put("place", place);
 				obj.put("totalprice", vo.getTotalprice());
 				obj.put("tutormsg", vo.getTutormsg());
 				if(i==0) {
@@ -253,7 +256,7 @@ public class MypageRestController {
 		for(ReviewVO vo:list) {
 			JSONObject obj=new JSONObject();
 			obj.put("rno", vo.getRno());
-			obj.put("regdate", vo.getRegdate());
+			obj.put("dbday", vo.getDbday());
 			obj.put("id", vo.getId());
 			obj.put("content", vo.getContent());
 			obj.put("cno", vo.getCno());
@@ -265,6 +268,12 @@ public class MypageRestController {
 			arr.add(obj);
 		}
 		return arr.toJSONString();
+	}
+	
+	@GetMapping("mypage/review_delete_vue.do")
+	public String review_delete_vue(int rno) {
+		dao.reviewDelete(rno);
+		return "";
 	}
 	
 	@GetMapping(value = "mypage/reply_list_vue.do", produces = "text/plain;charset=UTF-8")

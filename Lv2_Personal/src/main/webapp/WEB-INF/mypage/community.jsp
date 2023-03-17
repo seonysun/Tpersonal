@@ -62,7 +62,7 @@
 			<div class="text-center" v-if="totalpage>0">
 	         <span class="mintBtn presspoint" @click="prev()">이전</span>
 		         {{curpage}} / {{totalpage}} 
-	         <span class="mintBt presspointn" @click="next()">다음</span>
+	         <span class="mintBtn presspointn" @click="next()">다음</span>
 	      	</div>
 		<div style="height: 20px"></div>
 	  </div>

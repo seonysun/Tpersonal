@@ -44,7 +44,7 @@
 				<tr style="vertical-align: middle;" v-for="vo in re_list">
 					<td width="10%" class="text-center origin">{{vo.rno}}</td>
 					<td width="60%" class="origin"><a :href="'../class/class_detail.do?cno='+vo.cno">{{vo.content}}</a></td>
-					<td width="15%" class="text-center origin">{{vo.regdate}}</td>
+					<td width="15%" class="text-center origin">{{vo.dbday}}</td>
 					<td width="10%" class="text-center origin">
 						<span class="presspoint" v-on:click="reviewDelete(vo.rno)">
 							<img src="../images/del.png" style="height: 15px;margin: 4px 10px;">
@@ -145,7 +145,7 @@
 		    },
 			reviewDelete:function(rno){
 				if(confirm('정말로 삭제하시겠습니까?\n삭제된 항목은 복구되지 않습니다')){
-					axios.get('http://localhost/web/class/review_delete_vue.do',{
+					axios.get('http://localhost/web/mypage/review_delete_vue.do',{
 						params:{
 							rno:rno
 						}

@@ -27,12 +27,14 @@ public interface AdminMapper {
 			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag,rownum as num "
 			+ "FROM (SELECT bno,btype,id,title,regdate,hit,tag "
 			+ "FROM ch_board_2_3 "
-			+ "WHERE btype=1 "
+			+ "WHERE btype=3 "
 			+ "ORDER BY bno)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BoardVO> noticeList(Map map);
 	
-	@Select("SELECT CEIL(COUNT(*)/10.0) FROM ch_board_2_3")
+	@Select("SELECT CEIL(COUNT(*)/10.0) "
+			+ "FROM ch_board_2_3 "
+			+ "WHERE btype=3")
 	public int noticeTotalPage();
 
 	//강의 승인

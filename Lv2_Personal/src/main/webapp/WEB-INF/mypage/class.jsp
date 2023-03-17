@@ -47,7 +47,7 @@
 			  <ul class="tutee_list">
 			    <li style="width: 350px" v-for="vo in class_list">
 			      <div class="thumb_box">
-			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.image"></a>
+			        <a :href="'../class/class_detail.do?cno='+vo.cno"><img :src="vo.image" style="width: 350px;height: 200px"></a>
 			      </div>
 			      <div class="text_box">
 			        <a :href="'../class/class_detail.do?cno='+vo.cno" class="title">{{vo.title}}</a>

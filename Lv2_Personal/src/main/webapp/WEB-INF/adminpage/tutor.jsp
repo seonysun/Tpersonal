@@ -13,6 +13,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <link rel="stylesheet" href="../Content/app3/css/mypage.css">
+<link rel="stylesheet" href="../Content/app3/css/common.css">
+<link rel="stylesheet" href="../Content/app3/css/index.css">
 
 </head>
 <body>
@@ -26,31 +28,13 @@
 	<div style="width:40%;float:left;margin-top:10px">
 		<tutorlist :tutordata='tutor_list' :curpage='curpage' :totalpage='totalpage'></tutorlist>
 	</div>
-	<div style="width:40%;float:left;margin-top:10px" v-if="isShow">
-<!-- 		<table class="table" v-for="cvo in tutor_class"> -->
-<!-- 		  <tr> -->
-<!-- 		  	<td colspan=2><img :src="cvo.image"></td> -->
-<!-- 		  </tr> -->
-<!-- 		  <tr> -->
-<!-- 		  	<th width=20%>제목</th> -->
-<!-- 		  	<td width=80%>{{cvo.title}}&nbsp;<span class="mintBtn" style="font-size: 12px">찜 {{cvo.jjim_count}}개</span></td> -->
-<!-- 		  </tr> -->
-<!-- 		  <tr> -->
-<!-- 		  	<th width=20%>장소</th> -->
-<!-- 		  	<td width=80%>{{cvo.location}}</td> -->
-<!-- 		  </tr> -->
-<!-- 		  <tr> -->
-<!-- 		  	<th width=20%>일정</th> -->
-<!-- 		  	<td width=80%>{{cvo.schedule}}</td> -->
-<!-- 		  </tr> -->
-<!-- 		  <tr> -->
-<!-- 		  	<th width=20%>가격</th> -->
-<!-- 		  	<td width=80%>{{cvo.perprice}}</td> -->
-<!-- 		  </tr> -->
-<!-- 		</table> -->
-	  <div>
-			  <ul class="tutee_list swiper-wrapper" style="padding-left: 25px">
-			    <li class="swiper-slide" style="width: 300px" v-for="tvo in tutor_class">
+	<div style="width:40%;float:left;margin-top:40px" v-if="isShow">
+
+		<div class="talent_area">
+		  <div class="talent_box">
+		   <div class="talent_list swiper-container swiper_this_week swiper-container-initialized swiper-container-horizontal swiper-container-free-mode" data-number="1">
+			  <ul class="tutee_list talent_box swiper-wrapper" style="padding-left: 25px">
+			    <li class="swiper-slide swiper-slide-active" style="width: 320px" v-for="tvo in tutor_class">
 			      <div class="thumb_box">
 			        <a :href="'../class/class_detail.do?cno='+tvo.cno"><img :src="tvo.image"></a>
 			      </div>
@@ -73,9 +57,13 @@
 				      	</table>
 				      </div>
 			      </div>
+			      <button type="button" class="btn_swiper swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true"></button> <button type="button" class="btn_swiper swiper-button-next swiper-button-disabled" tabindex="0" role="button" aria-label="Next slide" aria-disabled="true"></button> <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span> <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
 			    </li>
 			  </ul>
-	  </div>
+		   </div>
+		  </div>
+		</div>
+  
 	</div>
 </div>
 <script>
@@ -90,15 +78,15 @@
 			+'<td width=30% class=text-center rowspan=3>'
 			+'<img :src="vo.image" style="width: 80px;height: 80px" class="img-circle images" v-on:click="showClass(vo.id)">'
 			+'</td>'
-			+'<td width=20%>닉네임</td>'
-			+'<td width=80%><h3 style="color: #45c5c5">{{vo.nickname}}</h3></td>'
+			+'<td width=20% style="font-weight:bold">닉네임</td>'
+			+'<td width=80% style="color:#45c5c5;font-weight:bold">{{vo.nickname}}</td>'
 			+'</tr>'
 			+'<tr>'
-			+'<td width=20%>이름</td>'
+			+'<td width=20% style="font-weight:bold">이름</td>'
 			+'<td width=80%>{{vo.name}}</td>'
 			+'</tr>'
 			+'<tr>'
-			+'<td width=20%>번호</td>'
+			+'<td width=20% style="font-weight:bold">번호</td>'
 			+'<td width=80%>{{vo.tel}}</td>'
 			+'</tr>'
 			+'</table>'

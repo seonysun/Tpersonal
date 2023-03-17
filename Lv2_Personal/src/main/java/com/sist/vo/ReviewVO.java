@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class ReviewVO {
 	private int rno,heart,comment_count,curriculum,preparation,kindness,delivery,time,cno;
-	private String content,id;
+	private String content,id,dbday;
 	private Date regdate;
 }

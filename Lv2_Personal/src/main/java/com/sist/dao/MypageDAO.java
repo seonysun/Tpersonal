@@ -86,6 +86,9 @@ public class MypageDAO {
 	public int reviewTotalPage(Map map) {
 		return mapper.reviewTotalPage(map);
 	}
+	public void reviewDelete(int rno) {
+		mapper.reviewDelete(rno);
+	}
 	
 	//댓글
 	public List<BoardReplyVO> myReplyList(Map map){
