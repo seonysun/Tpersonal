@@ -1,24 +1,20 @@
 package com.sist.dao;
-import java.util.*;
-
-
 import java.sql.*;
+
 public class DataDAO {
-	
-	
 	private Connection conn;
 	private PreparedStatement ps;
-	private final String URL = "jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC";
+	private final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
 	
 	public DataDAO() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (Exception e) {}
 	}
 	
 	public void getConnection() {
 		try {
-			conn = DriverManager.getConnection(URL, "root", "happy");
+			conn = DriverManager.getConnection(URL, "hr", "happy");
 		} catch (Exception e) {}
 	}
 	
@@ -28,9 +24,8 @@ public class DataDAO {
 			if(conn != null) conn.close();
 		} catch (Exception e) {}
 	}
-
 	
-	public void twinkInsert(DataVO vo) {
+	public void dataInsert(DataVO vo) {
 		try {
 			getConnection();
 			String sql = "INSERT INTO twink(no, name, poster, price) "
@@ -45,5 +40,6 @@ public class DataDAO {
 		} finally {
 			disConnection();
 		}
-}
+	}
+	
 }
