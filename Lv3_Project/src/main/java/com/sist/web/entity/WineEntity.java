@@ -11,10 +11,10 @@ import lombok.Setter;
 @Table(name = "sul_item")
 @Getter
 @Setter
-public class DrinkEntity {
+public class WineEntity {
 	@Id
 	private int ino;
 	
-	private int icno,hit,vintage,jjim,first_price,price,account;
-	private String poster,name,nation,alcohol,capacity,name_sub,place,winery,discount;
+	private int icno,hit,jjim,price,account;
+	private String poster,name,rprice,nation,alcohol,capacity,name_sub,place,vintage,winery,first_price,discount;
 }

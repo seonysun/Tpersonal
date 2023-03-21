@@ -11,8 +11,7 @@
 <div class="wrapper row3">
   <main class="container clear"> 
   	<div class=jumbotron>
-  		<h3 class="text-center" th:text="${cvo.title}"></h3>
-		<h4 class="text-center" th:text="${cvo.subject}"></h4>
+  		<h3 class="text-center" th:text="${nation}"></h3>
   	</div>
   	<div class=row>
   		<table class="table">
@@ -21,25 +20,25 @@
 				<table class="table" th:each="vo:${list}">
 				  <tr>
 				  	<td width=30% class="text-center" rowspan="4">
-				  	  <a th:href="@{/food/food_detail(fno=${vo.fno})}">
+				  	  <a th:href="@{/wine/wine_detail(ino=${vo.ino})}">
 				  		<img th:src="${vo.poster}" style="width: 200px" class="img-rounded">
 				  	  </a>
 				  	</td>
 				  	<td width=70%>
-				  		<a th:href="@{/food/food_detail(fno=${vo.fno})}">
+				  		<a th:href="@{/wine/wine_detail(ino=${vo.ino})}">
 				  			<h3 th:text="${vo.name}" style="display:inline;float:left"></h3>
 				  		</a>
-				  		<h3 th:text="${vo.score}" style="color:orange;display:inline;float:left"></h3>
+				  		<h3 th:text="${vo.price}" style="color:orange;display:inline;float:left"></h3>
 				  	</td>
 				  </tr>
 				  <tr>
-				  	<td width=70% th:text="${vo.address}"></td>
+				  	<td width=70% th:text="${vo.alcohol}"></td>
 				  </tr>
 				  <tr>
-				  	<td width=70% th:text="${vo.tel}"></td>
+				  	<td width=70% th:text="${vo.vintage}"></td>
 				  </tr>
 				  <tr>
-				  	<td width=70% th:text="${vo.type}"></td>
+				  	<td width=70% th:text="${vo.capacity}"></td>
 				  </tr>
 				</table>
 		  	</td>
