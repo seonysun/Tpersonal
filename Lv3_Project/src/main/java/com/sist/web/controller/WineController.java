@@ -16,10 +16,9 @@ public class WineController {
 	@Autowired
 	private WineDAO dao;
 	
-	@RequestMapping("wine_list")
+	@GetMapping("wine_list")
 	public String wine_list(String page, Model model) {
 		if(page==null) page="1";
-		
 		int curpage=Integer.parseInt(page);
 		model.addAttribute("curpage", curpage);
 		int totalpage=dao.wineTotalpage();
@@ -33,17 +32,16 @@ public class WineController {
 
 		int rowsize=12;
 		int start=rowsize*(curpage-1);
-		List<wineEntity> list=dao.wineListData(start);
+		List<WineEntity> list=dao.wineListData(start);
 		model.addAttribute("list", list);
 		
 		model.addAttribute("main_html", "wine/wine_list");
 		return "main";
 	}
 	
-	@RequestMapping("whiskey_list")
+	@GetMapping("whiskey_list")
 	public String whiskey_list(String page, Model model) {
 		if(page==null) page="1";
-		
 		int curpage=Integer.parseInt(page);
 		model.addAttribute("curpage", curpage);
 		int totalpage=dao.whiskeyTotalpage();
@@ -57,17 +55,16 @@ public class WineController {
 		
 		int rowsize=12;
 		int start=rowsize*(curpage-1);
-		List<wineEntity> list=dao.whiskeyListData(start);
+		List<WineEntity> list=dao.whiskeyListData(start);
 		model.addAttribute("list", list);
 		
 		model.addAttribute("main_html", "wine/whiskey_list");
 		return "main";
 	}
 	
-	@RequestMapping("cognac_list")
+	@GetMapping("cognac_list")
 	public String cognac_list(String page, Model model) {
 		if(page==null) page="1";
-		
 		int curpage=Integer.parseInt(page);
 		model.addAttribute("curpage", curpage);
 		int totalpage=dao.cognacTotalpage();
@@ -81,7 +78,7 @@ public class WineController {
 		
 		int rowsize=12;
 		int start=rowsize*(curpage-1);
-		List<wineEntity> list=dao.cognacListData(start);
+		List<WineEntity> list=dao.cognacListData(start);
 		model.addAttribute("list", list);
 		
 		model.addAttribute("main_html", "wine/cognac_list");
@@ -94,7 +91,6 @@ public class WineController {
 		model.addAttribute("nation", nation);
 		
 		if(page==null) page="1";
-		
 		int curpage=Integer.parseInt(page);
 		model.addAttribute("curpage", curpage);
 		int totalpage=dao.wineFindTotalpage(nation);
@@ -108,16 +104,16 @@ public class WineController {
 		
 		int rowsize=12;
 		int start=rowsize*(curpage-1);
-		List<wineEntity> list=dao.wineFindData(nation, start);
+		List<WineEntity> list=dao.wineFindData(nation, start);
 		model.addAttribute("list", list);
 		
-		model.addAttribute("main_html", "wine/wine_find");
+		model.addAttribute("main_html", "wine/wine_find2");
 		return "main";
 	}
 	
 	@GetMapping("wine_detail")
 	public String wine_detail(int ino, Model model) {
-		wineEntity vo=dao.findByIno(ino);
+		WineEntity vo=dao.findByIno(ino);
 		model.addAttribute("vo", vo);
 		model.addAttribute("main_html", "wine/wine_detail");
 		return "main";

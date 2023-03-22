@@ -10,9 +10,7 @@
   <main class="container clear"> 
   	<table class=table>
   	  <tr>
-  		<td th:each="poster:${pList}">
-  			<img th:src="${poster}" style="width: 100%">
-  		</td>
+  		<td><img th:src="${vo.poster}" style="height: 100%"></td>
   	  </tr>
   	</table>
   	<div style="height: 20px"></div>
@@ -21,36 +19,28 @@
 	  <tr>
 	 	<td colspan="2">
 	  		<h3 th:text="${vo.name}" style="display:inline;float:left"></h3>
-	  		<h3 th:text="${vo.score}" style="color:orange;display:inline;float:left"></h3>
+	  		<h3 th:text="${vo.name_sub}" style="color:orange;display:inline;float:left"></h3>
 	  	</td>
 	  </tr>
 	  <tr>
 	  	<th width=20%>주소</th>
-	  	<td width=80% th:text="${addr1}"></td>
+	  	<td width=80% th:text="${vo.alcohol}"></td>
 	  </tr>
 	  <tr>
 	  	<th width=20%>전화</th>
-	  	<td width=80% th:text="${vo.tel}"></td>
+	  	<td width=80% th:text="${vo.place}"></td>
 	  </tr>
 	  <tr>
 	  	<th width=20%>음식종류</th>
-	  	<td width=80% th:text="${vo.type}"></td>
+	  	<td width=80% th:text="${vo.vintage}"></td>
 	  </tr>
 	  <tr>
 	  	<th width=20%>가격대</th>
-	  	<td width=80% th:text="${vo.price}"></td>
+	  	<td width=80% th:text="${vo.winery}"></td>
 	  </tr>
 	  <tr>
 	  	<th width=20%>주차</th>
-	  	<td width=80% th:text="${vo.parking}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>영업시간</th>
-	  	<td width=80% th:text="${vo.time}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>메뉴</th>
-	  	<td width=80% th:text="${vo.menu}"></td>
+	  	<td width=80% th:text="${vo.account}"></td>
 	  </tr>
 	  <tr>
 	  	<td colspan=2 class=text-right>

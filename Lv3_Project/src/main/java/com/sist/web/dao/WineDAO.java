@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WineDAO extends JpaRepository<WineEntity, Integer>{
 	//주류 목록
-	@Query(value = "SELECT ino,name,poster,TO_CHAR(price, '999,999,999,999,999') as rprice "
-			+ "FROM sul_item WHERE icno=1 "
+	@Query(value = "SELECT * FROM sul_item WHERE icno=1 "
 			+ "ORDER BY ino LIMIT :start,12", nativeQuery = true)
 	public List<WineEntity> wineListData(@Param("start") Integer start);
 	
@@ -19,8 +18,7 @@ public interface WineDAO extends JpaRepository<WineEntity, Integer>{
 			+ "WHERE icno=1", nativeQuery = true)
 	public int wineTotalpage();
 
-	@Query(value = "SELECT ino,name,poster,TO_CHAR(price, '999,999,999,999,999') as rprice "
-			+ "FROM sul_item WHERE icno=2 "
+	@Query(value = "SELECT * FROM sul_item WHERE icno=2 "
 			+ "ORDER BY ino LIMIT :start,12", nativeQuery = true)
 	public List<WineEntity> whiskeyListData(@Param("start") Integer start);
 	
@@ -28,8 +26,7 @@ public interface WineDAO extends JpaRepository<WineEntity, Integer>{
 			+ "WHERE icno=2", nativeQuery = true)
 	public int whiskeyTotalpage();
 	
-	@Query(value = "SELECT ino,name,poster,TO_CHAR(price, '999,999,999,999,999') as rprice "
-			+ "FROM sul_item WHERE icno=3 "
+	@Query(value = "SELECT * FROM sul_item WHERE icno=3 "
 			+ "ORDER BY ino LIMIT :start,12", nativeQuery = true)
 	public List<WineEntity> cognacListData(@Param("start") Integer start);
 	

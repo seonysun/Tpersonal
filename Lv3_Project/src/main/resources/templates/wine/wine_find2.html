@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="wrapper row3">
   <main class="container clear"> 
   	<div class=jumbotron>
   		<h3 class="text-center" th:text="${nation}"></h3>
+  	</div>
+  	<div>
+  		<form method="post" action="/wine/wine_find" class=inline>
+        	<input type=text name=nation size=20 class="input-sm">
+        	<input type=submit value="검색" class="btn btn-sm btn-danger">
+        </form>
   	</div>
   	<div class=row>
   		<table class="table">
@@ -21,7 +25,7 @@
 				  <tr>
 				  	<td width=30% class="text-center" rowspan="4">
 				  	  <a th:href="@{/wine/wine_detail(ino=${vo.ino})}">
-				  		<img th:src="${vo.poster}" style="width: 200px" class="img-rounded">
+				  		<img th:src="${vo.poster}" style="width: 100px;height: 200px" class="img-rounded">
 				  	  </a>
 				  	</td>
 				  	<td width=70%>

@@ -16,5 +16,5 @@ public class WineEntity {
 	private int ino;
 	
 	private int icno,hit,jjim,price,account;
-	private String poster,name,rprice,nation,alcohol,capacity,name_sub,place,vintage,winery,first_price,discount;
+	private String poster,name,nation,alcohol,capacity,name_sub,place,vintage,winery,first_price,discount;
 }

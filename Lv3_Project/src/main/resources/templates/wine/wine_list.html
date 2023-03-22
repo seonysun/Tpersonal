@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="wrapper row3">
@@ -12,7 +13,7 @@
         <figure>
           <ul class="nospace clear">
             <li th:each="vo,i:${list}" th:class="${i.index%4==0}?'one_quarter first':'one_quarter'">
-            	<a th:href="@{/wine/wine_detail(ino=${vo.ino})}"><img th:src="${vo.poster}"></a>
+            	<a th:href="@{/wine/wine_detail(ino=${vo.ino})}"><img th:src="${vo.poster}" style="height: 200px"></a>
             </li>
           </ul>
           <figcaption></figcaption>
