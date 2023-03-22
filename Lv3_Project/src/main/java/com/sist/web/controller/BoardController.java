@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.web.dao.BoardDAO;
 import com.sist.web.entity.BoardEntity;
-import com.sist.web.entity.FoodLocationEntity;
 
 @Controller
 @RequestMapping("board/")

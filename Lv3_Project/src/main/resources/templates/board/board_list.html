@@ -18,12 +18,12 @@
   <main class="container clear"> 
   	  <table class="table">
         <tr>
-         <td><a href="/board/board_insert" class="btn btn-sm btn-success">새글</a></td>
+         <td><a href="/board/board_insert" class="shBtn">새글</a></td>
         </tr>
       </table>
-      <table class="table">
+      <table class="table" style="text-align: center">
        <thead>
-        <tr class="danger">
+        <tr>
           <th width=10% class="text-center">번호</th>
           <th width=45% class="text-center">제목</th>
           <th width=15% class="text-center">이름</th>
@@ -31,7 +31,7 @@
           <th width=10% class="text-center">조회수</th>
         </tr>
        </thead>
-       <tbody>
+       <tbody style="height: 400px">
           <tr th:each="vo:${list}">
               <td width=10% class="text-center" th:text="${vo.no}"></td>
 	          <td width=45%><a th:href="@{/board/board_detail(no=${vo.no})}" th:text="${vo.subject}"></a></td>
@@ -43,9 +43,9 @@
        <tfoot>
         <tr>
           <td colspan="5" class="text-right">
-            <a th:href="@{/board/board_list(page=${curpage>1?curpage-1:curpage})}" class="btn btn-sm btn-warning">이전</a>
+            <a th:href="@{/board/board_list(page=${curpage>1?curpage-1:curpage})}" class="shBtn">이전</a>
             <span th:text="${curpage}"></span> page / <span th:text="${totalpage}"></span> pages
-            <a th:href="@{/board/board_list(page=${curpage<totalpage?curpage+1:curpage})}" class="btn btn-sm btn-warning">다음</a>
+            <a th:href="@{/board/board_list(page=${curpage<totalpage?curpage+1:curpage})}" class="shBtn">다음</a>
           </td>
         </tr>
        </tfoot>

@@ -4,22 +4,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row3">
   <main class="container clear"> 
-	<form method="post" action="/board/board_delete_ok">
+	<form method="post" action="/board/board_delete_ok" style="text-align: center">
       <table class="table">
         <tr>
           <td>
-         	 비밀번호:<input type=password name=pwd class="input-sm" size=15>
+         	 비밀번호&nbsp;<input type=password name=pwd class="input-sm" size=10>
           	<input type=hidden name=no th:value="${no }">
           </td>
         </tr>
         <tr>
           <td class="text-center">
-            <input type=submit value="삭제" class="btn btn-sm btn-danger">
-            <input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
+            <input type=submit value="삭제" class="shBtn">
+            <input type=button value="취소" class="shBtn_o" onclick="javascript:history.back()">
           </td>
         </tr>
       </table>
