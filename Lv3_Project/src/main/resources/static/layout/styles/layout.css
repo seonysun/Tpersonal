@@ -20,6 +20,79 @@ File: Layout CSS
 .row4{border-top:5px solid;}
 .row5{border-top:1px solid;}
 
+.shBtn{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	background-color: lightseagreen;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+.shBtn a{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	background-color: lightseagreen;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+.shBtn:hover{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	border-color: lightseagreen;
+	background-color: white;
+	border: 1px solid;
+	color: lightseagreen;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+.shBtn_o{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	border-color: lightseagreen;
+	background-color: white;
+	border: 1px solid;
+	color: lightseagreen;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+.shBtn_o a{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	border-color: lightseagreen;
+	background-color: white;
+	border: 1px solid;
+	color: lightseagreen;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+.shBtn_o:hover{
+	text-align: center;
+	width: 70px;
+	height: 25px;
+	background-color: lightseagreen;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 11px;
+	padding: 5px 7px;
+}
+
 
 /* Header
 --------------------------------------------------------------------------------------------------------------- */
@@ -30,8 +103,8 @@ File: Layout CSS
 #header #logo h1{font-size:32px; font-variant:small-caps;}
 #header #logo h1::first-letter{font-size:36px;}
 
-#header ul{margin-top:12px;}
-#header ul li{margin-right:15px;}
+#header ul{margin-top:0px;}
+#header ul li{margin-right:0px;font-size:12px;font-weight:bold}
 #header ul li:last-child{margin-right:0;}
 #header ul li i{margin-right:3px;}
 
@@ -133,19 +206,19 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Top Navigation */
 #mainav{border-radius:10px; line-height:normal;}
-#mainav ul:first-child > li:first-child a{border-radius:10px 0 0 10px;}
+#mainav ul:first-child > li:first-child a{border-radius:10px 0px 0px 10px;}
 #mainav ul{}
-#mainav ul ul{z-index:9999; position:absolute; width:180px;}
+#mainav ul ul{z-index:9999; position:absolute; width:100%;}
 #mainav ul ul ul{left:100%; top:0;}
 #mainav li{display:inline-block; float:left; position:relative; margin:0; padding:0; text-transform:uppercase;}
 #mainav li:last-child{margin-right:0;}
 #mainav li li{width:100%; margin:0; text-transform:none;}
-#mainav li a{display:block; padding:20px 30px;}
+#mainav li a{display:block; padding:15px 30px;}
 #mainav li li a{border:solid; border-width:0 0 1px 0;}
-#mainav .drop{}
+#mainav .drop{padding:14px 30px}
 #mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
-#mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
-#mainav .drop::after{top:25px; left:15px;}
+/* #mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";} */
+#mainav .drop::after{top:25px; left:25px;}
 #mainav li li .drop::after{top:15px; left:5px;}
 /*#mainav ul ul{display:none;}
 #mainav ul li:hover > ul{display:block;}*/
@@ -228,7 +301,7 @@ td{border-width:0 1px;}
 --------------------------------------------------------------------------------------------------------------- */
 body{color:#B4B4B4; background-color:#232323;}
 
-a{color:#E05149;}
+a{color:lightseagreen;}
 
 hr, .borderedbox{border-color:#D7D7D7;}
 
@@ -237,53 +310,53 @@ label span{color:#FF0000; background-color:inherit;}
 
 /* Rows */
 .row1, .row1 a{color:#888888; background-color:#FFFFFF;}
-.row1{border-color:#E05149;}
+.row1{border-color:lightseagreen;}
 .row2{color:#888888; background-color:#FFFFFF;}
 .row3{color:#888888; background-color:#F2F2F2;}
-.row4{color:#B4B4B4; background-color:#232323; border-color:#E05149;}
+.row4{color:#B4B4B4; background-color:#232323; border-color:lightseagreen;}
 .row5, .row5 a{color:#B4B4B4; background-color:#232323;}
 .row5{border-color:#3C3C3C;}
 
 
 /* Header */
-#header #logo h1::first-letter{color:#E05149;}
+#header #logo h1::first-letter{color:lightseagreen;}
 
 
 /* Content Area */
 .sectiontitle{border-color:#D7D7D7;}
-.sectiontitle::after{background-color:#E05149;}
+.sectiontitle::after{background-color:lightseagreen;}
 
 .service .icon{border-color:#D7D7D7;}
-.service:hover .icon{color:#FFFFFF; background-color:#E05149; border-color:#E05149;}
+.service:hover .icon{color:#FFFFFF; background-color:lightseagreen; border-color:lightseagreen;}
 
 
 /* Footer */
 #footer .shout .shout-content, #footer .shout .shout-content:hover{color:inherit; background-color:#3C3C3C;}
 #footer .title{color:#FFFFFF; border-color:#3C3C3C;}
 #footer input{color:#FFFFFF; background-color:#3C3C3C;}
-#footer button{color:#FFFFFF; background-color:#E05149;}
+#footer button{color:#FFFFFF; background-color:lightseagreen;}
 
 
 /*Back to Top*/
-#backtotop{color:#FFFFFF; background-color:#E05149;}
+#backtotop{color:#FFFFFF; background-color:lightseagreen;}
 
 
 /* Navigation */
 #mainav{color:#FFFFFF; background-color:#232323;}
 #mainav li a{color:inherit;}
-#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:inherit; background-color:#E05149;}
+#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:inherit; background-color:lightseagreen;}
 #mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(0,0,0,.6); border-color:rgba(0,0,0,.6);}
-#mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#E05149;}
+#mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:lightseagreen;}
 
 #mainav form{padding:15px;}
 #mainav form select{color:inherit; background-color:inherit; border-color:#3C3C3C;}
 
 #breadcrumb{border-color:#D7D7D7;}
 #breadcrumb a{color:#888888; background-color:inherit;}
-#breadcrumb li:last-child a{color:#E05149;}
+#breadcrumb li:last-child a{color:lightseagreen;}
 
 .container .sidebar nav a{color:inherit; border-color:#D7D7D7;}
-.container .sidebar nav a:hover{color:#E05149;}
+.container .sidebar nav a:hover{color:lightseagreen;}
 
 .pagination a, .pagination strong{border-color:#D7D7D7;}
 .pagination .current{color:#FFFFFF; background-color:#000000;}
