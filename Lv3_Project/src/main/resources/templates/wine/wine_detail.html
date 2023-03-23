@@ -3,52 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="wrapper row3">
-  <main class="container clear"> 
-  	<table class=table>
-  	  <tr>
-  		<td><img th:src="${vo.poster}" style="height: 100%"></td>
-  	  </tr>
-  	</table>
-  	<div style="height: 20px"></div>
-  	
-	<table class="table">
-	  <tr>
-	 	<td colspan="2">
-	  		<h3 th:text="${vo.name}" style="display:inline;float:left"></h3>
-	  		<h3 th:text="${vo.name_sub}" style="color:orange;display:inline;float:left"></h3>
-	  	</td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>주소</th>
-	  	<td width=80% th:text="${vo.alcohol}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>전화</th>
-	  	<td width=80% th:text="${vo.place}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>음식종류</th>
-	  	<td width=80% th:text="${vo.vintage}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>가격대</th>
-	  	<td width=80% th:text="${vo.winery}"></td>
-	  </tr>
-	  <tr>
-	  	<th width=20%>주차</th>
-	  	<td width=80% th:text="${vo.account}"></td>
-	  </tr>
-	  <tr>
-	  	<td colspan=2 class=text-right>
-	  		<input type=button onclick="javascript:history.back()" class="btn btn-xs" value="목록">
-	  	</td>
-	  </tr>
-	</table>
-  </main>
-</div>
+	<div class="hero-wrap hero-bread" style="background-image: url('../images/oak.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-0 bread">Wine Detail</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6 mb-5 ftco-animate" style="text-align: center;padding: 45px">
+    				<img th:src="${vo.poster}" class="img-fluid" style="height: 500px">
+    			</div>
+    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    				<h3 th:text="${vo.name}"></h3>
+					<p class="price">
+						<span class="mr-2" th:text="${vo.first_price}" style="text-decoration: line-through;color: #b3b3b3;"></span>
+						<span class="price-sale" th:text="${vo.price}"></span>
+					</p>
+    				<p>도수 <span th:text="${vo.alcohol}" style="font-weight: bold;color:black"></span></p>
+    				<p>용량 <span th:text="${vo.capacity}" style="font-weight: bold;color:black"></span></p>
+    				<p>생산지 <span th:text="${vo.nation}" style="font-weight: bold;color:black"></span></p>
+    				<p>지역 <span th:text="${vo.place}" style="font-weight: bold;color:black"></span></p>
+    				<p>와이너리 <span th:text="${vo.winery}" style="font-weight: bold;color:black"></span></p>
+    				<p>빈티지 <span th:text="${vo.vintage}" style="font-weight: bold;color:black"></span></p>
+    				<p>재고수량 <span th:text="${vo.account}" style="font-weight: bold;color:black"></span></p>
+						<div class="row mt-4">
+<!-- 							<div class="col-md-6"> -->
+<!-- 								<div class="form-group d-flex"> -->
+<!-- 					              <div class="select-wrap"> -->
+<!-- 					                  <div class="icon"><span class="ion-ios-arrow-down"></span></div> -->
+<!-- 					                  <select name="" id="" class="form-control"> -->
+<!-- 					                  	<option value="">Small</option> -->
+<!-- 					                    <option value="">Medium</option> -->
+<!-- 					                    <option value="">Large</option> -->
+<!-- 					                    <option value="">Extra Large</option> -->
+<!-- 					                  </select> -->
+<!-- 				                  </div> -->
+<!-- 					            </div> -->
+<!-- 							</div> -->
+							<div class="w-100"></div>
+							<div class="input-group col-md-6 d-flex mb-3">
+	             	<span class="input-group-btn mr-2">
+	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+	                   <i class="ion-ios-remove"></i>
+	                	</button>
+	            		</span>
+	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+	             	<span class="input-group-btn ml-2">
+	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+	                     <i class="ion-ios-add"></i>
+	                 </button>
+	             	</span>
+	          	</div>
+	          	<div class="w-100"></div>
+          	</div>
+          	<p><a href="#" class="btn btn-black py-3 px-5">장바구니 담기</a></p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
 </body>
 </html>

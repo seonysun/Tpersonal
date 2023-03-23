@@ -6,41 +6,32 @@
 </head>
 <body>
 <th:block>
-	<div class="wrapper row1">
-	  <header id="header" class="clear"> 
-	    <div id="logo" class="fl_left">
-	      <a th:href="@{/}">
-	      	<img src="../images/wine.png" style="height: 45px">
-	      </a>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" th:href="@{/}" style="color:#BB2649">Viva Wine</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a th:href="@{/}" class="nav-link" style="color:#BB2649;font-weight:bold">Home</a></li>
+	          <li class="nav-item dropdown">
+	              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRODUCT</a>
+	              <div class="dropdown-menu" aria-labelledby="dropdown04">
+	              	<a class="dropdown-item" th:href="@{/wine/wine_list}">와인</a>
+	                <a class="dropdown-item" th:href="@{/wine/whiskey_list}">위스키</a>
+	                <a class="dropdown-item" th:href="@{/wine/cognac_list}">꼬냑</a>
+	              </div>
+              </li>
+	          <li class="nav-item"><a th:href="@{/wine/wine_find}" class="nav-link">NATION</a></li>
+	          <li class="nav-item"><a th:href="@{/recipe/recipe_list}" class="nav-link">RECIPE</a></li>
+	          <li class="nav-item"><a th:href="@{/board/board_list}" class="nav-link">NOTICE</a></li>
+	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	        </ul>
+	      </div>
 	    </div>
-	    <div class="inline" style="float: left;margin-left:150px;margin-right:50px;line-height:40px">
-	    	<input type="text" class="input-sm" size=20>
-	    	<input type="submit" class="btn btn-sm" value=검색>
-	    </div>
-		<nav id="mainav" class="inline" style="width:55%;height:0px;float:right"> 
-		    <ul class="clear" style="color:black;font-size:15px">
-		      <li class="active" style="color:white;font-size:12px;font-weight:bold">
-		      	<a th:href="@{/}">Home</a>
-		      </li>
-		      <li><a class="drop" href="#">주류</a>
-		        <ul>
-		          <li><a th:href="@{/wine/wine_list}">와인</a></li>
-		          <li><a th:href="@{/wine/whiskey_list}">위스키</a></li>
-		          <li><a th:href="@{/wine/cognac_list}">꼬냑</a></li>
-		        </ul>
-		      </li>
-		      <li><a th:href="@{/wine/wine_find}">나라별 주류</a></li>
-		      <li><a class="drop" href="#">레시피</a>
-		        <ul>
-		          <li><a href="#">인기 레시피</a></li>
-		          <li><a href="#">이달의 쉐프</a></li>
-		        </ul>
-		      </li>
-		      <li><a th:href="@{/board/board_list}">공지사항</a></li>
-		    </ul>
-		</nav>
-	  </header>
-	</div>
+	  </nav>
 </th:block>
 </body>
 </html>

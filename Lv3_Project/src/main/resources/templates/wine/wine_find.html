@@ -5,37 +5,101 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="wrapper row3">
-  <main class="container clear"> 
-    <div class="content"> 
-      <div id="gallery">
-        <figure>
-          <header class="heading">
-          	<form method="post" action="/wine/wine_find" class=inline>
-          		<input type=text name=nation size=20 class="input-sm">
-          		<input type=submit value="검색" class="btn btn-sm">
-          	</form>
-          </header>
-          <ul class="nospace clear">
-            <li th:each="vo,i:${list}" th:class="${i.index%4==0}?'one_quarter first':'one_quarter'">
-            	<a th:href="@{/food/find_detail(ino=${vo.ino})}"><img th:src="${vo.poster}" th:title="${vo.name}"></a>
-            </li>
-          </ul>
-          <figcaption></figcaption>
-        </figure>
+	<div class="hero-wrap hero-bread" style="background-image: url('../images/oak.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-0 bread">Search Wine</h1>
+          </div>
+        </div>
       </div>
-      <nav class="pagination">
-        <ul>
-          <li th:if="${startpage>1}"><a th:href="@{/wine/wine_find(page=${startpage-1}, nation=${nation})}">&laquo; 이전</a></li>
-          <li th:class="${curpage==i}?'current':''" th:each="i:${#numbers.sequence(startpage,endpage)}">
-          	<a th:href="@{/wine/wine_find(page=${i}, nation=${nation})}" th:text="${i}"></a>
-          </li>
-          <li th:if="${endpage<totalpage}"><a th:href="@{/wine/wine_find(page=${endpage+1}, nation=${nation})}">다음 &raquo;</a></li>
-        </ul>
-      </nav>
     </div>
-    <div class="clear"></div>
-  </main>
-</div>
+
+	<section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-lg-8 ftco-animate">
+	        <div style="height: 65px;margin-top:-20px;padding-left:70px">
+		        <h5><span th:text="${nation}" style="font-weight: bold;color:#BB2649"></span>로 <span th:text="${count}" style="font-weight: bold;color:#BB2649"></span>개의 와인이 검색되었습니다.</h5>
+	        </div>
+	          
+			<div class="row">
+				<div class="col-md-12 d-flex ftco-animate" th:each="vo:${list}" style="height: 250px">
+		            <div class="blog-entry align-self-stretch d-md-flex">
+		              <a th:href="@{/wine/wine_detail(ino=${vo.ino})}" class="block-20" style="text-align: center">
+		              	<img th:src="${vo.poster}" style="height: 75%">
+		              </a>
+		              <div class="text d-block pl-md-4">
+		                <h3 class="heading" style="margin-bottom: 5px"><a th:href="@{/wine/wine_detail(ino=${vo.ino})}" th:text="${vo.name}" style="font-weight: bold"></a></h3>
+		                <p th:text="${vo.name_sub}" style="margin-bottom: 0px"></p>
+		                <p th:text="${vo.winery}"></p>
+		                <h3 th:text="${vo.price}" style="color:#BB2649"></h3>
+		                <p><a th:href="@{/wine/wine_detail(ino=${vo.ino})}" class="btn btn-primary py-2 px-3">자세히 보기</a></p>
+		              </div>
+		            </div>
+		        </div>
+			</div>
+			
+				<div class="row mt-5" style="margin-top:-10px">
+		          <div class="col text-center">
+		            <div class="block-27">
+		              <ul>
+		                <li><a th:href="@{/wine/wine_find(nation=${nation},page=${curpage>1?startpage-1:curpage})}">&lt;</a></li>
+		                <li th:class="${curpage==i}?'active':''" th:each="i:${#numbers.sequence(startpage,endpage)}">
+				        	<a th:href="@{/wine/wine_find(nation=${nation},page=${i})}" th:text="${i}"></a>
+				        </li>
+		                <li><a th:href="@{/wine/wine_find(nation=${nation},page=${curpage<totalpage?endpage+1:curpage})}">&gt;</a></li>
+		              </ul>
+		            </div>
+		          </div>
+		        </div>
+          </div>
+          
+          <div class="col-lg-4 sidebar ftco-animate">
+            <div class="sidebar-box">
+              <form method="post" action="/wine/wine_find" class="search-form">
+                <div class="form-group">
+                  <span class="icon ion-ios-search" style="color:#BB2649"></span>
+                  <input type="text" name=nation class="form-control" placeholder="검색어를 입력하세요">
+                </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate">
+            	<h3 CLASS="heading">Categories</h3>
+              <ul class="categories">
+                <li><a th:href="@{/wine/wine_list}">WINE <span th:text="${count1}"></span></a></li>
+                <li><a th:href="@{/wine/whiskey_list}">WHISKEY <span th:text="${count2}"></span></a></li>
+                <li><a th:href="@{/wine/cognac_list}">COGNAC <span th:text="${count3}"></span></a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 CLASS="heading">최근 본 상품</h3>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(../images/image_1.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading-1"><a href="#"></a></h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 CLASS="heading">Tag Cloud</h3>
+              <div class="tagcloud">
+                <a href="#" class="tag-cloud-link">France</a>
+                <a href="#" class="tag-cloud-link">Spain</a>
+                <a href="#" class="tag-cloud-link">Chile</a>
+                <a href="#" class="tag-cloud-link">NewZealand</a>
+                <a href="#" class="tag-cloud-link">Italy</a>
+                <a href="#" class="tag-cloud-link">Portugal</a>
+                <a href="#" class="tag-cloud-link">USA</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 </body>
 </html>

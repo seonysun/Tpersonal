@@ -6,79 +6,104 @@
 </head>
 <body>
 <th:block>
-<div class="wrapper row3">
-  <main class="container clear"> 
-    <ul class="nospace group btmspace-80">
-      <li class="one_third first">
-        <article class="service"><i class="icon fa fa-ambulance"></i>
-          <h6 class="heading"><a href="#">와인</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-          <footer><a href="#">Read More &raquo;</a></footer>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="service"><i class="icon fa fa-h-square"></i>
-          <h6 class="heading"><a href="#">위스키</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-          <footer><a href="#">Read More &raquo;</a></footer>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="service"><i class="icon fa fa-hospital-o"></i>
-          <h6 class="heading"><a href="#">꼬냑</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-          <footer><a href="#">Read More &raquo;</a></footer>
-        </article>
-      </li>
-    </ul>
-<!--     <h2 class="sectiontitle">믿고보는 맛집 리스트</h2> -->
-<!--     <div class="flexslider carousel basiccarousel btmspace-80"> -->
-<!--       <ul class="slides"> -->
-<!--         <li th:each="vo:${list}" th:if="${vo.cno>=1 && vo.cno<=12}"> -->
-<!--           <figure><img class="radius-10 btmspace-10" th:src="${vo.poster}"> -->
-<!--             <figcaption><a th:href="@{/food/food_list(cno=${vo.cno})}" th:text="${vo.title}"></a></figcaption> -->
-<!--           </figure> -->
-<!--         </li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--     <h2 class="sectiontitle">지역별 인기 맛집</h2> -->
-<!--     <div class="flexslider carousel basiccarousel btmspace-80"> -->
-<!--       <ul class="slides"> -->
-<!--         <li th:each="vo:${list}" th:if="${vo.cno>=13 && vo.cno<=18}"> -->
-<!--           <figure><img class="radius-10 btmspace-10" th:src="${vo.poster}"> -->
-<!--             <figcaption><a th:href="@{/food/food_list(cno=${vo.cno})}" th:text="${vo.title}"></a></figcaption> -->
-<!--           </figure> -->
-<!--         </li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--     <h2 class="sectiontitle">메뉴별 인기 맛집</h2> -->
-<!--     <div class="flexslider carousel basiccarousel btmspace-80"> -->
-<!--       <ul class="slides"> -->
-<!--         <li th:each="vo:${list}" th:if="${vo.cno>=19 && vo.cno<=30}"> -->
-<!--           <figure><img class="radius-10 btmspace-10" th:src="${vo.poster}"> -->
-<!--             <figcaption><a th:href="@{/food/food_list(cno=${vo.cno})}" th:text="${vo.title}"></a></figcaption> -->
-<!--           </figure> -->
-<!--         </li> -->
-<!--       </ul> -->
-<!--     </div> -->
-    <h2 class="sectiontitle">최근 방문 맛집</h2>
-    <ul class="nospace group">
-      <li class="one_half first">
-        <article><img class="imgl radius-10" src="images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-      <li class="one_half">
-        <article><img class="imgl radius-10" src="images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-    </ul>
-    <div class="clear"></div>
-  </main>
-</div>
+	<section id="home-section" class="hero" style="height: 400px">
+		<div class="home-slider js-fullheight owl-carousel">
+	      <div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third order-md-last img js-fullheight" style="background-image:url(images/wine2.jpg);">
+	          	</div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text" style="height: 400px;margin-top:-100px">
+				        <h1 class="mb-4 mt-3">Enjoy Your Time<br><span>with Bottle</span></h1>
+				        <p>비바 와인과 함께 행복한 시간을 보내보세요!</p>
+				        <p><a th:href="@{/wine/wine_find}" class="btn btn-primary px-5 py-3 mt-3" style="font-weight: bold">와인 찾기</a></p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
+
+    <section class="ftco-section bg-light" style="padding-top: 50px;padding-bottom: 50px">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h2>추천 상품</h2>
+            <p>Viva Wine이 추천하는 이달의 인기 상품</p>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+    					<div class="col-sm col-md-6 col-lg ftco-animate" th:each="vo:${list}">
+		    				<div class="product">
+		    					<a th:href="@{/wine/wine_detail(ino=${vo.ino})}" class="img-prod" style="text-align: center"><img class="img-fluid" style="height: 200px;width: 100px;margin: 10px" th:src="${vo.poster}">
+		    						<span class="status" th:text="${vo.discount}" style="color:white;font-weight:bold"></span>
+		    						<div class="overlay"></div>
+		    					</a>
+		    					<div class="text py-3 px-3">
+		    						<h3><a th:href="@{/wine/wine_detail(ino=${vo.ino})}" th:text="${vo.name}"></a></h3>
+		    						<div class="d-flex">
+		    							<div class="pricing">
+				    						<p class="price"><span class="mr-2 price-dc" th:text="${vo.first_price}"></span><span class="price-sale" th:text="${vo.price}"></span></p>
+				    					</div>
+				    					<div class="rating">
+			    							<p class="text-right">
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+			    							</p>
+			    						</div>
+			    					</div>
+			    					<p class="bottom-area d-flex px-3">
+		    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>장바구니 담기 <i class="ion-ios-add ml-1"></i></span></a>
+		    							<a href="#" class="buy-now text-center py-2">바로 구매 <span><i class="ion-ios-cart ml-1"></i></span></a>
+		    						</p>
+		    					</div>
+		    				</div>
+		    			</div>
+    		</div>
+    	</div>
+    </section>
+
+	<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-8 d-flex align-items-stretch">
+    				<div class="img" style="background-image: url(../images/recipe.jpeg);"></div>
+    			</div>
+    			<div class="col-md-4 py-md-5 ftco-animate">
+    				<div class="text py-3 py-md-5">
+	            <h2 class="mb-4" style="color:darksalmon;font-weight:bold">와인과 함께할 레시피</h2>
+	            <p>소중한 사람과의 소중한 시간에 와인과 함께할 레시피를 구경해보세요!</p>
+	            <p><a th:href="@{/recipe/recipe_list}" class="btn btn-white px-4 py-3" style="font-weight:bold">레시피 구경가기</a></p>
+    				</div>
+    			</div>
+    		</div>
+
+    		<div class="row">
+    			<div class="col-md-5 order-md-last d-flex align-items-stretch">
+    				<div class="img img-2" style="background-image: url(../images/wine3.jpg);"></div>
+    			</div>
+    			<div class="col-md-7 py-3 py-md-5 ftco-animate">
+    				<div class="text text-2 py-md-5">
+	            <h2 class="mb-4" style="color:darksalmon;font-weight:bold">나만의 와인</h2>
+	            <p>자연의 이야기와 만든 이의 정성스런 마음이 담긴 향기로운 와인, 
+	            퇴근 후 잠시나마 한숨 돌릴 여유를 선사하는 시원한 맥주 한 캔, 
+	            나만의 시간이 필요할 때 친구가 되어주는 위스키 한 잔</p>
+	            <p>Viva Wine과 함께 해보세요!</p>
+	            <p><a th:href="@{/wine/wine_list}" class="btn btn-white px-4 py-3" style="font-weight:bold">와인 구경가기</a></p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    
 </th:block>
 </body>
 </html>

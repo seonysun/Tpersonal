@@ -102,12 +102,21 @@ public class WineController {
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		
-		int rowsize=12;
+		int rowsize=10;
 		int start=rowsize*(curpage-1);
 		List<WineEntity> list=dao.wineFindData(nation, start);
 		model.addAttribute("list", list);
 		
-		model.addAttribute("main_html", "wine/wine_find2");
+		int count=dao.wineFindCount(nation);
+		int count1=dao.wineCount();
+		int count2=dao.whiskeyCount();
+		int count3=dao.cognacCount();
+		model.addAttribute("count", count);
+		model.addAttribute("count1", count1);
+		model.addAttribute("count2", count2);
+		model.addAttribute("count3", count3);
+		
+		model.addAttribute("main_html", "wine/wine_find");
 		return "main";
 	}
 	

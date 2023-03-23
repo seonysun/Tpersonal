@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="hero-wrap hero-bread" style="background-image: url('../images/oak.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-0 bread">Recipe</h1>
+            <p>Viva Wine과 함께할 레시피를 찾아보세요</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-8 col-lg-10 order-md-last">
+    				<div class="row">
+		    			<div class="col-sm-6 col-md-6 col-lg-4 ftco-animate" th:each="vo:${list}">
+		    				<div class="product">
+<!-- 		    					<a th:href="@{/recipe/recipe_detail(no=${vo.no})}" class="img-prod" style="text-align: center"><img class="img-fluid" style="height: 200px;width: 230px;margin: 10px" th:src="${vo.poster}"> -->
+		    					<a href="#" class="img-prod" style="text-align: center"><img class="img-fluid" style="height: 200px;width: 230px;margin: 10px" th:src="${vo.poster}">
+		    						<div class="overlay"></div>
+		    					</a>
+		    					<div class="text py-3 px-3">
+<!-- 		    						<h3><a th:href="@{/recipe/recipe_detail(no=${vo.no})}" th:text="${vo.title}"></a></h3> -->
+		    						<h3><a href="#" th:text="${vo.title}"></a></h3>
+		    						<div class="d-flex">
+		    							<div class="pricing">
+				    						<p class="price"><span class="price-sale" th:text="${vo.chef}" style="font-weight:bold"></span></p>
+				    					</div>
+				    					<div class="rating">
+			    							<p class="text-right">
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star"></span></a>
+			    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+			    							</p>
+			    						</div>
+			    					</div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    		</div>
+
+					<div class="row mt-5" style="margin-top:10px">
+			          <div class="col text-center">
+			            <div class="block-27">
+			              <ul>
+			                <li><a th:href="@{/recipe/recipe_list(page=${curpage>1?startpage-1:curpage})}">&lt;</a></li>
+			                <li th:class="${curpage==i}?'active':''" th:each="i:${#numbers.sequence(startpage,endpage)}">
+					        	<a th:href="@{/recipe/recipe_list(page=${i})}" th:text="${i}"></a>
+					        </li>
+			                <li><a th:href="@{/recipe/recipe_list(page=${curpage<totalpage?endpage+1:curpage})}">&gt;</a></li>
+			              </ul>
+			            </div>
+			          </div>
+			        </div>
+		    	</div>
+
+		    	<div class="col-md-4 col-lg-2 sidebar">
+		    		<div class="sidebar-box-2">
+		    			<h2 class="heading mb-4"><a href="#" style="color:#BB2649;font-weight:bold">PRODUCTS</a></h2>
+		    			<ul>
+		    				<li><a th:href="@{/wine/wine_list}">Wine</a></li>
+							<li><a th:href="@{/wine/whiskey_list}">Whiskey</a></li>
+							<li><a th:href="@{/wine/cognac_list}">Cognac</a></li>
+		    			</ul>
+		    		</div>
+		    		<div class="sidebar-box-2">
+		    			<h2 class="heading mb-4"><a href="#" style="color:#BB2649;font-weight:bold">RECIPE</a></h2>
+		    			<ul>
+		    				<li><a th:href="@{/recipe/recipe_list}">Recipe</a></li>
+							<li><a href="#">Chef</a></li>
+		    			</ul>
+		    		</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+</body>
+</html>

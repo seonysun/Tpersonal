@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block>
+	<div class="wrapper row1">
+	  <header id="header" class="clear"> 
+	    <div id="logo" class="fl_left">
+	      <a th:href="@{/}">
+	      	<img src="../images/wine.png" style="height: 45px">
+	      </a>
+	    </div>
+	    <div class="inline" style="float: left;margin-left:150px;margin-right:50px;line-height:40px">
+	    	<input type="text" class="input-sm" size=20>
+	    	<input type="submit" class="btn btn-sm" value=검색>
+	    </div>
+		<nav id="mainav" class="inline" style="width:55%;height:0px;float:right"> 
+		    <ul class="clear" style="color:black;font-size:15px">
+		      <li class="active" style="color:white;font-size:12px;font-weight:bold">
+		      	<a th:href="@{/}">Home</a>
+		      </li>
+		      <li><a class="drop" href="#">주류</a>
+		        <ul>
+		          <li><a th:href="@{/wine/wine_list}">와인</a></li>
+		          <li><a th:href="@{/wine/whiskey_list}">위스키</a></li>
+		          <li><a th:href="@{/wine/cognac_list}">꼬냑</a></li>
+		        </ul>
+		      </li>
+		      <li><a th:href="@{/wine/wine_find}">나라별 주류</a></li>
+		      <li><a class="drop" href="#">레시피</a>
+		        <ul>
+		          <li><a href="#">인기 레시피</a></li>
+		          <li><a href="#">이달의 쉐프</a></li>
+		        </ul>
+		      </li>
+		      <li><a th:href="@{/board/board_list}">공지사항</a></li>
+		    </ul>
+		</nav>
+	  </header>
+	</div>
+</th:block>
+</body>
+</html>
