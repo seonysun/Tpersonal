@@ -202,7 +202,7 @@ File: Layout CSS
 --------------------------------------------------------------------------------------------------------------- */
 nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
-#mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:"FontAwesome"; font-size:10px; line-height:10px;}
+#mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:GmarketSansMedium; font-size:10px; line-height:10px;}
 
 /* Top Navigation */
 #mainav{border-radius:10px; line-height:normal;}
@@ -312,7 +312,7 @@ label span{color:#FF0000; background-color:inherit;}
 .row1, .row1 a{color:#888888; background-color:#FFFFFF;}
 .row1{border-color:lightseagreen;}
 .row2{color:#888888; background-color:#FFFFFF;}
-.row3{color:#888888; background-color:#F2F2F2;}
+.row3{color:#888888; background-color:#FFF;}
 .row4{color:#B4B4B4; background-color:#232323; border-color:lightseagreen;}
 .row5, .row5 a{color:#B4B4B4; background-color:#232323;}
 .row5{border-color:#3C3C3C;}

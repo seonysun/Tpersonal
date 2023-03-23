@@ -21,7 +21,6 @@ public class BoardController {
 	@GetMapping("board_list")
 	public String board_list(String page, Model model) {
 		if(page==null) page="1";
-		
 		int curpage=Integer.parseInt(page);
 		model.addAttribute("curpage", curpage);
 		int totalpage=dao.boardTotalPage();
